@@ -24,4 +24,4 @@ Los servicios que proporciona el servidor son:
 - La busqueda y consulta de Lugares que visitar.
 - Información sobre las Ofertas activas.
 - Hacer Reservas para Lugares determinados.
-- Acceso al Tabón de anuncios
+- Acceso al Tablón de anuncios
