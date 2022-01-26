@@ -25,3 +25,6 @@ Los servicios que proporciona el servidor son:
 - Información sobre las Ofertas activas.
 - Hacer Reservas para Lugares determinados.
 - Acceso al Tablón de anuncios
+
+## Enlace a tablero Trello ##
+https://trello.com/b/qQkhZRH9/furry-advisor
