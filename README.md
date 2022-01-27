@@ -20,11 +20,12 @@ Las entidades principales de Furry Advisor son:
 
 ## Servicios internos ##
 Los servicios que proporciona el servidor son:
-- Acceso de lectura y escritura de las Reseñas de los Lugares.
-- La busqueda y consulta de Lugares que visitar.
-- Información sobre las Ofertas activas.
-- Hacer Reservas para Lugares determinados.
-- Acceso al Tablón de anuncios
+- Para la lectura de las Reseñas del Lugar, se accede a la BD de los lugares y se cargan todas las reseñas guardadas y asociadas al lugar.
+- Para la escritura de las Reseñas del Lugar, se pasa al servidor la Reseña y el Lugar asociado y crea una entrada en la tabla de la BD.
+- Recibir datos sobre el Lugar a buscar y consultar la base de datos para encontrar la entrada asignada al Lugar especificado.
+- El servidor accede a la BD de los Lugares y, usando las URL de los Lugares, se comunica con el servidor externo para recibir las Ofertas del Lugar y así mostrarlas en el Tablón de anuncios.
+- Se consulta al servidor externo del Lugar para comprobar disponibilidad para hacer Reservas. Esta información se recibe y se muestra al Usuario.
+- Se consulta la BD y, según unos criterios, se recogen datos de entradas existentes para mostrarlos en el Tablón de Anuncios.
 
 ## Enlace a tablero Trello ##
 https://trello.com/b/qQkhZRH9/furry-advisor
