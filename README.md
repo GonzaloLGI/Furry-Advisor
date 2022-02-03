@@ -18,9 +18,6 @@ Las entidades principales de Furry Advisor son:
 - Reservas: selección de fecha y hora de visita de un lugar en el que el Usuario confirma su asistencia al Lugar. Según el Lugar las reservas estarán o no habilitadas.
 - Tablón de anuncios: portal de inicio de la página web en la que un Usuario o visitante consulta los Lugares de moda o más destacados, las Ofertas activas y los nuevos Lugares.
 
-
-hola
-
 ## Servicios internos (REMODELAR) ##
 Los servicios que proporciona el servidor son:
 - Recordatorios de Reservas hechas por el Usuario.
