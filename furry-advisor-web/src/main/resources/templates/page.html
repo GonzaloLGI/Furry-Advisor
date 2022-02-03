@@ -1,5 +1,10 @@
 <html>
 <body>
-	<h1>Hola, {{name}}</h1>
+	<h1>Hola</h1>
+	<ul>
+	{{#users}}
+		<li>{{name}}{{surname}}</li>
+	{{/users}}
+	</ul>
 </body>
 </html>

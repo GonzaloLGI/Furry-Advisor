@@ -1,6 +1,9 @@
 package com.example.demo;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,7 +16,12 @@ public class LogController {
 	 
 	 @GetMapping("/page_log")
 	 public String page(Model model) {
-		 model.addAttribute("name","Gustavo");
+		 List<User> users = new ArrayList<>();
+		 
+		 users.add(new User("Pedro","Pascal"));
+		 users.add(new User("Boba","Fett"));
+		 model.addAttribute("users",users);
+		 
 		 
 		 log.trace("A TRACE Message");
 		 log.debug("A DEBUG Message");
