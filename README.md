@@ -19,7 +19,7 @@ Las entidades principales de Furry Advisor son:
 - Tablón de anuncios: portal de inicio de la página web en la que un Usuario o visitante consulta los Lugares de moda o más destacados, las Ofertas activas y los nuevos Lugares.
 
 
-
+hola
 
 ## Servicios internos (REMODELAR) ##
 Los servicios que proporciona el servidor son:
