@@ -9,12 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LogController {
 	 private Logger log = (Logger) LoggerFactory.getLogger(LogController.class);
 	 
-	 @GetMapping("/page_log")
+	 @GetMapping("/login")
 	 public String page(Model model) {
 		 List<User> users = new ArrayList<>();
 		 
@@ -28,6 +29,6 @@ public class LogController {
 		 log.info("An INFO Message");
 		 log.warn("A WARN Message");
 		 log.error("An ERROR Message");
-		 return "page";
+		 return "login";
 	 }
 }
