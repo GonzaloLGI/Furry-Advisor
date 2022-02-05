@@ -19,8 +19,8 @@ public class LogController {
 	 public String page(Model model) {
 		 List<User> users = new ArrayList<>();
 		 
-		 users.add(new User("Pedro","Pascal"));
-		 users.add(new User("Boba","Fett"));
+		 users.add(new User("Pedro","Pascal",""));
+		 users.add(new User("Boba","Fett",""));
 		 model.addAttribute("users",users);
 		 
 		 

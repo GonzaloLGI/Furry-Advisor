@@ -2,9 +2,14 @@
 <body>
 	
 	<form method='post' action='/profile'>
-	 <p>Porfavor,introduzca sus datos para iniciar sesión: </p>
-	 <input type='text' name='userName'/>
-	 <input type='submit' value='Enviar'/>
+	 <p>Por favor, introduzca sus datos para iniciar sesión: </p>
+	 <label for='nombre'>Nombre de usuario: </label>
+	 <input type='text' id='nombre' name='userName'/>
+	 <label for='contraseña'>Contraseña: </label>
+	 <input type='password' id='contraseña' name='userPassword'/>
+	 <p>
+	 	<input type='submit' value='Enviar'/>
+	 </p>
 	</form>
 	
 </body>
