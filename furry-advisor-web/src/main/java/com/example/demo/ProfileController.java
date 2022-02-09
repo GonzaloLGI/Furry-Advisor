@@ -46,7 +46,7 @@ public class ProfileController implements CommandLineRunner {
 		List<PlaceDB> places = placeRepository.findAll();
 		model.addAttribute("n1",places.get(0).getName());
 		model.addAttribute("t1",places.get(0).getType());
-		model.addAttribute("v1",places.get(0).getScore());
+		model.addAttribute("v1",places.get(0).getRating());
 		
 		return "userPage";
 	}
@@ -77,8 +77,8 @@ public class ProfileController implements CommandLineRunner {
 	}
 	
 	public void testDB(String userName, String userPassword) {
-		placeRepository.save(new PlaceDB(1,"Panda Ramen","Restaurante",3));
-		placeRepository.save(new PlaceDB(2,"La Pelusa","Bar",5));
+		/*placeRepository.save(new PlaceDB(1,"Panda Ramen","Restaurante",3));
+		placeRepository.save(new PlaceDB(2,"La Pelusa","Bar",5));*/
 		
 		userRepository.save(new UserDB(1,userName,userPassword));
 		
