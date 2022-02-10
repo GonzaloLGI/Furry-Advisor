@@ -21,8 +21,8 @@ public class PlaceDB {
 	private float rating;
 	private String place_url;
 	private String schedule;
-	private List<DealDB> deals;
-	private List<ReviewDB> reviews;
+	/*private List<DealDB> deals;
+	private List<ReviewDB> reviews;*/
 	
 	protected PlaceDB(){};
 	
@@ -94,7 +94,7 @@ public class PlaceDB {
 		this.schedule = schedule;
 	}
 
-	public List<DealDB> getDeals() {
+	/*public List<DealDB> getDeals() {
 		return deals;
 	}
 
@@ -108,6 +108,6 @@ public class PlaceDB {
 
 	public void setReviews(List<ReviewDB> reviews) {
 		this.reviews = reviews;
-	}
+	}*/
 	
 }

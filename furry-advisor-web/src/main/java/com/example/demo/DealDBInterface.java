@@ -5,5 +5,5 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DealDBInterface extends JpaRepository<DealDB,Integer> {
-	List<UserDB> findByHeader(String header);
+	List<DealDB> findByHeader(String header);
 }

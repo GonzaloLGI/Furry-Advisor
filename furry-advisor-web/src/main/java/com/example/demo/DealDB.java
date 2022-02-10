@@ -2,11 +2,13 @@ package com.example.demo;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@Entity
 public class DealDB {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -15,15 +17,15 @@ public class DealDB {
 	private String header;
 	private String description;
 	private Blob deal_p;
-	@OneToMany
-	private PlaceDB place_or;
+	//@OneToMany
+	//private PlaceDB place_or;
 	
 	public DealDB() {};
 	
 	public DealDB(int id, String h, PlaceDB place) {
 		deal_id = id;
 		setHeader(h);
-		setPlace_or(place);
+		//setPlace_or(place);
 	}
 
 	public String getHeader() {
@@ -50,11 +52,11 @@ public class DealDB {
 		this.deal_p = deal_p;
 	}
 
-	public PlaceDB getPlace_or() {
+	/*public PlaceDB getPlace_or() {
 		return place_or;
 	}
 
 	public void setPlace_or(PlaceDB place_or) {
 		this.place_or = place_or;
-	}
+	}*/
 }

@@ -2,11 +2,13 @@ package com.example.demo;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 public class CommentDB {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -15,18 +17,18 @@ public class CommentDB {
 	private String text;
 	private Date date;
 	private int usefness;
-	@OneToOne
-	private ReviewDB review_or;
-	@OneToOne
-	private UserDB user_or;
+	//@OneToOne
+	//private ReviewDB review_or;
+	//@OneToOne
+	//private UserDB user_or;
 	
 	public CommentDB() {};
 	
 	public CommentDB(int id, Date d, ReviewDB rev, UserDB us) {
 		comm_id = id;
 		setDate(d);
-		setReview_or(rev);
-		setUser_or(us);
+		/*setReview_or(rev);
+		setUser_or(us);*/
 	}
 
 	public String getText() {
@@ -53,7 +55,7 @@ public class CommentDB {
 		this.usefness = usefness;
 	}
 
-	public ReviewDB getReview_or() {
+	/*public ReviewDB getReview_or() {
 		return review_or;
 	}
 
@@ -67,5 +69,5 @@ public class CommentDB {
 
 	public void setUser_or(UserDB user_or) {
 		this.user_or = user_or;
-	}
+	}*/
 }

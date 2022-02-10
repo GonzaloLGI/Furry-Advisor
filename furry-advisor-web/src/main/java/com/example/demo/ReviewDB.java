@@ -22,12 +22,12 @@ public class ReviewDB {
 	private Date date;
 	private int o_usefness;
 	//Comprobar como iban las relaciones escritas en Spring
-	@OneToMany
+	/*@OneToMany
 	private UserDB user_id;
-	@ManyToOne
+	//@ManyToOne
 	private PlaceDB place_id;
-	@OneToMany
-	private List<CommentDB> comments;
+	//@OneToMany
+	private List<CommentDB> comments;*/
 	
 	public ReviewDB() {};
 	
@@ -37,8 +37,8 @@ public class ReviewDB {
 		text = txt;
 		date = dt;
 		o_usefness = usf;
-		user_id = user;
-		place_id = place;
+		/*user_id = user;
+		place_id = place;*/
 	}
 	
 	public int getRating() {
@@ -66,11 +66,11 @@ public class ReviewDB {
 		this.o_usefness = o_usefness;
 	}
 
-	public List<CommentDB> getComments() {
+	/*public List<CommentDB> getComments() {
 		return comments;
 	}
 
 	public void setComments(List<CommentDB> comments) {
 		this.comments = comments;
-	}
+	}*/
 }

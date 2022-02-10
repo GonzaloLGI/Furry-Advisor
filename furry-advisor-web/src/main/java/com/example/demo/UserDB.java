@@ -21,8 +21,8 @@ public class UserDB {
 	private String email;
 	private Blob prof_photo;
 	//Comprobar como iban las relaciones en Spring
-	@OneToMany
-	private List<ReviewDB> reviews;
+	//@OneToMany
+	//private List<ReviewDB> reviews;
 	
 	protected UserDB(){};
 	
@@ -63,4 +63,12 @@ public class UserDB {
 	public void setProf_photo(Blob prof_photo) {
 		this.prof_photo = prof_photo;
 	}
+
+	/*public List<ReviewDB> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<ReviewDB> reviews) {
+		this.reviews = reviews;
+	}*/
 }

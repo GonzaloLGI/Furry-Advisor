@@ -77,10 +77,10 @@ public class ProfileController implements CommandLineRunner {
 	}
 	
 	public void testDB(String userName, String userPassword) {
-		/*placeRepository.save(new PlaceDB(1,"Panda Ramen","Restaurante",3));
-		placeRepository.save(new PlaceDB(2,"La Pelusa","Bar",5));*/
+		/*placeRepository.save(new PlaceDB(1,"Panda Ramen","Restaurante",3,"C/Don Juan"));
+		placeRepository.save(new PlaceDB(2,"La Pelusa","Bar",5,"C/Margarina"));
 		
-		userRepository.save(new UserDB(1,userName,userPassword));
+		userRepository.save(new UserDB(1,userName,userPassword));*/
 		
 		
 		List<PlaceDB> place = placeRepository.findByName("La Pelusa");

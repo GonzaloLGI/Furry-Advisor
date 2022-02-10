@@ -4,6 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ReviewDBInterface extends JpaRepository<ReviewDBInterface,Integer> {
-	List<UserDB> findByUser(UserDB user);
+public interface ReviewDBInterface extends JpaRepository<ReviewDB,Integer> {
+	List<ReviewDB> findByRating(int rating);
 }
