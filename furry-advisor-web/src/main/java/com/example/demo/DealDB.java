@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,15 +18,14 @@ public class DealDB {
 	private String header;
 	private String description;
 	private Blob deal_p;
-	//@OneToMany
-	//private PlaceDB place_or;
+	/*@ManyToOne Habria un problema de que objeto se crea primero: place o deal
+	private PlaceDB place_or;*/
 	
 	public DealDB() {};
 	
-	public DealDB(int id, String h, PlaceDB place) {
+	public DealDB(int id, String h) {
 		deal_id = id;
 		setHeader(h);
-		//setPlace_or(place);
 	}
 
 	public String getHeader() {

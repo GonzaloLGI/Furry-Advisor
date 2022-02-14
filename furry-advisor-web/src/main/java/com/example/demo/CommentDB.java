@@ -1,12 +1,15 @@
 package com.example.demo;
 
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class CommentDB {
@@ -15,20 +18,18 @@ public class CommentDB {
 	private int comm_id;
 	
 	private String text;
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private int usefness;
-	//@OneToOne
-	//private ReviewDB review_or;
-	//@OneToOne
-	//private UserDB user_or;
+	@OneToOne(cascade=CascadeType.ALL)
+	private UserDB user_or;
 	
 	public CommentDB() {};
 	
-	public CommentDB(int id, Date d, ReviewDB rev, UserDB us) {
+	public CommentDB(int id, Date d, UserDB us) {
 		comm_id = id;
 		setDate(d);
-		/*setReview_or(rev);
-		setUser_or(us);*/
+		setUser_or(us);
 	}
 
 	public String getText() {
@@ -61,7 +62,7 @@ public class CommentDB {
 
 	public void setReview_or(ReviewDB review_or) {
 		this.review_or = review_or;
-	}
+	}*/
 
 	public UserDB getUser_or() {
 		return user_or;
@@ -69,5 +70,5 @@ public class CommentDB {
 
 	public void setUser_or(UserDB user_or) {
 		this.user_or = user_or;
-	}*/
+	}
 }

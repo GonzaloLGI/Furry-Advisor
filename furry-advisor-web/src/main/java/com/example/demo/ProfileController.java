@@ -39,9 +39,9 @@ public class ProfileController implements CommandLineRunner {
 		model.addAttribute("name", userName);
 		model.addAttribute("password",userPassword);
 		
-		userRepository.save(new UserDB(2,userName,userPassword));
-		List<UserDB> user = userRepository.findByNickname("Manuel");
-		System.out.println(user.get(0).getPassword());
+		/*userRepository.save(new UserDB(2,userName,userPassword,null));
+		List<UserDB> user = userRepository.findByNickname("Manuel");*/
+		//System.out.println(user.get(0).getPassword());
 		
 		List<PlaceDB> places = placeRepository.findAll();
 		model.addAttribute("n1",places.get(0).getName());
@@ -84,7 +84,7 @@ public class ProfileController implements CommandLineRunner {
 		
 		
 		List<PlaceDB> place = placeRepository.findByName("La Pelusa");
-		System.out.println(place.get(0).getType());
+		//System.out.println(place.get(0).getType());
 	}
 
 }

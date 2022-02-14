@@ -17,11 +17,11 @@ public class LogController {
 	 
 	 @GetMapping("/login")
 	 public String page(Model model) {
-		 List<User> users = new ArrayList<>();
+		 /*List<User> users = new ArrayList<>();
 		 
 		 users.add(new User("Pedro","Pascal",""));
 		 users.add(new User("Boba","Fett",""));
-		 model.addAttribute("users",users);
+		 model.addAttribute("users",users);*/
 		 
 		 
 		 log.trace("A TRACE Message");

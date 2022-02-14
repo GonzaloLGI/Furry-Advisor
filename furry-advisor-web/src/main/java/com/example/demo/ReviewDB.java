@@ -1,14 +1,17 @@
 package com.example.demo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class ReviewDB {
@@ -19,26 +22,22 @@ public class ReviewDB {
 	
 	private int rating;
 	private String text;
+	
 	private Date date;
 	private int o_usefness;
 	//Comprobar como iban las relaciones escritas en Spring
-	/*@OneToMany
-	private UserDB user_id;
-	//@ManyToOne
-	private PlaceDB place_id;
-	//@OneToMany
-	private List<CommentDB> comments;*/
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<CommentDB> comments;
 	
 	public ReviewDB() {};
 	
-	public ReviewDB(int id, int rt, String txt, Date dt, int usf, UserDB user, PlaceDB place) {
+	public ReviewDB(int id, int rt, String txt, Date dt, int usf, List<CommentDB> comms) {
 		rev_id = id;
 		rating = rt;
 		text = txt;
 		date = dt;
 		o_usefness = usf;
-		/*user_id = user;
-		place_id = place;*/
+		comments = comms;
 	}
 	
 	public int getRating() {
@@ -66,11 +65,11 @@ public class ReviewDB {
 		this.o_usefness = o_usefness;
 	}
 
-	/*public List<CommentDB> getComments() {
+	public List<CommentDB> getComments() {
 		return comments;
 	}
 
 	public void setComments(List<CommentDB> comments) {
 		this.comments = comments;
-	}*/
+	}
 }

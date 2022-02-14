@@ -3,6 +3,7 @@ package com.example.demo;
 import java.sql.Blob;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,15 +22,16 @@ public class UserDB {
 	private String email;
 	private Blob prof_photo;
 	//Comprobar como iban las relaciones en Spring
-	//@OneToMany
-	//private List<ReviewDB> reviews;
+	@OneToMany (cascade=CascadeType.ALL)
+	private List<ReviewDB> reviews;
 	
 	protected UserDB(){};
 	
-	public UserDB(int i, String nk, String psw) {
+	public UserDB(int i, String nk, String psw, List<ReviewDB> revs) {
 		user_id = i;
 		setNickname(nk);
 		setPassword(psw);
+		reviews = revs;
 	}
 
 	public String getPassword() {
@@ -64,11 +66,11 @@ public class UserDB {
 		this.prof_photo = prof_photo;
 	}
 
-	/*public List<ReviewDB> getReviews() {
+	public List<ReviewDB> getReviews() {
 		return reviews;
 	}
 
 	public void setReviews(List<ReviewDB> reviews) {
 		this.reviews = reviews;
-	}*/
+	}
 }
