@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PlaceController {
 
-	@GetMapping("/lugar")
+	@GetMapping("/place")
 	public String profile(Model model) {
 	 
-		return "lugar";
+		return "place";
 	}
 }

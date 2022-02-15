@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class PlacesController implements CommandLineRunner {
+public class SearchController implements CommandLineRunner {
 	@Autowired
 	private PlaceDBInterface placeRepository;
 
