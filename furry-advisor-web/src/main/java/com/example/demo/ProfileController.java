@@ -48,7 +48,7 @@ public class ProfileController implements CommandLineRunner {
 		model.addAttribute("t1",places.get(0).getType());
 		model.addAttribute("v1",places.get(0).getRating());
 		
-		return "userPage";
+		return "profile";
 	}
 	
 	@PostMapping("/upload_image")
@@ -56,7 +56,7 @@ public class ProfileController implements CommandLineRunner {
 		Files.createDirectories(IMAGES_FOLDER);
 		Path imagePath = IMAGES_FOLDER.resolve("perfil.jpg");
 		image.transferTo(imagePath);
-		return "userPage";
+		return "profile";
 	}	
 	
 	@GetMapping("/perfil")
