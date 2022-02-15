@@ -55,10 +55,10 @@ public class HomeController {
 		List<ReviewDB> revsUs4 = new ArrayList<ReviewDB>();
 		List<ReviewDB> revsUs5 = new ArrayList<ReviewDB>();
 		List<ReviewDB> revsUs6 = new ArrayList<ReviewDB>();
-		revsUs1.add(rev1);
+		/*revsUs1.add(rev1);
 		revsUs2.add(rev2);
 		revsUs3.add(rev3);
-		revsUs4.add(rev4);
+		revsUs4.add(rev4);*/
 		
 		UserDB use1 = new UserDB(1,"xxVicente69xx","sasageyo",revsUs1);
 		UserDB use2 = new UserDB(2,"Javier","tierrasanta",revsUs2);
@@ -66,6 +66,18 @@ public class HomeController {
 		UserDB use4 = new UserDB(4,"Javapor","asia",revsUs4);
 		UserDB use5 = new UserDB(5,"CMarrano","huevoscocidos",revsUs5);
 		UserDB use6 = new UserDB(6,"LoboCastellano","brumbrum",revsUs6);
+		
+		Date dtC1 = new SimpleDateFormat("yyyy-MM-dd").parse("2015-06-25");
+		CommentDB comm1 = new CommentDB(1,dtC1,use3);
+		Date dtC2 = new SimpleDateFormat("yyyy-MM-dd").parse("2011-10-13");
+		CommentDB comm2 = new CommentDB(2,dtC2,use5);
+		Date dtC3 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-09");
+		CommentDB comm3 = new CommentDB(3,dtC3,use4);	
+		
+		comms3.add(comm3);
+		comms2.add(comm2);
+		rev2.setComments(comms2);
+		rev3.setComments(comms3);
 		
 		DealDB deal1 = new DealDB(1,"Comisiones abiertas");
 		DealDB deal2 = new DealDB(2,"10% en ramen");
@@ -81,8 +93,8 @@ public class HomeController {
 		List<DealDB> deals6 = new ArrayList<DealDB>();
 		List<DealDB> deals7 = new ArrayList<DealDB>();
 		deals2.add(deal1);
-		//deals2.add(deal3);
-		//deals2.add(deal5);
+		deals2.add(deal3);
+		deals2.add(deal5);
 		deals4.add(deal2);
 		deals4.add(deal4);
 		
@@ -95,7 +107,7 @@ public class HomeController {
 		List<ReviewDB> revsPl7 = new ArrayList<ReviewDB>();
 		revsPl2.add(rev3);
 		revsPl5.add(rev2);
-		//revsPl3.add(rev4);
+		revsPl3.add(rev4);
 		revsPl7.add(rev1);
 		
 		
@@ -105,14 +117,18 @@ public class HomeController {
 		PlaceDB pla4 = new PlaceDB(4,"La Pelusa","Bar",5,"C/Margarina",deals4,revsPl4);
 		PlaceDB pla5 = new PlaceDB(5,"Foxxes Bar","Bar",3,"C/Carrera",deals5,revsPl5);
 		PlaceDB pla6 = new PlaceDB(6,"Pelusa Picarona","Club",4,"C/Me Falta Un Tornillo",deals6,revsPl6);
-		PlaceDB pla7 = new PlaceDB(7,"Parque Aguadulce","Parque",2,"C/Severo Ochoa",deals7,revsPl7);
+		PlaceDB pla7 = new PlaceDB(7,"Parque Aguadulce","Parque",2,"C/Severo Ochoa",deals7,revsPl7);	
 		
-		Date dtC1 = new SimpleDateFormat("yyyy-MM-dd").parse("2015-06-25");
-		CommentDB comm1 = new CommentDB(1,dtC1,use3);
-		Date dtC2 = new SimpleDateFormat("yyyy-MM-dd").parse("2011-10-13");
-		CommentDB comm2 = new CommentDB(2,dtC2,use5);
-		Date dtC3 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-09");
-		CommentDB comm3 = new CommentDB(3,dtC3,use4);		
+		dealRepository.save(deal1);
+		dealRepository.save(deal2);
+		dealRepository.save(deal3);
+		dealRepository.save(deal4);
+		dealRepository.save(deal5);
+		
+		//reviewRepository.save(rev1);
+		//reviewRepository.save(rev2);
+		//reviewRepository.save(rev3);
+		//reviewRepository.save(rev4);
 		
 		placeRepository.save(pla1);
 		placeRepository.save(pla2);
@@ -122,26 +138,18 @@ public class HomeController {
 		placeRepository.save(pla6);
 		placeRepository.save(pla7);
 		
+		//El problema esta en que, como es cascada, cuando se guarda el padre se guarda el objeto ajeno
 		userRepository.save(use1);
 		userRepository.save(use2);
-		userRepository.save(use3);
-		userRepository.save(use4);
-		userRepository.save(use5);
+		//userRepository.save(use3);
+		//userRepository.save(use4);
+		//userRepository.save(use5);
 		userRepository.save(use6);
 		
 		commentRepository.save(comm1);
-		commentRepository.save(comm2);
-		//commentRepository.save(comm3);
+		/*commentRepository.save(comm2);
+		commentRepository.save(comm3);*/
 		
-		dealRepository.save(deal1);
-		dealRepository.save(deal2);
-		dealRepository.save(deal3);
-		dealRepository.save(deal4);
-		dealRepository.save(deal5);
 		
-		reviewRepository.save(rev1);
-		reviewRepository.save(rev2);
-		reviewRepository.save(rev3);
-		reviewRepository.save(rev4);
 	}
 }
