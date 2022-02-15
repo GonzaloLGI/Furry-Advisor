@@ -23,7 +23,7 @@ public class ReviewDB {
 	private int rating;
 	private String text;
 	
-	private Date date;
+	private Date date_r;
 	private int o_usefness;
 	//Comprobar como iban las relaciones escritas en Spring
 	@OneToMany(cascade=CascadeType.ALL)
@@ -35,7 +35,7 @@ public class ReviewDB {
 		rev_id = id;
 		rating = rt;
 		text = txt;
-		date = dt;
+		date_r = dt;
 		o_usefness = usf;
 		comments = comms;
 	}
@@ -53,10 +53,10 @@ public class ReviewDB {
 		this.text = text;
 	}
 	public Date getDate() {
-		return date;
+		return date_r;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.date_r = date;
 	}
 	public int getO_usefness() {
 		return o_usefness;

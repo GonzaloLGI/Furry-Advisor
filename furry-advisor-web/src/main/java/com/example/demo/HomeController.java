@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
@@ -7,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 import javax.annotation.PostConstruct;
 
-import java.util.List;
+//import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -109,9 +110,9 @@ public class HomeController {
 		Date dtC1 = new SimpleDateFormat("yyyy-MM-dd").parse("2015-06-25");
 		CommentDB comm1 = new CommentDB(1,dtC1,use3);
 		Date dtC2 = new SimpleDateFormat("yyyy-MM-dd").parse("2011-10-13");
-		CommentDB comm2 = new CommentDB(1,dtC2,use5);
+		CommentDB comm2 = new CommentDB(2,dtC2,use5);
 		Date dtC3 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-09");
-		CommentDB comm3 = new CommentDB(1,dtC3,use4);		
+		CommentDB comm3 = new CommentDB(3,dtC3,use4);		
 		
 		placeRepository.save(pla1);
 		placeRepository.save(pla2);
