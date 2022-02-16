@@ -22,16 +22,16 @@ public class UserDB {
 	private String email;
 	private Blob prof_photo;
 	//Comprobar como iban las relaciones en Spring
-	@OneToMany (cascade=CascadeType.ALL)
-	private List<ReviewDB> reviews;
+	/*@OneToMany (cascade=CascadeType.ALL)
+	private List<ReviewDB> reviews;*/
 	
 	protected UserDB(){};
 	
-	public UserDB(int i, String nk, String psw, List<ReviewDB> revs) {
+	public UserDB(int i, String nk, String psw/*, List<ReviewDB> revs*/) {
 		user_id = i;
 		setNickname(nk);
 		setPassword(psw);
-		reviews = revs;
+		//reviews = revs;
 	}
 
 	public String getPassword() {
@@ -66,11 +66,11 @@ public class UserDB {
 		this.prof_photo = prof_photo;
 	}
 
-	public List<ReviewDB> getReviews() {
+	/*public List<ReviewDB> getReviews() {
 		return reviews;
 	}
 
 	public void setReviews(List<ReviewDB> reviews) {
 		this.reviews = reviews;
-	}
+	}*/
 }

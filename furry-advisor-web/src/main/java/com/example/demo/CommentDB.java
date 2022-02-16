@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,15 +22,18 @@ public class CommentDB {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	private int usefness;
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private UserDB user_or;
+	@ManyToOne
+	private ReviewDB review_or;
 	
 	public CommentDB() {};
 	
-	public CommentDB(int id, Date d, UserDB us) {
+	public CommentDB(int id, Date d, UserDB us, ReviewDB rv) {
 		comm_id = id;
 		setDate(d);
 		setUser_or(us);
+		review_or = rv;
 	}
 
 	public String getText() {
@@ -56,13 +60,13 @@ public class CommentDB {
 		this.usefness = usefness;
 	}
 
-	/*public ReviewDB getReview_or() {
+	public ReviewDB getReview_or() {
 		return review_or;
 	}
 
 	public void setReview_or(ReviewDB review_or) {
 		this.review_or = review_or;
-	}*/
+	}
 
 	public UserDB getUser_or() {
 		return user_or;

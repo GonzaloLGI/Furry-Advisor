@@ -24,21 +24,21 @@ public class PlaceDB {
 	private float rating;
 	private String place_url;
 	private String schedule;
-	@OneToMany(cascade=CascadeType.ALL)
+	/*@OneToMany(cascade=CascadeType.ALL)
 	private List<DealDB> deals;
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<ReviewDB> reviews;
+	private List<ReviewDB> reviews;*/
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(int i, String n, String t, int r, String a, List<DealDB> dealz, List<ReviewDB> revs) {
+	public PlaceDB(int i, String n, String t, int r, String a/*, List<DealDB> dealz, List<ReviewDB> revs*/) {
 		place_id = i;
 		name = n;
 		type = t;
 		setRating(r);
 		address = a;
-		deals = dealz;
-		reviews = revs;
+		/*deals = dealz;
+		reviews = revs;*/
 	}
 
 	public String getName() {
@@ -101,7 +101,7 @@ public class PlaceDB {
 		this.schedule = schedule;
 	}
 
-	public List<DealDB> getDeals() {
+	/*public List<DealDB> getDeals() {
 		return deals;
 	}
 
@@ -115,6 +115,6 @@ public class PlaceDB {
 
 	public void setReviews(List<ReviewDB> reviews) {
 		this.reviews = reviews;
-	}
+	}*/
 	
 }

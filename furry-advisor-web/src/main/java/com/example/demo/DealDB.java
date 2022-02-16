@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.sql.Blob;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +19,14 @@ public class DealDB {
 	private String header;
 	private String description;
 	private Blob deal_p;
-	/*@ManyToOne Habria un problema de que objeto se crea primero: place o deal
-	private PlaceDB place_or;*/
+	@ManyToOne //Habria un problema de que objeto se crea primero: place o deal
+	private PlaceDB place_or;
 	
 	public DealDB() {};
 	
-	public DealDB(int id, String h) {
+	public DealDB(int id, String h, PlaceDB pl) {
 		deal_id = id;
+		place_or = pl;
 		setHeader(h);
 	}
 
@@ -52,11 +54,11 @@ public class DealDB {
 		this.deal_p = deal_p;
 	}
 
-	/*public PlaceDB getPlace_or() {
+	public PlaceDB getPlace_or() {
 		return place_or;
 	}
 
 	public void setPlace_or(PlaceDB place_or) {
 		this.place_or = place_or;
-	}*/
+	}
 }

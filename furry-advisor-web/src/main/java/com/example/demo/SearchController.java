@@ -16,7 +16,7 @@ public class SearchController implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		List<PlaceDB> places = placeRepository.findByType("Club");
-		System.out.println(places.get(0).getRating());
+		//System.out.println(places.get(0).getRating());
 	}
 	
 	
