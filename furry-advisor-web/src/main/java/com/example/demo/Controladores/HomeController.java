@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -125,16 +126,20 @@ public class HomeController {
 	}
 
 
-	@PostMapping("/home")
+	@GetMapping("/home")
 	public String home(Model model) {
 
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		DealDB dealDB1 = deals.get(0);
 		DealDB dealDB2 = deals.get(2);
-		System.out.println("Estamos aqui");
-		System.out.println(deals.size());
+		
+		
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
 		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
+		model.addAttribute("deal_image1", dealDB1.getDealPic());
+		model.addAttribute("deal_image2", dealDB2.getDealPic());
+		model.addAttribute("deal_header1", dealDB1.getHeader());
+		model.addAttribute("deal_header2", dealDB2.getHeader());
 		return "home";
 	}
 }

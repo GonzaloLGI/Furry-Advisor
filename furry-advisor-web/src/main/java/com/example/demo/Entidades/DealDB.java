@@ -18,7 +18,7 @@ public class DealDB {
 	
 	private String header;
 	private String description;
-	private Blob deal_p;
+	private Blob dealPic;
 	@ManyToOne //Habria un problema de que objeto se crea primero: place o deal
 	private PlaceDB placeOrigin;
 	
@@ -46,12 +46,12 @@ public class DealDB {
 		this.description = description;
 	}
 
-	public Blob getDeal_p() {
-		return deal_p;
+	public Blob getDealPic() {
+		return dealPic;
 	}
 
-	public void setDeal_p(Blob deal_p) {
-		this.deal_p = deal_p;
+	public void setDealPic(Blob deal_p) {
+		this.dealPic = deal_p;
 	}
 
 	public PlaceDB getPlaceOrigin() {
