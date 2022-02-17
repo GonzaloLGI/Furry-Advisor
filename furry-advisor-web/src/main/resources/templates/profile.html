@@ -3,12 +3,14 @@
 {{>navbar}}
 
 	<body>
+	
   		<p><img src="/perfil" width="104" height="142" /></p>
 		<h1 style="color: #8080ff;" font-family: Helvetica, sans-serif;>{{name}}</h1>
 
 		<hr />
+		
 		<p><strong> Contraseña: </strong>{{password}}</p>
-		<p><strong> Location: </strong> Madrid</p>
+		<p><strong> Location: </strong> {{location}}</p>
   
 		<form action="/upload_image" method="post" enctype="multipart/form-data">
 			<p>Arrastre su nueva foto de perfil:</p><input type='file' name='image' accept=".jpg, .jpeg"/>
@@ -37,6 +39,10 @@
 			<td><a href='lugar'>Reseña</a></td>
 		</tr>
 	</table>
+	
+		 <p>
+	 	<input type='submit' value='Editar Perfil'/>
+	 </p>
 	
 	</body> 
 </html>
