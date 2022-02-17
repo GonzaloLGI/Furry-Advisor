@@ -6,10 +6,15 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
 
@@ -36,16 +42,14 @@ public class ProfileController implements CommandLineRunner {
 	private PlaceDBInterface placeRepository;
 
 	@PostMapping("/profile")
-	public String profile(Model model, @RequestParam String userName, @RequestParam String userPassword) {
+	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
 	 
-		//testDB(userName,userPassword);
+		UserDB actualUser = userRepository.findByNickname(userName).get(0);
+		http.setAttribute("actUser", actualUser);
 		
-		model.addAttribute("name", userName);
+		model.addAttribute("name", actualUser.getNickname());
 		model.addAttribute("password",userPassword);
-		
-		/*userRepository.save(new UserDB(2,userName,userPassword,null));
-		List<UserDB> user = userRepository.findByNickname("Manuel");*/
-		//System.out.println(user.get(0).getPassword());
+		model.addAttribute("user",actualUser);
 		
 		List<PlaceDB> places = placeRepository.findAll();
 		model.addAttribute("n1",places.get(0).getName());
@@ -56,39 +60,36 @@ public class ProfileController implements CommandLineRunner {
 	}
 	
 	@PostMapping("/upload_image")
-	public String uploadImage(@RequestParam MultipartFile image) throws IOException {
-		Files.createDirectories(IMAGES_FOLDER);
+	public String uploadImage(HttpSession http, @RequestParam MultipartFile image) throws IOException {
+		/*Files.createDirectories(IMAGES_FOLDER);
 		Path imagePath = IMAGES_FOLDER.resolve("perfil.jpg");
-		image.transferTo(imagePath);
-		return "profile";
+		image.transferTo(imagePath);*/
+		UserDB user = (UserDB)http.getAttribute("actUser");
+		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
+		userRepository.save(user);
+		return "redirect:profile";
 	}	
 	
-	@GetMapping("/perfil")
-	public ResponseEntity<Object> downloadImage(Model model) throws MalformedURLException {
-		Path imagePath = IMAGES_FOLDER.resolve("perfil.jpg");
-		Resource image = new UrlResource(imagePath.toUri());
-		return ResponseEntity.ok()
-		.header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-		.body(image);
+	@GetMapping("/image")
+	public ResponseEntity<Object> downloadImage(HttpSession http, Model model) throws MalformedURLException, SQLException {
+		UserDB user = (UserDB)http.getAttribute("actUser");
+		if (user.getProf_photo() != null) {
+			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			return ResponseEntity.ok()
+					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					 .contentLength(user.getProf_photo().length())
+					 .body(image);
+		}else {
+			System.out.println("No hay foto");
+			return  ResponseEntity.notFound().build();
+		}
+		
 	}
 	
 	//La pagina de login y de register son distintas, luego hacer 2 htmls y 2 controladores por separado
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		testDB("Vicente","pasion");
 		
 	}
-	
-	public void testDB(String userName, String userPassword) {
-		/*placeRepository.save(new PlaceDB(1,"Panda Ramen","Restaurante",3,"C/Don Juan"));
-		placeRepository.save(new PlaceDB(2,"La Pelusa","Bar",5,"C/Margarina"));
-		
-		userRepository.save(new UserDB(1,userName,userPassword));*/
-		
-		
-		List<PlaceDB> place = placeRepository.findByName("La Pelusa");
-		//System.out.println(place.get(0).getType());
-	}
-
 }
