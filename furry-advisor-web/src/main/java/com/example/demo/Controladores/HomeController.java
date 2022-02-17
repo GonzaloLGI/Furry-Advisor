@@ -11,6 +11,9 @@ import javax.annotation.PostConstruct;
 //import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.DealDB;
@@ -119,5 +122,19 @@ public class HomeController {
 		commentRepository.save(comm2);
 		commentRepository.save(comm3);
 		
+	}
+
+
+	@PostMapping("/home")
+	public String home(Model model) {
+
+		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
+		DealDB dealDB1 = deals.get(0);
+		DealDB dealDB2 = deals.get(2);
+		System.out.println("Estamos aqui");
+		System.out.println(deals.size());
+		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
+		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
+		return "home";
 	}
 }

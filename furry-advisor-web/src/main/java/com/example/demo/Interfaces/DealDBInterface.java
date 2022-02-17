@@ -8,4 +8,5 @@ import com.example.demo.Entidades.DealDB;
 
 public interface DealDBInterface extends JpaRepository<DealDB,Integer> {
 	List<DealDB> findByHeader(String header);
+	List<DealDB> findAllByPlaceOriginIsNotNull();
 }

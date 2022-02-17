@@ -20,13 +20,13 @@ public class DealDB {
 	private String description;
 	private Blob deal_p;
 	@ManyToOne //Habria un problema de que objeto se crea primero: place o deal
-	private PlaceDB place_or;
+	private PlaceDB placeOrigin;
 	
 	public DealDB() {};
 	
 	public DealDB(int id, String h, PlaceDB pl) {
 		deal_id = id;
-		place_or = pl;
+		placeOrigin = pl;
 		setHeader(h);
 	}
 
@@ -54,11 +54,11 @@ public class DealDB {
 		this.deal_p = deal_p;
 	}
 
-	public PlaceDB getPlace_or() {
-		return place_or;
+	public PlaceDB getPlaceOrigin() {
+		return placeOrigin;
 	}
 
-	public void setPlace_or(PlaceDB place_or) {
-		this.place_or = place_or;
+	public void setPlaceOrigin(PlaceDB place_or) {
+		this.placeOrigin = place_or;
 	}
 }
