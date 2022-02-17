@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
-import com.example.demo.Entidades2.PlaceDB;
-import com.example.demo.Interfaces2.PlaceDBInterface;
+import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Interfaces.PlaceDBInterface;
 
 @Controller
 public class SearchController implements CommandLineRunner {

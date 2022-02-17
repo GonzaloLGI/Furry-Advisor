@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.Entidades2.PlaceDB;
-import com.example.demo.Interfaces2.PlaceDBInterface;
-import com.example.demo.Interfaces2.UserDBInterface;
+import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Interfaces.PlaceDBInterface;
+import com.example.demo.Interfaces.UserDBInterface;
 
 @Controller
 public class ProfileController implements CommandLineRunner {

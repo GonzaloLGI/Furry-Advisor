@@ -1,4 +1,4 @@
-package com.example.demo.Entidades2;
+package com.example.demo.Entidades;
 
 import java.util.Date;
 

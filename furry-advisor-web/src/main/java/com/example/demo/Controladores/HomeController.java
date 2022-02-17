@@ -12,16 +12,16 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.example.demo.Entidades2.CommentDB;
-import com.example.demo.Entidades2.DealDB;
-import com.example.demo.Entidades2.PlaceDB;
-import com.example.demo.Entidades2.ReviewDB;
-import com.example.demo.Entidades2.UserDB;
-import com.example.demo.Interfaces2.CommentDBInterface;
-import com.example.demo.Interfaces2.DealDBInterface;
-import com.example.demo.Interfaces2.PlaceDBInterface;
-import com.example.demo.Interfaces2.ReviewDBInterface;
-import com.example.demo.Interfaces2.UserDBInterface;
+import com.example.demo.Entidades.CommentDB;
+import com.example.demo.Entidades.DealDB;
+import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.ReviewDB;
+import com.example.demo.Entidades.UserDB;
+import com.example.demo.Interfaces.CommentDBInterface;
+import com.example.demo.Interfaces.DealDBInterface;
+import com.example.demo.Interfaces.PlaceDBInterface;
+import com.example.demo.Interfaces.ReviewDBInterface;
+import com.example.demo.Interfaces.UserDBInterface;
 
 @Controller
 public class HomeController {
