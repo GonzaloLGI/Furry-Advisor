@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Controladores;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -11,6 +11,17 @@ import javax.annotation.PostConstruct;
 //import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.example.demo.Entidades2.CommentDB;
+import com.example.demo.Entidades2.DealDB;
+import com.example.demo.Entidades2.PlaceDB;
+import com.example.demo.Entidades2.ReviewDB;
+import com.example.demo.Entidades2.UserDB;
+import com.example.demo.Interfaces2.CommentDBInterface;
+import com.example.demo.Interfaces2.DealDBInterface;
+import com.example.demo.Interfaces2.PlaceDBInterface;
+import com.example.demo.Interfaces2.ReviewDBInterface;
+import com.example.demo.Interfaces2.UserDBInterface;
 
 @Controller
 public class HomeController {
@@ -29,6 +40,12 @@ public class HomeController {
 
 	@PostConstruct
 	public void init() throws ParseException {
+		
+		//Preguntas para mañana jueves:
+		//A que interfaz se refiere cuando dice "Consultas y actualizaciones que se muestran en la interfaz (los objetos modificados se ven 
+		//reflejados en la interfaz si se vuelven a cargar)"
+		//De que manera tenemos que usar MySQL una vez lo tenemos conectado
+		//Las consultas que dice que no hay que hacer a fuego son las escritas en el proyecto de Eclipse o donde y como ejemplificamos que no hay
 		
 		UserDB use1 = new UserDB(1,"xxVicente69xx","sasageyo");
 		UserDB use2 = new UserDB(2,"Javier","tierrasanta");
@@ -50,8 +67,6 @@ public class HomeController {
 		DealDB deal3 = new DealDB(16,"2x1 en chupitos de absenta",pla6);
 		DealDB deal4 = new DealDB(17,"Galletas con nata gratis",pla3);
 		DealDB deal5 = new DealDB(18,"Reunion en Parque Aguadulce",pla7);
-		
-		//Hay un problema de bucle entre comment, user y review
 		
 		String txt1 = "El lugar no esta bien. No ofrecen lo que dicen";
 		Date dtR1 = new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01");
@@ -103,10 +118,6 @@ public class HomeController {
 		commentRepository.save(comm1);
 		commentRepository.save(comm2);
 		commentRepository.save(comm3);
-		
-		
-		
-		//El problema esta en que, como es cascada, cuando se guarda el padre se guarda el objeto ajeno
 		
 	}
 }

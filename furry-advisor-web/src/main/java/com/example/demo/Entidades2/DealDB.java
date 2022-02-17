@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Entidades2;
 
 import java.sql.Blob;
 

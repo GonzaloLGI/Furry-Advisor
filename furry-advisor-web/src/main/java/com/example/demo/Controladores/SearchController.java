@@ -1,10 +1,13 @@
-package com.example.demo;
+package com.example.demo.Controladores;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
+
+import com.example.demo.Entidades2.PlaceDB;
+import com.example.demo.Interfaces2.PlaceDBInterface;
 
 @Controller
 public class SearchController implements CommandLineRunner {

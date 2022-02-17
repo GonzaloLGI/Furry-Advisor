@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Controladores;
 
 
 import java.io.IOException;
@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.Entidades2.PlaceDB;
+import com.example.demo.Interfaces2.PlaceDBInterface;
+import com.example.demo.Interfaces2.UserDBInterface;
 
 @Controller
 public class ProfileController implements CommandLineRunner {

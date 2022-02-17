@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Entidades2;
 
 import java.util.Date;
 import java.util.List;
