@@ -1,5 +1,5 @@
 # Furry Advisor
-*Woof Woof*
+*¿Cuál será el lugar en el que conozcas a tu próximo Woof Woof?*
 
 ## Descripción de Furry Advisor ##
 Furry Advisor consiste en una pagina web de guía turística en la que se pueden consultar convenciones, restaurantes, bares y clubs de temática furry, permitiendo así a quien quiera introducirse y empaparse de la cultura furry poder visitar esos lugares y conocer a gente furry.
@@ -21,6 +21,15 @@ Las entidades principales de Furry Advisor son:
 Los servicios que proporciona el servidor son:
 - Notificaciones de Ofertas y eventos recien sacados.
 - Avisar de interacciones de otros Usuarios con tus Reseñas: valoración de utilidad, comentarios, etc.
+
+## Descripción y diagrama de relación y opciones disponibles en cada HTML ##
+
+
+## Diagrama de relación entre las distintas entidades ##
+![UML_Entidades](https://user-images.githubusercontent.com/56488179/154815264-b4cf74f8-5ea5-4f94-ba0f-b8d12e0013a5.png)
+
+
+## Diagrama de las clases del programa ##
 
 ## Enlace a tablero Trello ##
 https://trello.com/b/qQkhZRH9/furry-advisor
