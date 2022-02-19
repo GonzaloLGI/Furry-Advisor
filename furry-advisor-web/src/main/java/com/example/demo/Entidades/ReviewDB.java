@@ -26,7 +26,7 @@ public class ReviewDB {
 	
 	@Column(nullable=false)
 	private int rating;
-	private String text;
+	private String reviewText;
 	@Column(nullable=false)
 	private Date date_r;
 	@Column(nullable=false)
@@ -41,7 +41,7 @@ public class ReviewDB {
 	public ReviewDB(int id, int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl) {
 		rev_id = id;
 		rating = rt;
-		text = txt;
+		reviewText = txt;
 		date_r = dt;
 		o_usefness = usf;
 		user_or = us;
@@ -55,10 +55,10 @@ public class ReviewDB {
 		this.rating = rating;
 	}
 	public String getText() {
-		return text;
+		return reviewText;
 	}
 	public void setText(String text) {
-		this.text = text;
+		this.reviewText = text;
 	}
 	public Date getDate() {
 		return date_r;
