@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.lang.NonNull;
+
 @Entity
 public class ReviewDB {
 	
@@ -21,22 +24,21 @@ public class ReviewDB {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int rev_id;
 	
+	@Column(nullable=false)
 	private int rating;
 	private String text;
-	
+	@Column(nullable=false)
 	private Date date_r;
+	@Column(nullable=false)
 	private int o_usefness;
 	@ManyToOne 
 	private UserDB user_or;
 	@ManyToOne
 	private PlaceDB place_or;
-	//Comprobar como iban las relaciones escritas en Spring
-	/*@OneToMany(cascade=CascadeType.ALL)
-	private List<CommentDB> comments;*/
 	
 	public ReviewDB() {};
 	
-	public ReviewDB(int id, int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl/*, List<CommentDB> comms*/) {
+	public ReviewDB(int id, int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl) {
 		rev_id = id;
 		rating = rt;
 		text = txt;
@@ -44,7 +46,6 @@ public class ReviewDB {
 		o_usefness = usf;
 		user_or = us;
 		place_or = pl;
-		//comments = comms;
 	}
 	
 	public int getRating() {
@@ -71,14 +72,6 @@ public class ReviewDB {
 	public void setO_usefness(int o_usefness) {
 		this.o_usefness = o_usefness;
 	}
-
-	/*public List<CommentDB> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentDB> comments) {
-		this.comments = comments;
-	}*/
 	
 	public UserDB getUserOwn() {
 		return user_or;

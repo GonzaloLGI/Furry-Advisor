@@ -3,6 +3,7 @@ package com.example.demo.Entidades;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.lang.NonNull;
+
 @Entity
 public class CommentDB {
 	@Id
@@ -20,6 +23,7 @@ public class CommentDB {
 	
 	private String text;
 	@Temporal(TemporalType.DATE)
+	@Column(nullable=false)
 	private Date date;
 	private int usefness;
 	@ManyToOne
@@ -29,11 +33,13 @@ public class CommentDB {
 	
 	public CommentDB() {};
 	
-	public CommentDB(int id, Date d, UserDB us, ReviewDB rv) {
+	public CommentDB(int id, Date d, String txt, int usf,  UserDB us, ReviewDB rv) {
 		comm_id = id;
 		setDate(d);
 		setUser_or(us);
 		review_or = rv;
+		usefness = usf;
+		text = txt;
 	}
 
 	public String getText() {

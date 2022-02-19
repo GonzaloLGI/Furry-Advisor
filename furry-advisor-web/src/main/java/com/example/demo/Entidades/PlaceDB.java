@@ -1,14 +1,21 @@
 package com.example.demo.Entidades;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class PlaceDB {
@@ -17,28 +24,35 @@ public class PlaceDB {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int place_id;
 	
+	@Column(nullable=false)
 	private String name;
+	@Column(nullable=false)
+	private String city;
+	@Column(nullable=false)
 	private String address;
 	private String description;
+	@Column(nullable=false)
 	private String type;
+	@Column(nullable=false)
 	private float rating;
 	private String place_url;
 	private String schedule;
-	/*@OneToMany(cascade=CascadeType.ALL)
-	private List<DealDB> deals;
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<ReviewDB> reviews;*/
+	@Lob
+	@JsonIgnore
+	private Blob placePic;
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(int i, String n, String t, int r, String a/*, List<DealDB> dealz, List<ReviewDB> revs*/) {
+	public PlaceDB(int i, String n, String t, String ct, String desc, String url, int r, String a, Blob photo) {
 		place_id = i;
 		name = n;
 		type = t;
 		setRating(r);
 		address = a;
-		/*deals = dealz;
-		reviews = revs;*/
+		city = ct;
+		description = desc;
+		place_url = url;
+		placePic = photo;
 	}
 
 	public String getName() {
@@ -101,20 +115,20 @@ public class PlaceDB {
 		this.schedule = schedule;
 	}
 
-	/*public List<DealDB> getDeals() {
-		return deals;
+	public void setPlacePic(Blob photo) {
+		this.placePic = photo;
+	}
+	
+	public Blob getPlacePic() {
+		return placePic;
 	}
 
-	public void setDeals(List<DealDB> deals) {
-		this.deals = deals;
+	public String getCity() {
+		return city;
 	}
 
-	public List<ReviewDB> getReviews() {
-		return reviews;
+	public void setCity(String city) {
+		this.city = city;
 	}
-
-	public void setReviews(List<ReviewDB> reviews) {
-		this.reviews = reviews;
-	}*/
 	
 }
