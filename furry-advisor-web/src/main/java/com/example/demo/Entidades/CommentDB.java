@@ -33,8 +33,8 @@ public class CommentDB {
 	
 	public CommentDB() {};
 	
-	public CommentDB(int id, Date d, String txt, int usf,  UserDB us, ReviewDB rv) {
-		comm_id = id;
+	public CommentDB(/*int id,*/ Date d, String txt, int usf,  UserDB us, ReviewDB rv) {
+		/*comm_id = id;*/
 		setDate(d);
 		setUser_or(us);
 		review_or = rv;

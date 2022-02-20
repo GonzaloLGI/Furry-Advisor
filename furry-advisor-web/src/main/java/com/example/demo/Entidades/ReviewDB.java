@@ -38,8 +38,8 @@ public class ReviewDB {
 	
 	public ReviewDB() {};
 	
-	public ReviewDB(int id, int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl) {
-		rev_id = id;
+	public ReviewDB(/*int id,*/ int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl) {
+		/*rev_id = id;*/
 		rating = rt;
 		reviewText = txt;
 		date_r = dt;

@@ -33,8 +33,8 @@ public class DealDB {
 	
 	public DealDB() {};
 	
-	public DealDB(int id, String h, String desc, Blob photo, PlaceDB pl) {
-		deal_id = id;
+	public DealDB(/*int id,*/ String h, String desc, Blob photo, PlaceDB pl) {
+		/*deal_id = id;*/
 		placeOrigin = pl;
 		setHeader(h);
 		description = desc;

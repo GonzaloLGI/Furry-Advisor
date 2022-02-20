@@ -25,7 +25,7 @@ public class UserDB {
 	
 	@Column(nullable=false)
 	private String password;
-	@Column(nullable=false)
+	@Column(nullable=false,unique=true)
 	private String nickname;
 	private String email;
 	@Lob
@@ -34,8 +34,8 @@ public class UserDB {
 	
 	protected UserDB(){};
 	
-	public UserDB(int i, String nk, String psw, String em, Blob photo) {
-		user_id = i;
+	public UserDB(/*int i,*/ String nk, String psw, String em, Blob photo) {
+		/*user_id = i;*/
 		setNickname(nk);
 		setPassword(psw);
 		email = em;

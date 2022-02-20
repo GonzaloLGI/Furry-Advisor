@@ -43,8 +43,8 @@ public class PlaceDB {
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(int i, String n, String t, String ct, String desc, String url, int r, String a, Blob photo) {
-		place_id = i;
+	public PlaceDB(/*int i,*/ String n, String t, String ct, String desc, String url, int r, String a, Blob photo) {
+		/*place_id = i;*/
 		name = n;
 		type = t;
 		setRating(r);

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Entidades.DealDB;
+import com.example.demo.Entidades.PlaceDB;
 
 public interface DealDBInterface extends JpaRepository<DealDB,Integer> {
 	List<DealDB> findByHeader(String header);
 	List<DealDB> findAllByPlaceOriginIsNotNull();
+	List<DealDB> findAllByPlaceOrigin(PlaceDB placeOrigin);
 }

@@ -74,48 +74,48 @@ public class HomeController {
 		//De que manera tenemos que usar MySQL una vez lo tenemos conectado
 		//Las consultas que dice que no hay que hacer a fuego son las escritas en el proyecto de Eclipse o donde y como ejemplificamos que no hay
 		
-		UserDB use1 = new UserDB(1,"xxVicente69xx","sasageyo","manitas@gmail.com",null);
-		UserDB use2 = new UserDB(2,"Javier","tierrasanta","h0iboy@hotmail.com",null);
-		UserDB use3 = new UserDB(3,"Vico420","blockchain","c.ham.pion@outlook.com",null);
-		UserDB use4 = new UserDB(4,"Javapor","asia","vaperwave@hotmail.com",null);
-		UserDB use5 = new UserDB(5,"CMarrano","huevoscocidos","sunday_girl@gmail.com",null);
-		UserDB use6 = new UserDB(6,"LoboCastellano","brumbrum","motorstormer@gmail.com",null);
+		UserDB use1 = new UserDB("xxVicente69xx","sasageyo","manitas@gmail.com",null);
+		UserDB use2 = new UserDB("Javier","tierrasanta","h0iboy@hotmail.com",null);
+		UserDB use3 = new UserDB("Vico420","blockchain","c.ham.pion@outlook.com",null);
+		UserDB use4 = new UserDB("Javapor","asia","vaperwave@hotmail.com",null);
+		UserDB use5 = new UserDB("CMarrano","huevoscocidos","sunday_girl@gmail.com",null);
+		UserDB use6 = new UserDB("LoboCastellano","brumbrum","motorstormer@gmail.com",null);
 		
-		PlaceDB pla1 = new PlaceDB(7,"Panda Ramen","Restaurante","Mostoles",null,null,3,"C/Don Juan",null);
-		PlaceDB pla2 = new PlaceDB(8,"Simba's Breakfast","Restaurante","Badajoz",null,null,4,"C/Recuerdo",null);
-		PlaceDB pla3 = new PlaceDB(9,"Escupe el Fuego","Restaurante","Oviedo",null,null,1,"C/Hincada",null);
-		PlaceDB pla4 = new PlaceDB(10,"La Pelusa","Bar","Castellon",null,null,5,"C/Margarina",null);
-		PlaceDB pla5 = new PlaceDB(11,"Foxxes Bar","Bar","Madrid",null,null,3,"C/Carrera",null);
-		PlaceDB pla6 = new PlaceDB(12,"Pelusa Picarona","Club","Valladolid",null,null,4,"C/Me Falta Un Tornillo",null);
-		PlaceDB pla7 = new PlaceDB(13,"Parque Aguadulce","Parque","Albacete",null,null,2,"C/Severo Ochoa",null);
+		PlaceDB pla1 = new PlaceDB("Panda Ramen","Restaurante","Mostoles",null,null,3,"C/Don Juan",null);
+		PlaceDB pla2 = new PlaceDB("Simba's Breakfast","Restaurante","Badajoz",null,null,4,"C/Recuerdo",null);
+		PlaceDB pla3 = new PlaceDB("Escupe el Fuego","Restaurante","Oviedo",null,null,1,"C/Hincada",null);
+		PlaceDB pla4 = new PlaceDB("La Pelusa","Bar","Castellon",null,null,5,"C/Margarina",null);
+		PlaceDB pla5 = new PlaceDB("Foxxes Bar","Bar","Madrid",null,null,3,"C/Carrera",null);
+		PlaceDB pla6 = new PlaceDB("Pelusa Picarona","Club","Valladolid",null,null,4,"C/Me Falta Un Tornillo",null);
+		PlaceDB pla7 = new PlaceDB("Parque Aguadulce","Parque","Albacete",null,null,2,"C/Severo Ochoa",null);
 		
-		DealDB deal1 = new DealDB(14,"Comisiones abiertas",null,null,pla2);
-		DealDB deal2 = new DealDB(15,"10% en ramen",null,null,pla1);
-		DealDB deal3 = new DealDB(16,"2x1 en chupitos de absenta",null,null,pla6);
-		DealDB deal4 = new DealDB(17,"Galletas con nata gratis",null,null,pla3);
-		DealDB deal5 = new DealDB(18,"Reunion en Parque Aguadulce",null,null,pla7);
+		DealDB deal1 = new DealDB("Comisiones abiertas",null,null,pla2);
+		DealDB deal2 = new DealDB("10% en ramen",null,null,pla1);
+		DealDB deal3 = new DealDB("2x1 en chupitos de absenta",null,null,pla6);
+		DealDB deal4 = new DealDB("Galletas con nata gratis",null,null,pla3);
+		DealDB deal5 = new DealDB("Reunion en Parque Aguadulce",null,null,pla7);
 		
 		String txt1 = "El lugar no esta bien. No ofrecen lo que dicen";
 		Date dtR1 = new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01");
-		ReviewDB rev1 = new ReviewDB(19,2,txt1,dtR1,47,use5,pla3);
+		ReviewDB rev1 = new ReviewDB(2,txt1,dtR1,47,use5,pla3);
 		String txt2 = "Ramen asqueroso";
 		Date dtR2 = new SimpleDateFormat("yyyy-MM-dd").parse("2019-03-26");
-		ReviewDB rev2 = new ReviewDB(20,1,txt2,dtR2,96,use3,pla1);
+		ReviewDB rev2 = new ReviewDB(1,txt2,dtR2,96,use3,pla1);
 		String txt3 = "El mejor día de mi vida <3";
 		Date dtR3 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-14");
-		ReviewDB rev3 = new ReviewDB(21,5,txt3,dtR3,24,use1,pla7);
+		ReviewDB rev3 = new ReviewDB(5,txt3,dtR3,24,use1,pla7);
 		String txt4 = "RECOMENDADISIMO!!";
 		Date dtR4 = new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-20");
-		ReviewDB rev4 = new ReviewDB(22,4,txt4,dtR4,5,use6,pla5);
+		ReviewDB rev4 = new ReviewDB(4,txt4,dtR4,5,use6,pla5);
 		
 		
 		Date dtC1 = new SimpleDateFormat("yyyy-MM-dd").parse("2015-06-25");
-		CommentDB comm1 = new CommentDB(23,dtC1,null,0,use5,rev2);
+		CommentDB comm1 = new CommentDB(dtC1,null,0,use5,rev2);
 		Date dtC2 = new SimpleDateFormat("yyyy-MM-dd").parse("2011-10-13");
-		CommentDB comm2 = new CommentDB(24,dtC2,null,0,use2,rev4);
+		CommentDB comm2 = new CommentDB(dtC2,null,0,use2,rev4);
 		Date dtC3 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-09");
-		CommentDB comm3 = new CommentDB(25,dtC3,null,0,use3,rev3);	
-		
+		CommentDB comm3 = new CommentDB(dtC3,null,0,use3,rev3);	
+	
 		userRepository.save(use1);
 		userRepository.save(use2);
 		userRepository.save(use3);

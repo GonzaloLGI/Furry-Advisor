@@ -8,5 +8,5 @@ import com.example.demo.Entidades.UserDB;
 
 public interface UserDBInterface extends JpaRepository<UserDB,Integer> {
 	List<UserDB> findByNickname(String nickname);
-	
+	List<UserDB> findByEmail(String email);
 }
