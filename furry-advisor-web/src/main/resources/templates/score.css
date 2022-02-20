@@ -1,0 +1,20 @@
+.scor{
+	width: 100px;
+	height: 100px;
+	transform: rotateY(180deg);
+	display: flex;
+}
+
+.scor label{
+	display: block;
+	content: '/f1b0';
+	font-family: fontAwesome;
+	position: absolute;
+	display: block;
+	color: rgb(255, 128, 64);
+	opacity: 0;
+	transition: .5s;
+	text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+
