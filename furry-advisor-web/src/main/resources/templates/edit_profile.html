@@ -20,20 +20,24 @@
 
 	<h2> EDITAR PERFIL: </h2>
         
+        <h4>Cambiar nombre:</h4>
+        
 		<h1 style="color: #8080ff;" font-family: Helvetica, sans-serif;>{{name}}</h1>
 
         <form>
-        	<label for='name'><b>Cambiar nombre: </b></label>
+        	<label for='name'>Nuevo nombre:</label>
 			<input type='text' name='name'/>
 			<br></br>
 		</form>
 		
         <hr>
+        
+    
+        <h4>Cambiar foto de perfil:</h4>    
     
   		<p><img src="/image" width="100" height="100" /></p>
         
         <form action="/upload_image" method="post" enctype="multipart/form-data">
- 			<label for='image'><b>Cambiar foto de perfil: </b></label>
 			<input type='file' name='image' accept=".jpg, .jpeg"/>
 			<br></br>
 		</form>
@@ -44,23 +48,26 @@
         <h4>¿Desea mostrar sus reviews? </h4>
 
         <form>
-        	<p>{{review1}}</p>
-			<input type='radio' name='rev1'/>
-            <p>{{review2}}</p>
-			<input type='radio' name='rev2'/>
-            
-            <p>{{review3}}</p>
-			<input type='radio' name='rev3'/>
-            
-            <p>{{review4}}</p>
-			<input type='radio' name='rev4'/>
+        
+        	<ul>
+			{{#review_list}
+
+				<h4>{{review_place}}<h4>
+				<p>{{review_text}}</p>
+				
+                <label>Oculto:</label>
+				<input type='checkbox' name='rev1'/>
+			
+				<br>
+			
+			{{/review_list}}
+			</ul>
+
 		</form>
 		
         <hr>
         
-        
         <input type='submit' value='Guardar cambios'/>
-        
-        
-	</body> 
+               
+</body> 
 </html>

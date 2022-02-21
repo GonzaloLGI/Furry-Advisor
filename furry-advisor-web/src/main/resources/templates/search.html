@@ -2,53 +2,135 @@
 <html>
 <head>
 	<title>Search</title>
+	
+	<style>
+	
+	/* -------------------------------------------------------------------------------------------------------------------------------- */
+		* {
+  			box-sizing: border-box;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Style font */
+		body {
+  			font-family: Arial, Helvetica, sans-serif;
+  			margin: 0;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Column container */
+		.row {  
+  			display: -ms-flexbox; /* IE10 */
+  			display: flex;
+  			-ms-flex-wrap: wrap; /* IE10 */
+  			flex-wrap: wrap;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Create two unequal columns that sits next to each other */
+		
+		/* Sidebar column */
+		.side {
+  			-ms-flex: 30%; /* IE10 */
+  			flex: 30%;
+  			background-color: rgb(196, 196, 225);
+  			padding: 40px;
+		}
+
+		/* Main column */
+		.main {   
+  			-ms-flex: 70%; /* IE10 */
+  			flex: 70%;
+  			background-color: white;
+  			padding: 40px;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Image style */
+		.img {
+  			background-color: rgb(230, 183, 194);
+  			width: 100%;
+  			padding: 20px;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 700px) {
+  			.row {   
+    			flex-direction: column;
+  			}
+		}
+
+		/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+		@media screen and (max-width: 400px) {
+  			.navbar a {
+    			float: none;
+    			width: 100%;
+  			}
+		}
+		
+	</style>
+	
 </head>
 
 <body>
 
 	{{>navbar}}
 
-	<form method='get' action='/search'>
-		<fieldset>
-			<legend><b>Busca un lugar uwu</b></legend>
+	<div class="row">
+	
+  	<div class="side">
+
+		<form method='get' action='/search'>
+			<fieldset>
+				<legend><b>Busca un lugar uwu</b></legend>
 			
-			<div>
-				<label>Ciudad</label>
-			</div>
-			<div>
-				<input list = "location_list" type = "text" name='locationFilter'>
-				<datalist id = "location_list"> 			
-					<ul>
-						{{#location_list}}
-							<option value = {{name}}>
-						{{/location_list}}
-					</ul>
-				</datalist>
-			</div>
+				<div>
+					<label>Ciudad</label>
+				</div>
+				<div>
+					<input list = "location_list" type = "text" name='locationFilter'>
+					<datalist id = "location_list"> 			
+						<ul>
+							{{#location_list}}
+								<option value = {{name}}>
+							{{/location_list}}
+						</ul>
+					</datalist>
+				</div>
 			
-			<br>
+				<br>
 			
-			<div>
-				<label>Tipo de lugar</label>
-			</div>
-			<div>
-				<input list = "type_list" type = "text"  name='typeFilter'> 			
-				<datalist id = "type_list">							
-					<option value = Tienda>							
-					<option value = Club>						
-					<option value = Bar>	
-					<option value = Evento>	
-				</datalist>
-			</div>			
+				<div>
+					<label>Tipo de lugar</label>
+				</div>
+				<div>
+					<input list = "type_list" type = "text"  name='typeFilter'> 			
+					<datalist id = "type_list">							
+						<option value = Tienda>							
+						<option value = Club>						
+						<option value = Bar>	
+						<option value = Evento>	
+					</datalist>
+				</div>			
 			
-			<br>
+				<br>
 			
-			<div>
-    			<button>  Buscar </button>
-  			</div>
+				<div>
+    				<button>  Buscar </button>
+  				</div>
 		
-		</fieldset>
-	</form>
+			</fieldset>
+		</form>
+	
+  	</div>
+  	
+	<div class="main">
 	
 	<ul>
 		{{#places_list}}
@@ -63,6 +145,8 @@
 			
 		{{/places_list}}
 	</ul>
+	
+	</div>
 	
 </body>
 </html>
