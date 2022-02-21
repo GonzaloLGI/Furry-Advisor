@@ -16,6 +16,7 @@ import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//Clase de la entidad Deal en la BD
 @Entity
 public class DealDB {
 	@Id
@@ -33,8 +34,7 @@ public class DealDB {
 	
 	public DealDB() {};
 	
-	public DealDB(/*int id,*/ String h, String desc, Blob photo, PlaceDB pl) {
-		/*deal_id = id;*/
+	public DealDB(String h, String desc, Blob photo, PlaceDB pl) {
 		placeOrigin = pl;
 		setHeader(h);
 		description = desc;

@@ -32,6 +32,7 @@ import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
 
+//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Profile
 @Controller
 public class ProfileController implements CommandLineRunner {
 	

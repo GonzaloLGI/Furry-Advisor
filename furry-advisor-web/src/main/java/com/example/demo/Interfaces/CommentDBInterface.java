@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Entidades.CommentDB;
 
+//Clase de la interfaz-repositorio encargada de gestionar el acceso y manipulación de los
+//objetos de la clase Comment
 public interface CommentDBInterface extends JpaRepository<CommentDB,Integer> {
 	ArrayList<CommentDB> findByDate(Date date);
 }

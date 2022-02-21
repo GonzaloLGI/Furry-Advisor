@@ -17,6 +17,7 @@ import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//Clase de la entidad Place en la BD
 @Entity
 public class PlaceDB {
 
@@ -35,7 +36,7 @@ public class PlaceDB {
 	private String type;
 	@Column(nullable=false)
 	private float rating;
-	private String place_url;
+	private String placeUrl;
 	private String schedule;
 	@Lob
 	@JsonIgnore
@@ -43,15 +44,14 @@ public class PlaceDB {
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(/*int i,*/ String n, String t, String ct, String desc, String url, int r, String a, Blob photo) {
-		/*place_id = i;*/
+	public PlaceDB(String n, String t, String ct, String desc, String url, int r, String a, Blob photo) {
 		name = n;
 		type = t;
 		setRating(r);
 		address = a;
 		city = ct;
 		description = desc;
-		place_url = url;
+		placeUrl = url;
 		placePic = photo;
 	}
 
@@ -100,11 +100,11 @@ public class PlaceDB {
 	}
 
 	public String getPlace_url() {
-		return place_url;
+		return placeUrl;
 	}
 
 	public void setPlace_url(String place_url) {
-		this.place_url = place_url;
+		this.placeUrl = place_url;
 	}
 
 	public String getSchedule() {

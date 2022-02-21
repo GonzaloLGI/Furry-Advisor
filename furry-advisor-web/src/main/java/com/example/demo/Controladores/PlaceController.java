@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 
+//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Place
 @Controller
 public class PlaceController {
 

@@ -8,6 +8,8 @@ import com.example.demo.Entidades.PlaceDB;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
+//Clase de la interfaz-repositorio encargada de gestionar el acceso y manipulación de los
+//objetos de la clase Place
 public interface PlaceDBInterface extends JpaRepository<PlaceDB, Integer> {
 	List<PlaceDB> findByName(String name);
 	List<PlaceDB> findByType(String type);

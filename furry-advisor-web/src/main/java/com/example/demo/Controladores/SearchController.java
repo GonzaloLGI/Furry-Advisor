@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 
+//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Search
 @Controller
 public class SearchController implements CommandLineRunner {
 	@Autowired

@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.lang.NonNull;
 
+//Clase de la entidad Review en la BD
 @Entity
 public class ReviewDB {
 	
@@ -28,64 +29,70 @@ public class ReviewDB {
 	private int rating;
 	private String reviewText;
 	@Column(nullable=false)
-	private Date date_r;
+	private Date date_rev;
 	@Column(nullable=false)
-	private int o_usefness;
+	private int overallUsefness;
 	@ManyToOne 
-	private UserDB user_or;
+	private UserDB userRef;
 	@ManyToOne
-	private PlaceDB place_or;
+	private PlaceDB placRef;
 	
 	public ReviewDB() {};
 	
-	public ReviewDB(/*int id,*/ int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl) {
-		/*rev_id = id;*/
+	public ReviewDB(int rt, String txt, Date dt, int usf, UserDB us, PlaceDB pl) {
 		rating = rt;
 		reviewText = txt;
-		date_r = dt;
-		o_usefness = usf;
-		user_or = us;
-		place_or = pl;
+		date_rev = dt;
+		overallUsefness = usf;
+		userRef = us;
+		placRef = pl;
 	}
 	
 	public int getRating() {
 		return rating;
 	}
+	
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	
 	public String getText() {
 		return reviewText;
 	}
+	
 	public void setText(String text) {
 		this.reviewText = text;
 	}
+	
 	public Date getDate() {
-		return date_r;
+		return date_rev;
 	}
+	
 	public void setDate(Date date) {
-		this.date_r = date;
+		this.date_rev = date;
 	}
+	
 	public int getO_usefness() {
-		return o_usefness;
+		return overallUsefness;
 	}
+	
 	public void setO_usefness(int o_usefness) {
-		this.o_usefness = o_usefness;
+		this.overallUsefness = o_usefness;
 	}
 	
 	public UserDB getUserOwn() {
-		return user_or;
+		return userRef;
 	}
 
 	public void setUserOwn(UserDB user) {
-		this.user_or = user;
+		this.userRef = user;
 	}
 	
 	public PlaceDB getPlaceOwn() {
-		return place_or;
+		return placRef;
 	}
 
 	public void setPlaceOwn(PlaceDB place) {
-		this.place_or = place;
+		this.placRef = place;
 	}
 }

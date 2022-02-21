@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.lang.NonNull;
 
+//Clase de la entidad Comment en la BD
 @Entity
 public class CommentDB {
 	@Id
@@ -25,20 +26,19 @@ public class CommentDB {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
 	private Date date;
-	private int usefness;
+	private int usefullness;
 	@ManyToOne
-	private UserDB user_or;
+	private UserDB userRef;
 	@ManyToOne
-	private ReviewDB review_or;
+	private ReviewDB reviewRef;
 	
 	public CommentDB() {};
 	
-	public CommentDB(/*int id,*/ Date d, String txt, int usf,  UserDB us, ReviewDB rv) {
-		/*comm_id = id;*/
+	public CommentDB(Date d, String txt, int usf,  UserDB us, ReviewDB rv) {
 		setDate(d);
 		setUser_or(us);
-		review_or = rv;
-		usefness = usf;
+		reviewRef = rv;
+		usefullness = usf;
 		text = txt;
 	}
 
@@ -59,26 +59,26 @@ public class CommentDB {
 	}
 
 	public int getUsefness() {
-		return usefness;
+		return usefullness;
 	}
 
 	public void setUsefness(int usefness) {
-		this.usefness = usefness;
+		this.usefullness = usefness;
 	}
 
 	public ReviewDB getReview_or() {
-		return review_or;
+		return reviewRef;
 	}
 
 	public void setReview_or(ReviewDB review_or) {
-		this.review_or = review_or;
+		this.reviewRef = review_or;
 	}
 
 	public UserDB getUser_or() {
-		return user_or;
+		return userRef;
 	}
 
 	public void setUser_or(UserDB user_or) {
-		this.user_or = user_or;
+		this.userRef = user_or;
 	}
 }

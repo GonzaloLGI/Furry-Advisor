@@ -16,6 +16,7 @@ import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//Clase de la entidad User en la BD
 @Entity
 public class UserDB {
 	
@@ -30,16 +31,15 @@ public class UserDB {
 	private String email;
 	@Lob
 	@JsonIgnore
-	private Blob prof_photo;
+	private Blob profPhoto;
 	
 	protected UserDB(){};
 	
-	public UserDB(/*int i,*/ String nk, String psw, String em, Blob photo) {
-		/*user_id = i;*/
+	public UserDB(String nk, String psw, String em, Blob photo) {
 		setNickname(nk);
 		setPassword(psw);
 		email = em;
-		prof_photo = photo;
+		profPhoto = photo;
 	}
 
 	public String getPassword() {
@@ -67,10 +67,10 @@ public class UserDB {
 	}
 
 	public Blob getProf_photo() {
-		return prof_photo;
+		return profPhoto;
 	}
 
 	public void setProf_photo(Blob prof_photo) {
-		this.prof_photo = prof_photo;
+		this.profPhoto = prof_photo;
 	}
 }

@@ -50,6 +50,8 @@ import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
 
+//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Home
+//y de inicializar las entidades ejemplo usadas en la aplicación web
 @Controller
 public class HomeController {
 
@@ -67,12 +69,6 @@ public class HomeController {
 
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {
-		
-		//Preguntas para mañana jueves:
-		//A que interfaz se refiere cuando dice "Consultas y actualizaciones que se muestran en la interfaz (los objetos modificados se ven 
-		//reflejados en la interfaz si se vuelven a cargar)"
-		//De que manera tenemos que usar MySQL una vez lo tenemos conectado
-		//Las consultas que dice que no hay que hacer a fuego son las escritas en el proyecto de Eclipse o donde y como ejemplificamos que no hay
 		
 		UserDB use1 = new UserDB("xxVicente69xx","sasageyo","manitas@gmail.com",null);
 		UserDB use2 = new UserDB("Javier","tierrasanta","h0iboy@hotmail.com",null);

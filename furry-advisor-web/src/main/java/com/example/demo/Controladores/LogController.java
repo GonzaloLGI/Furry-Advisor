@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Interfaces.ReviewDBInterface;
 
+//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Login
 @Controller
 public class LogController {
 	 private Logger log = (Logger) LoggerFactory.getLogger(LogController.class);
