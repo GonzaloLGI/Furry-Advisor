@@ -25,8 +25,7 @@ public class LocationDB {
 	@Column(nullable=false)
 	private String name;
 	
-	@Column(nullable=false)
-	@OneToMany
+	@OneToMany(mappedBy="city")
 	private List<PlaceDB> places;
 	
 	

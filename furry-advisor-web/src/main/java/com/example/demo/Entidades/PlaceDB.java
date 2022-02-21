@@ -12,12 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Clase de la entidad Place en la BD
+
 @Entity
 public class PlaceDB {
 
@@ -27,7 +29,7 @@ public class PlaceDB {
 	
 	@Column(nullable=false)
 	private String name;
-	@Column(nullable=false)
+	@ManyToOne
 	private LocationDB city;
 	@Column(nullable=false)
 	private String address;
