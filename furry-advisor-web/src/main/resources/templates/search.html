@@ -18,8 +18,16 @@
 			<div>
 				<input list = "location_list" type = "text"> 			
 				<datalist id = "location_list">
+<<<<<<< Updated upstream
 					<option value = Madrid>
 					<option value = Barcelona>
+=======
+					<ul>>
+						{{#location_list}}
+							<option value = {{location-name}}>
+						{{/location_list}}
+					</ul>
+>>>>>>> Stashed changes
 				</datalist>
 			</div>
 			
@@ -47,8 +55,11 @@
 		</fieldset>
 	</form>
 	
-	<input list = "places_list" type = "Place">
-	<datalis id = "places_id">
+	<ul>>
+		{{#places_list}}
+			{{name}}
+		{{/places_list}}
+	</ul>
 	
 </body>
 </html>
