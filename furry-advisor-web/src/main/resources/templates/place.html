@@ -40,7 +40,7 @@
   			-ms-flex: 30%; /* IE10 */
   			flex: 30%;
   			background-color: rgb(249, 250, 233);
-  			padding: 20px;
+  			padding: 40px;
 		}
 
 		/* Main column */
@@ -48,7 +48,7 @@
   			-ms-flex: 70%; /* IE10 */
   			flex: 70%;
   			background-color: white;
-  			padding: 20px;
+  			padding: 40px;
 		}
 
 
@@ -87,7 +87,7 @@
 	<div class="row">
 	
   	<div class="side">
-    
+  	
         <h2><b>Puntuación</b></h2>
         
   		<div class="rating">
@@ -97,24 +97,28 @@
         	<input type="radio" name="star" id="star4"> <label for="star4"></label>
         	<input type="radio" name="star" id="star5"> <label for="star5"></label>
 		</div >
-
-  	
-    	<h3><b>Dirección:</b></h3>
-    	<p>{{place_adress}}</p>
+    	
+    
+    	<h3><b> Dirección:</b></h3>
+        <p><b> Ciudad:</b> {{place_city}} </p>
+    	<p> {{place_adress}}</p>
         
         <br>
         
     	<h3><b>Horario:</b></h3>
     	<p>{{place_schedule}}</p>
         
+        <br>
+        
+        <h3><b>Web</b></h3>
+        <p>{{place_url}}</p>
+        
  	</div>
   
 	<div class="main">
   
     	<h2>{{place_name}}</h2>
-        
-        <h4>{{place_url}}</h4>
-    	
+
     	<p>{{place_desc}}</p>
     	
     	<br>
