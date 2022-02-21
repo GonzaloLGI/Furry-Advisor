@@ -33,12 +33,31 @@ public class SearchController implements CommandLineRunner {
 	}
 	
 	@GetMapping("/search")
-	public String search(Model model) {    
-		
+	public String search(Model model, @RequestParam LocationDB locationFilter, @RequestParam String typeFilter) { 
 		List<LocationDB> allLocations = locationRepository.findAllDesc();
-		List<PlaceDB> allPlaces = placeRepository.findAll();
 		model.addAttribute("location_list", allLocations);
-		model.addAttribute("places_list", allPlaces);
+		
+		
+		List<PlaceDB> placesFilteredByLocation = placeRepository.findByCity(locationFilter.getName());
+		List<PlaceDB> placesFilteredByType = placeRepository.findByType(typeFilter);
+		List<PlaceDB> placesSuperFiltered2 = placeRepository.findByCityAndType(locationFilter.getName(),typeFilter);
+		//List<PlaceDB> placesSuperFiltered = ((PlaceDBInterface) placesFilteredByLocation).findByType(typeFilter);
+		
+		List<PlaceDB> allPlaces = placeRepository.findAll();
+		
+		
+		if(placesSuperFiltered2!=null) {
+			model.addAttribute("places_list", placesSuperFiltered2);
+		}
+		else if(placesFilteredByLocation!=null) {
+			model.addAttribute("places_list", placesFilteredByLocation);
+		}
+		else if(placesFilteredByType!=null) {
+			model.addAttribute("places_list", placesFilteredByType);
+		}
+		else {
+			model.addAttribute("places_list", allPlaces);
+		}
 		
 	    return "search";
 	}
