@@ -23,7 +23,23 @@ Los servicios que proporciona el servidor son:
 - Avisar de interacciones de otros Usuarios con tus Reseñas: valoración de utilidad, comentarios, etc.
 
 ## Descripción y diagrama de relación y opciones disponibles en cada HTML ##
+La aplicación web cuenta con 9 páginas: home, search, login, sign up, profile, place, account settings, edit profile y create review. Las opciones disponibles en cada página y el salto entre ellas se muestra en la siguiente imagen:
 
+A continuación una breve explicación de cada página:
+- Home: página de inicio de la aplicación en la que se muestran algunos de los lugares que actualmente cuentan con ofertas disponibles y un espacio dedicado a las novedades.
+- Search: página en la que se hace la búsqueda de un lugar en concreto o de un conjunto de lugares según unos criterios. Se permite la ordenación de los resultados según unos parámetros.
+- Login: página en la que se identifican aquellos usuarios que ya se encuentran presentes dentro del sistema.
+- Sign Up: página a la que accede un usuario sin identificar para registrarse en el sistema por primera vez.
+- Profile: página en la que se muestra la información del usuario identificado y las reseñas escritas por él/ella.
+- Place: página en la que se muestran los datos de un lugar seleccionado como resultado de la búsqueda en Search. Además se pueden consultar las reseñas de otros usuarios registrados sobre el lugar, al igual que se da la opción de escribir una reseña nueva.
+- Account Settings: página en la que un usuario registrado e identificado puede modificar elementos de su cuenta tales como el email o la contraseña, permitiendo además borrar su cuenta.
+- Edit Profile: página en la que un usuario registrado e identificado puede modificar los elementos públicos de su perfil como el nombre o la foto de perfil.
+- Create Review: página en la que un usuario registrado e identificado puede escribir una reseña sobre un lugar en concreto. El usuario aporta una puntuación sobre 5 y, si quiere, un texto de reseña.
+
+De todas las ellas, las páginas públicas serían: home, search, login, sign up y place. Las páginas privadas serían: profile, account settings, edit profile y create review.
+
+Todas las paginas cuentan con una barra de navegación desde el que acceder a las páginas principales de la aplicación web (Home, Search y Login/Sign Up) y un pie de página.
+La presencia de la barra de navegación en una página viene marcado con un * al lado del nombre de la página en el diagrama UML de los HTML.
 
 ## Diagrama de relación entre las distintas entidades ##
 ![UML_Entidades](https://user-images.githubusercontent.com/56488179/154815264-b4cf74f8-5ea5-4f94-ba0f-b8d12e0013a5.png)
