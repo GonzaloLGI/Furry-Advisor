@@ -32,9 +32,9 @@ import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
 
-//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Profile
+//Clase del controlador encargado de gestionar las peticiones surgidas en el HTML edit_profile
 @Controller
-public class ProfileController implements CommandLineRunner {
+public class EditProfileController implements CommandLineRunner {
 	
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
 	@Autowired
@@ -42,23 +42,16 @@ public class ProfileController implements CommandLineRunner {
 	@Autowired 
 	private PlaceDBInterface placeRepository;
 
-	@PostMapping("/profile")
-	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
+	@PostMapping("/edit_profile")
+	public String edit_profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String newPassword) {
 	 
-		List<UserDB> userAux = userRepository.findByNickname(userName);
 		
-		if(userAux.isEmpty()) {
-			System.out.println("Este usuario no existe");
-			return "login";
-		}
-		else {
+		UserDB actualUser = userRepository.findByNickname(userName).get(0);
 			
-			UserDB actualUser = userRepository.findByNickname(userName).get(0);
-		
-			if(actualUser.getPassword().equals(userPassword)) {
 				http.setAttribute("actUser", actualUser);
 				model.addAttribute("name", actualUser.getNickname());
-				model.addAttribute("password",userPassword);
+				
+				actualUser.setPassword(newPassword);
 				model.addAttribute("user",actualUser);
 		
 				List<PlaceDB> places = placeRepository.findAll();
@@ -66,13 +59,11 @@ public class ProfileController implements CommandLineRunner {
 				model.addAttribute("t1",places.get(0).getType());
 				model.addAttribute("v1",places.get(0).getRating());
 		
-				return "profile";
-			}
-			else {
-				System.out.println("La contrasña es incorrecta");
-				return "login";
-			}
-		}
+			
+			
+				return "edit_profile";
+			
+		
 	}
 	
 	@PostMapping("/upload_image")

@@ -35,6 +35,8 @@ public class SearchController implements CommandLineRunner {
 	public String searchPlatform(Model model) {
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
+		List<PlaceDB> allPlaces = placeRepository.findAll();
+		model.addAttribute("places_list", allPlaces);
 		return "search";
 	}
 	
