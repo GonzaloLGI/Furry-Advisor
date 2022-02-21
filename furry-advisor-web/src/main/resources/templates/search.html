@@ -8,7 +8,7 @@
 
 	{{>navbar}}
 
-	<form>
+	<form method='get' action='/search'>
 		<fieldset>
 			<legend><b>Busca un lugar uwu</b></legend>
 			
@@ -16,11 +16,11 @@
 				<label>Ciudad</label>
 			</div>
 			<div>
-				<input list = "location_list" type = "text">
+				<input list = "location_list" type = "text" name='locationFilter'>
 				<datalist id = "location_list"> 			
 					<ul>
 						{{#location_list}}
-							<option value = {{location-name}}>
+							<option value = {{name}}>
 						{{/location_list}}
 					</ul>
 				</datalist>
@@ -32,7 +32,7 @@
 				<label>Tipo de lugar</label>
 			</div>
 			<div>
-				<input list = "type_list" type = "text"> 			
+				<input list = "type_list" type = "text"  name='typeFilter'> 			
 				<datalist id = "type_list">							
 					<option value = Tienda>							
 					<option value = Club>						

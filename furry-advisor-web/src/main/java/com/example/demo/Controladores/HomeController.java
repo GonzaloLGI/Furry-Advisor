@@ -41,6 +41,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.DealDB;
+import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
@@ -77,13 +78,21 @@ public class HomeController {
 		UserDB use5 = new UserDB("CMarrano","huevoscocidos","sunday_girl@gmail.com",null);
 		UserDB use6 = new UserDB("LoboCastellano","brumbrum","motorstormer@gmail.com",null);
 		
-		PlaceDB pla1 = new PlaceDB("Panda Ramen","Restaurante","Mostoles",null,null,3,"C/Don Juan",null);
-		PlaceDB pla2 = new PlaceDB("Simba's Breakfast","Restaurante","Badajoz",null,null,4,"C/Recuerdo",null);
-		PlaceDB pla3 = new PlaceDB("Escupe el Fuego","Restaurante","Oviedo",null,null,1,"C/Hincada",null);
-		PlaceDB pla4 = new PlaceDB("La Pelusa","Bar","Castellon",null,null,5,"C/Margarina",null);
-		PlaceDB pla5 = new PlaceDB("Foxxes Bar","Bar","Madrid",null,null,3,"C/Carrera",null);
-		PlaceDB pla6 = new PlaceDB("Pelusa Picarona","Club","Valladolid",null,null,4,"C/Me Falta Un Tornillo",null);
-		PlaceDB pla7 = new PlaceDB("Parque Aguadulce","Parque","Albacete",null,null,2,"C/Severo Ochoa",null);
+		LocationDB loc1 = new LocationDB("Mostoles");
+		LocationDB loc2 = new LocationDB("Badajoz");
+		LocationDB loc3 = new LocationDB("Oviedo");
+		LocationDB loc4 = new LocationDB("Castellon");
+		LocationDB loc5 = new LocationDB("Madrid");
+		LocationDB loc6 = new LocationDB("Valladolid");
+		LocationDB loc7 = new LocationDB("Albacete");
+		
+		PlaceDB pla1 = new PlaceDB("Panda Ramen","Restaurante",loc1,null,null,3,"C/Don Juan",null);
+		PlaceDB pla2 = new PlaceDB("Simba's Breakfast","Restaurante",loc2,null,null,4,"C/Recuerdo",null);
+		PlaceDB pla3 = new PlaceDB("Escupe el Fuego","Restaurante",loc3,null,null,1,"C/Hincada",null);
+		PlaceDB pla4 = new PlaceDB("La Pelusa","Bar",loc4,null,null,5,"C/Margarina",null);
+		PlaceDB pla5 = new PlaceDB("Foxxes Bar","Bar",loc5,null,null,3,"C/Carrera",null);
+		PlaceDB pla6 = new PlaceDB("Pelusa Picarona","Club",loc6,null,null,4,"C/Me Falta Un Tornillo",null);
+		PlaceDB pla7 = new PlaceDB("Parque Aguadulce","Parque",loc7,null,null,2,"C/Severo Ochoa",null);
 		
 		DealDB deal1 = new DealDB("Comisiones abiertas",null,null,pla2);
 		DealDB deal2 = new DealDB("10% en ramen",null,null,pla1);

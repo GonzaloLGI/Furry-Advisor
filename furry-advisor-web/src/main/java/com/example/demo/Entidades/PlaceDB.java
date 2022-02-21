@@ -29,7 +29,7 @@ public class PlaceDB {
 	
 	@Column(nullable=false)
 	private String name;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private LocationDB city;
 	@Column(nullable=false)
 	private String address;

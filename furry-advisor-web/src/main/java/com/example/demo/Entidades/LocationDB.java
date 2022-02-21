@@ -25,15 +25,15 @@ public class LocationDB {
 	@Column(nullable=false)
 	private String name;
 	
-	@OneToMany(mappedBy="city")
-	private List<PlaceDB> places;
+	
+	//private List<PlaceDB> places;
 	
 	
 	protected LocationDB(){};
 	
-	public LocationDB(String n,List<PlaceDB> places) {
+	public LocationDB(String n) {
 		name = n;
-		this.places=places;
+		
 	}
 
 	public String getName() {
@@ -44,12 +44,6 @@ public class LocationDB {
 		this.name = name;
 	}
 
-	public List<PlaceDB> getPlaces() {
-		return places;
-	}
-
-	public void setName(List<PlaceDB> places) {
-		this.places = places;
-	}
+	
 	
 }

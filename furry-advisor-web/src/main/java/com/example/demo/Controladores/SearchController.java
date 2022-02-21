@@ -31,10 +31,17 @@ public class SearchController implements CommandLineRunner {
 		List<PlaceDB> places = placeRepository.findByType("Club");
 		//System.out.println(places.get(0).getRating());
 	}
+	@GetMapping("/searchPlatform")
+	public String searchPlatform(Model model) {
+		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
+		model.addAttribute("location_list", allLocations);
+		return "search";
+	}
+	
 	
 	@GetMapping("/search")
 	public String search(Model model, @RequestParam LocationDB locationFilter, @RequestParam String typeFilter) { 
-		List<LocationDB> allLocations = locationRepository.findAllDesc();
+		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
 		
 		
@@ -45,7 +52,7 @@ public class SearchController implements CommandLineRunner {
 		
 		List<PlaceDB> allPlaces = placeRepository.findAll();
 		
-		
+		System.out.println(placesSuperFiltered2.size());
 		if(placesSuperFiltered2!=null) {
 			model.addAttribute("places_list", placesSuperFiltered2);
 		}
