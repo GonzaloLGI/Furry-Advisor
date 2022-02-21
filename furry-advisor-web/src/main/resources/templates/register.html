@@ -1,0 +1,18 @@
+<html>
+
+	{{>navbar}}
+
+	<body>
+	
+	<form method='post' action='/createProfile'>
+		<p>Por favor, introduzca sus datos para registrarse: </p>
+			<label for='nombre'>Nombre de usuario: </label>
+			<input type='text' id='nombre' name='userName'/>
+			<label for='contraseña'>Contraseña: </label>
+			<input type='password' id='contraseña' name='userPassword'/>
+			
+		<p> <input type='submit' value='Enviar'/> </p>
+	</form>
+	
+	</body>
+</html>

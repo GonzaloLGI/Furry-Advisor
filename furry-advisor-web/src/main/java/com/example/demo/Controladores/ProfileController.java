@@ -45,19 +45,35 @@ public class ProfileController implements CommandLineRunner {
 	@PostMapping("/profile")
 	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
 	 
-		UserDB actualUser = userRepository.findByNickname(userName).get(0);
-		http.setAttribute("actUser", actualUser);
+		List<UserDB> userAux = userRepository.findByNickname(userName);
 		
-		model.addAttribute("name", actualUser.getNickname());
-		model.addAttribute("password",userPassword);
-		model.addAttribute("user",actualUser);
+		if(userAux.isEmpty()) {
+			System.out.println("Este usuario no existe");
+			return "login";
+		}
+		else {
+			
+			
+			UserDB actualUser = userRepository.findByNickname(userName).get(0);
 		
-		List<PlaceDB> places = placeRepository.findAll();
-		model.addAttribute("n1",places.get(0).getName());
-		model.addAttribute("t1",places.get(0).getType());
-		model.addAttribute("v1",places.get(0).getRating());
+			if(actualUser.getPassword().equals(userPassword)) {
+				http.setAttribute("actUser", actualUser);
+				model.addAttribute("name", actualUser.getNickname());
+				model.addAttribute("password",userPassword);
+				model.addAttribute("user",actualUser);
 		
-		return "profile";
+				List<PlaceDB> places = placeRepository.findAll();
+				model.addAttribute("n1",places.get(0).getName());
+				model.addAttribute("t1",places.get(0).getType());
+				model.addAttribute("v1",places.get(0).getRating());
+		
+				return "profile";
+			}
+			else {
+				System.out.println("La contrasña es incorrecta");
+				return "login";
+			}
+		}
 	}
 	
 	@PostMapping("/upload_image")

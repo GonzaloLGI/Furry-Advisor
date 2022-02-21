@@ -11,5 +11,5 @@ import com.example.demo.Entidades.UserDB;
 //objetos de la clase Review
 public interface ReviewDBInterface extends JpaRepository<ReviewDB,Integer> {
 	List<ReviewDB> findByRating(int rating);
-	List<ReviewDB> findByUserDB(UserDB user_or);
+	List<ReviewDB> findByUserRef(UserDB userRef);
 }

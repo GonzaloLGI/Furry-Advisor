@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Place
@@ -19,6 +21,8 @@ public class PlaceController {
 @Autowired
 private PlaceDBInterface placeRepository;
 
+@Autowired
+private DealDBInterface dealRepository;
 
 
 @GetMapping("/place")
@@ -32,6 +36,13 @@ public String place(Model model, @RequestParam String place_name) {
     model.addAttribute("place_rating",aux.getRating());
     model.addAttribute("place_url",aux.getPlace_url());
     model.addAttribute("place_schedule",aux.getSchedule());
+    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);
+    model.addAttribute("deal1",deals.get(0).getHeader());
     return "place";
+    
+ 
 }
+
+
+
 }

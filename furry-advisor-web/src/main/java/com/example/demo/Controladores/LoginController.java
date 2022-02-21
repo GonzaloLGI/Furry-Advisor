@@ -15,23 +15,14 @@ import com.example.demo.Interfaces.ReviewDBInterface;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Login
 @Controller
-public class LogController {
-	 private Logger log = (Logger) LoggerFactory.getLogger(LogController.class);
+public class LoginController {
+	 private Logger log = (Logger) LoggerFactory.getLogger(LoginController.class);
 	 
 	 @Autowired
 	 private ReviewDBInterface reviewRepository;
 	 
 	 @GetMapping("/login")
 	 public String page(Model model) {
-		 /*List<User> users = new ArrayList<>();
-		 
-		 users.add(new User("Pedro","Pascal",""));
-		 users.add(new User("Boba","Fett",""));
-		 model.addAttribute("users",users);*/
-		 
-		 /*List<ReviewDB> place = reviewRepository.findByRating(5);
-		 List<CommentDB> cm = place.get(0).getComments();
-		 System.out.println(cm.get(0).getDate());*/
 		 
 		 log.trace("A TRACE Message");
 		 log.debug("A DEBUG Message");
@@ -39,5 +30,6 @@ public class LogController {
 		 log.warn("A WARN Message");
 		 log.error("An ERROR Message");
 		 return "login";
+		 
 	 }
 }
