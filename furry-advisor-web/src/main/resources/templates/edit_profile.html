@@ -19,24 +19,21 @@
 <body>
 
 	<h2> EDITAR PERFIL: </h2>
-
-        <h4>Cambiar nombre: </h4>
         
 		<h1 style="color: #8080ff;" font-family: Helvetica, sans-serif;>{{name}}</h1>
 
         <form>
+        	<label for='name'><b>Cambiar nombre: </b></label>
 			<input type='text' name='name'/>
 			<br></br>
 		</form>
 		
         <hr>
-
-
-		<h4>Cambiar foto de perfil: </h4>
     
   		<p><img src="/image" width="100" height="100" /></p>
         
         <form action="/upload_image" method="post" enctype="multipart/form-data">
+ 			<label for='image'><b>Cambiar foto de perfil: </b></label>
 			<input type='file' name='image' accept=".jpg, .jpeg"/>
 			<br></br>
 		</form>
