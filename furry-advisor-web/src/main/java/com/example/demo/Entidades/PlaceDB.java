@@ -28,7 +28,7 @@ public class PlaceDB {
 	@Column(nullable=false)
 	private String name;
 	@Column(nullable=false)
-	private String city;
+	private LocationDB city;
 	@Column(nullable=false)
 	private String address;
 	private String description;
@@ -44,7 +44,7 @@ public class PlaceDB {
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(String n, String t, String ct, String desc, String url, int r, String a, Blob photo) {
+	public PlaceDB(String n, String t, LocationDB ct, String desc, String url, int r, String a, Blob photo) {
 		name = n;
 		type = t;
 		setRating(r);
@@ -123,11 +123,11 @@ public class PlaceDB {
 		return placePic;
 	}
 
-	public String getCity() {
+	public LocationDB getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(LocationDB city) {
 		this.city = city;
 	}
 	

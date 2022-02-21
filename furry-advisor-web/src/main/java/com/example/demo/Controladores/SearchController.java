@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Entidades.DealDB;
+import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Search
@@ -18,6 +20,9 @@ import com.example.demo.Interfaces.PlaceDBInterface;
 public class SearchController implements CommandLineRunner {
 	@Autowired
 	private PlaceDBInterface placeRepository;
+	
+	@Autowired
+	private LocationDBInterface locationRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -30,10 +35,10 @@ public class SearchController implements CommandLineRunner {
 	@GetMapping("/search")
 	public String search(Model model) {    
 		
-		
-		
-		
-		
+		List<LocationDB> allLocations = locationRepository.findAllDesc();
+		List<PlaceDB> allPlaces = placeRepository.findAll();
+		model.addAttribute("location_list", allLocations);
+		model.addAttribute("places_list", allPlaces);
 		
 	    return "search";
 	}

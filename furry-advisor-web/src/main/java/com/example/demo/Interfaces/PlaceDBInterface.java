@@ -15,6 +15,7 @@ public interface PlaceDBInterface extends JpaRepository<PlaceDB, Integer> {
 	List<PlaceDB> findByType(String type);
 	List<PlaceDB> findByCity(String city);
 	
+	
 	//List<PlaceDB> findByNameSorted(String name, Sort sort);
 	//List<PlaceDB> findByTypeSorted(String type, Sort sort);
 	//List<PlaceDB> findByCitySorted(String city, Sort sort);
