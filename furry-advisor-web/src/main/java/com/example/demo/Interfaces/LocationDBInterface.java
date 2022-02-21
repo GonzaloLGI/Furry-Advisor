@@ -14,6 +14,7 @@ import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 public interface LocationDBInterface extends JpaRepository<LocationDB, Integer> {
 	List<LocationDB> findAll();
 	List<LocationDB> findAllByOrderByName();
+	List<LocationDB> findByName(String name);
 	
 	
 	

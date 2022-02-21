@@ -40,19 +40,33 @@ public class SearchController implements CommandLineRunner {
 	
 	
 	@GetMapping("/search")
-	public String search(Model model, @RequestParam LocationDB locationFilter, @RequestParam String typeFilter) { 
+	public String search(Model model, @RequestParam String locationFilter, @RequestParam String typeFilter) { 
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
 		
+		List<PlaceDB> placesFilteredByLocation = null;
+		List<PlaceDB> placesFilteredByType = null;
+		List<PlaceDB> placesSuperFiltered2 = null;
+		List<PlaceDB> allPlaces = null;
 		
-		List<PlaceDB> placesFilteredByLocation = placeRepository.findByCity(locationFilter.getName());
-		List<PlaceDB> placesFilteredByType = placeRepository.findByType(typeFilter);
-		List<PlaceDB> placesSuperFiltered2 = placeRepository.findByCityAndType(locationFilter.getName(),typeFilter);
-		//List<PlaceDB> placesSuperFiltered = ((PlaceDBInterface) placesFilteredByLocation).findByType(typeFilter);
+		if(!typeFilter.equals("")&&!locationFilter.equals("")) {
+			List<LocationDB> listAux = locationRepository.findByName(locationFilter);
+			placesSuperFiltered2 = placeRepository.findByCityAndType(listAux.get(0),typeFilter);
+		}
 		
-		List<PlaceDB> allPlaces = placeRepository.findAll();
+		else if(!locationFilter.equals("")) {
+			List<LocationDB> listAux = locationRepository.findByName(locationFilter);
+			placesFilteredByLocation = placeRepository.findByCity(listAux.get(0));
+		}
+		else if(!typeFilter.equals("")) {
+			placesFilteredByType = placeRepository.findByType(typeFilter);
+		}
+		else {
+			allPlaces = placeRepository.findAll();
+		}
 		
-		System.out.println(placesSuperFiltered2.size());
+		
+		
 		if(placesSuperFiltered2!=null) {
 			model.addAttribute("places_list", placesSuperFiltered2);
 		}
