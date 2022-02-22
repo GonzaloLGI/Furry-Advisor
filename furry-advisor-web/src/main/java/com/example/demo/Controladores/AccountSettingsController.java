@@ -38,76 +38,26 @@ import com.example.demo.Interfaces.UserDBInterface;
 @Controller
 public class AccountSettingsController implements CommandLineRunner {
 	
-	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+	
 	@Autowired
 	private UserDBInterface userRepository;
-	@Autowired 
-	private PlaceDBInterface placeRepository;
-	@Autowired 
-	private ReviewDBInterface reviewRepository;
 	
-	@PostMapping("/edit_profile")
-	public String edit_profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String newName, @RequestParam String newPassword) {
+	
+	@PostMapping("/account_settings")
+	public String account_settings(HttpSession http, Model model, @RequestParam String userName, @RequestParam String newPassword) {
 	 
 		
 		UserDB actualUser = userRepository.findByNickname(userName).get(0);
-		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
 			
 		http.setAttribute("actUser", actualUser);//GONZALO EXPLICA ESTO
-				
-		model.addAttribute("name", actualUser.getNickname());
 				
 		if(!newPassword.equals("")) {
 			actualUser.setPassword(newPassword);
 		}
-		if(!newName.equals("")) {
-			actualUser.setNickname(newName);
-		}
-		if(reviews!=null) {
-			model.addAttribute("review_list", reviews);
-		}					
-		return "edit_profile";
+			
+		return "account_settings";
 			
 		
 	}
-	/*
-	@PostMapping("/upload_image")
-	public String uploadImage(HttpSession http, @RequestParam MultipartFile image) throws IOException {
-		/*Files.createDirectories(IMAGES_FOLDER);
-		Path imagePath = IMAGES_FOLDER.resolve("perfil.jpg");
-		image.transferTo(imagePath);
-		UserDB user = (UserDB)http.getAttribute("actUser");
-		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-		userRepository.save(user);
-		return "redirect:profile";
-	}	
 	
-	@GetMapping("/image")
-	public ResponseEntity<Object> downloadImage(HttpSession http, Model model) throws MalformedURLException, SQLException {
-		UserDB user = (UserDB)http.getAttribute("actUser");
-		if (user.getProf_photo() != null) {
-			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
-			return ResponseEntity.ok()
-					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					 .contentLength(user.getProf_photo().length())
-					 .body(image);
-		}else {
-			System.out.println("No hay foto");
-			return  ResponseEntity.notFound().build();
-		}
-		
-	}
-	
-	//La pagina de login y de register son distintas, luego hacer 2 htmls y 2 controladores por separado
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 }
