@@ -74,13 +74,16 @@ public class AccountSettingsController implements CommandLineRunner {
 		userRepository.save(actualUser);
 		
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		int aux=(int)Math.random()*deals.size();
+		int numaux=(int)Math.random()*deals.size();
 		int aux2=(int)Math.random()*deals.size();
-		while(aux2==aux) {
-			aux2=(int)Math.random()*deals.size();
+		
+		DealDB dealDB1 = deals.get(0);
+		DealDB dealDB2 = deals.get(2);
+		if(dealDB1==dealDB2&&aux2!=0) {
+			dealDB2=deals.get(aux2--);
+		}else if(dealDB1==dealDB2) {
+			dealDB2=deals.get(aux2++);
 		}
-		DealDB dealDB1 = deals.get(aux);
-		DealDB dealDB2 = deals.get(aux2);
 		
 		
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
