@@ -27,15 +27,31 @@
 
 <body>
 
-	<h2>¿Cuántas patitas se merece este sitio?</h2>
+	<h1>{{place_name}}</h1>
+
+	<h3>¿Cuántas patitas se merece este sitio?</h3>
 	
-	<div class="rating">
-        <input type="radio" name="star" id="star1"> <label for="star1"></label>
-        <input type="radio" name="star" id="star2"> <label for="star2"></label>
-        <input type="radio" name="star" id="star3"> <label for="star3"></label>
-        <input type="radio" name="star" id="star4"> <label for="star4"></label>
-        <input type="radio" name="star" id="star5"> <label for="star5"></label>
-	</div >
+	<form action="/place">
+	
+		<div class="rating">
+        	<input type="radio" name="star" id="star1"> <label for="star1"></label>
+        	<input type="radio" name="star" id="star2"> <label for="star2"></label>
+        	<input type="radio" name="star" id="star3"> <label for="star3"></label>
+        	<input type="radio" name="star" id="star4"> <label for="star4"></label>
+        	<input type="radio" name="star" id="star5"> <label for="star5"></label>
+		</div >
+	
+		<h3>¿Que opinión te merece este sitio?</h3>
+
+		<input type="text" name="reviewText" maxlength="120" size="120">
+		
+		<input type="submit" value="Guardar">
+		
+		<br>
+		
+		
+	</form>
+	
 
 </body>
 </html>

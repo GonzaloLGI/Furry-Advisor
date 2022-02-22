@@ -116,37 +116,30 @@
  	</div>
   
 	<div class="main">
-  
-    	<h2>{{place_name}}</h2>
+	
+	    <h2>{{place_name}}</h2>
 
     	<p>{{place_desc}}</p>
     	
-    	<br>
-    	
-    	<h3>Ofertas actuales:</h3>
-    	
-        <h4>{{deal1}}</h4>
+    	<hr>
+	
+	    <h3>Ofertas actuales:</h3>
+  
+		<ul>
+			{{#deal_list}}
+			
+				<h4>{{header}}</h4>
+				<p>{{description}}</p>
         
-    	<div class="img" style="height:142px;">
-        	<img src="/perfil" width="100" height="100" />
-    	</div>
+    			<div class="img" style="height:100px;">
+        			<img src="/image/{{header}}" width="100" height="100" />
+    			</div>
         
-        <br>
-
-        <h4>{{deal2}}</h4>
-
-    	<div class="img" style="height:142px;">
-        	<img src="/perfil" width="100" height="100" />
-    	</div>
-        
-        <br>
-        
-        <h4>{{deal3}}</h4>        
-        
-        <div class="img" style="height:142px;">
-        	<img src="/perfil" width="100" height="100" />
-    	</div>
-
+        		<br>
+			
+			{{/deal_list}}
+		</ul>  
+  
 	</div>
 
 </body>
