@@ -2,6 +2,13 @@
 <head>
 
 	<style>
+	
+		/* -------------------------------------------------------------------------------------------------------------------------------- */	
+		.iblock{
+			display: inline-block;
+			width: 25%;
+		}
+	
 		/* -------------------------------------------------------------------------------------------------------------------------------- */
 		* {
   			box-sizing: border-box;
@@ -92,36 +99,25 @@
 			<p><input type='submit' value='Editar Perfil'/></p>	
 		</form>
 		
-	</div>
+		<h4>Reseñas del usuario</h4>
 	
+		<ul>
+			{{#user_reviews}}
+		
+				<div class="iblock">
+					<a href='/place'>{{place_name}}</a>
+				</div>
 			
-	<p>Reseñas del usuario</p>
+				<div class="iblock">			
+					<p>{{review_text}}</p>
+				</div>
+						
+				<br>
 	
-	<br>
-	
-	<table>
-		<tr>
-			<th>Lugar</th>
-			<th>Tipo</th>
-			<th>Valoración</th>
-			<th>Enlace a reseña</th>
-		</tr>
+			{{/user_reviews}}
+		</ul>
 		
-		<tr>
-			<td>{{n1}}</td>
-			<td>{{t1}}</td>
-			<td>{{v1}}</td>
-			<td><a href='lugar'>Reseña</a></td>
-		</tr>
-		
-		<tr>
-			<td>Hairy Ramen</td>
-			<td>Restaurante</td>
-			<td>2</td>
-			<td><a href='lugar'>Reseña</a></td>
-		</tr>
-		
-	</table>
+	</div>
 	
 </body> 
 
