@@ -35,18 +35,13 @@ public class RegisterController {
 		}
 		else {
 		
-				//http.setAttribute("actUser", actualUser);
+				
 				UserDB newUser = new UserDB(userName,userPassword,null,null);
+				http.setAttribute("actUser", newUser);
 				userRepository.save(newUser);
 				
 				model.addAttribute("name", userName);
 				model.addAttribute("password",userPassword);
-				
-		
-				List<PlaceDB> places = placeRepository.findAll();
-				model.addAttribute("n1",places.get(0).getName());
-				model.addAttribute("t1",places.get(0).getType());
-				model.addAttribute("v1",places.get(0).getRating());
 		
 				return "profile";
 			

@@ -27,7 +27,7 @@ public class CommentDB {
 	@Column(nullable=false)
 	private Date date;
 	private int usefullness;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	private UserDB userRef;
 	@ManyToOne
 	private ReviewDB reviewRef;

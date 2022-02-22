@@ -1,17 +1,27 @@
 package com.example.demo.Controladores;
 
+import java.net.MalformedURLException;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 
@@ -85,5 +95,20 @@ public class SearchController implements CommandLineRunner {
 	    return "search";
 	}
 	
+	@GetMapping("/image/{name}")
+	public ResponseEntity<Object> downloadImage(Model model, @PathVariable String name) throws MalformedURLException, SQLException {
+		PlaceDB place = placeRepository.findByName(name).get(0);
+		if (place.getPlacePic() != null) {
+			Resource image = new InputStreamResource(place.getPlacePic().getBinaryStream());
+			return ResponseEntity.ok()
+					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					 .contentLength(place.getPlacePic().length())
+					 .body(image);
+		}else {
+			System.out.println("No hay foto");
+			return  ResponseEntity.notFound().build();
+		}
+		
+	}
 	
 }

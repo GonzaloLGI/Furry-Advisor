@@ -32,7 +32,7 @@ public class ReviewDB {
 	private Date date_rev;
 	@Column(nullable=false)
 	private int overallUsefness;
-	@ManyToOne 
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	private UserDB userRef;
 	@ManyToOne
 	private PlaceDB placRef;
