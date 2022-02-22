@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
@@ -55,10 +56,8 @@ public class LoginController {
 					model.addAttribute("name", userName);
 					model.addAttribute("password",userPassword);
 					
-					List<PlaceDB> places = placeRepository.findAll();
-					model.addAttribute("n1",places.get(0).getName());
-					model.addAttribute("t1",places.get(0).getType());
-					model.addAttribute("v1",places.get(0).getRating());
+					List<ReviewDB> revs = reviewRepository.findByUserRef(userAux.get(0));
+					model.addAttribute("user_reviews",revs);
 					
 					return "profile";
 				}

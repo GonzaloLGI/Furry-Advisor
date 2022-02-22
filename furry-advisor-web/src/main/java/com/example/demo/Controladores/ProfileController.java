@@ -28,8 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
+import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Profile
@@ -40,7 +42,7 @@ public class ProfileController implements CommandLineRunner {
 	@Autowired
 	private UserDBInterface userRepository;
 	@Autowired 
-	private PlaceDBInterface placeRepository;
+	private ReviewDBInterface reviewRepository;
 
 	@PostMapping("/profile")
 	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
@@ -61,10 +63,8 @@ public class ProfileController implements CommandLineRunner {
 				model.addAttribute("password",userPassword);
 				model.addAttribute("user",actualUser);
 		
-				List<PlaceDB> places = placeRepository.findAll();
-				model.addAttribute("n1",places.get(0).getName());
-				model.addAttribute("t1",places.get(0).getType());
-				model.addAttribute("v1",places.get(0).getRating());
+				List<ReviewDB> revs = reviewRepository.findByUserRef(actualUser);
+				model.addAttribute("user_reviews",revs);
 		
 				return "profile";
 			}
