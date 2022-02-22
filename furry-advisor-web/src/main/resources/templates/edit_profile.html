@@ -24,11 +24,16 @@
         
 		<h1 style="color: #8080ff;" font-family: Helvetica, sans-serif;>{{name}}</h1>
 
-        <form>
+        <form method='post' action='/edit_profile'>
         	<label for='name'>Nuevo nombre:</label>
-			<input type='text' name='name'/>
+			<input type='text' name='newName'/>
 			<br></br>
-		</form>
+		
+		
+		
+        	<label for='name'>Nueva contraseña:</label>
+			<input type='text' name='newPassword'/>
+			<br></br>
 		
         <hr>
         
@@ -52,8 +57,8 @@
         	<ul>
 			{{#review_list}
 
-				<h4>{{review_place}}<h4>
-				<p>{{review_text}}</p>
+				<h4>{{placeRef}}<h4>
+				<p>{{reviewText}}</p>
 				
                 <label>Oculto:</label>
 				<input type='checkbox' name='rev1'/>
@@ -63,11 +68,17 @@
 			{{/review_list}}
 			</ul>
 
-		</form>
 		
+		
+        	<hr>
+        
+        	<input type='submit' value='Save Changes'/>
+        </form>
+        
         <hr>
         
-        <input type='submit' value='Guardar cambios'/>
+        	<a href="/account_settings">Account Settings</a>
+       
                
 </body> 
 </html>
