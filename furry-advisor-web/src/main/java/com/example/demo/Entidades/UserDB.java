@@ -29,6 +29,10 @@ public class UserDB {
 	@Column(nullable=false,unique=true)
 	private String nickname;
 	private String email;
+	@OneToMany(cascade=CascadeType.REMOVE)
+	private List<ReviewDB> reviews;
+	@OneToMany(cascade=CascadeType.REMOVE)
+	private List<CommentDB> comments;
 	@Lob
 	@JsonIgnore
 	private Blob profPhoto;
