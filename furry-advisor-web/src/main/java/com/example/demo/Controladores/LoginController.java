@@ -57,8 +57,9 @@ public class LoginController {
 					model.addAttribute("password",userPassword);
 					
 					List<ReviewDB> revs = reviewRepository.findByUserRef(userAux.get(0));
-					model.addAttribute("user_reviews",revs);
-					
+					if(revs.size()>0) {
+						model.addAttribute("user_reviews",revs);
+					}
 					return "profile";
 				}
 				
