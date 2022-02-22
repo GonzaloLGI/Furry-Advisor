@@ -61,40 +61,36 @@ public class AccountSettingsController implements CommandLineRunner {
 		if(!newPassword.equals("")) {
 			actualUser.setPassword(newPassword);
 			http.setAttribute("actUser", actualUser);
+			
+			UserDB aux = userRepository.findByNickname(actualUser.getNickname()).get(0);
+			aux.setPassword(actualUser.getPassword());
+			userRepository.save(aux);
+			
+			List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
+			int random1=(int)Math.random()*deals.size();
+			int random2=(int)Math.random()*deals.size();
+			
+			DealDB dealDB1 = deals.get(random1);
+			DealDB dealDB2 = deals.get(random2);
+			if(dealDB1==dealDB2&&random2!=0) {
+				dealDB2=deals.get(random2--);
+			}else if(dealDB1==dealDB2) {
+				dealDB2=deals.get(random2++);
+			}
+			
+			
+			model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
+			model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
+			model.addAttribute("deal_image1", dealDB1.getDealPic());
+			model.addAttribute("deal_image2", dealDB2.getDealPic());
+			model.addAttribute("deal_header1", dealDB1.getHeader());
+			model.addAttribute("deal_header2", dealDB2.getHeader());
+			
 		}
 			
-		return "account_settings";
-	}
-	@PostMapping("/save")
-	public String save(HttpSession http, Model model) {
-		
-		UserDB aux = (UserDB)http.getAttribute("actUser");
-		UserDB actualUser = userRepository.findByNickname(aux.getNickname()).get(0);
-		actualUser.setPassword(aux.getPassword());
-		userRepository.save(actualUser);
-		
-		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		int numaux=(int)Math.random()*deals.size();
-		int aux2=(int)Math.random()*deals.size();
-		
-		DealDB dealDB1 = deals.get(0);
-		DealDB dealDB2 = deals.get(2);
-		if(dealDB1==dealDB2&&aux2!=0) {
-			dealDB2=deals.get(aux2--);
-		}else if(dealDB1==dealDB2) {
-			dealDB2=deals.get(aux2++);
-		}
-		
-		
-		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
-		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
-		model.addAttribute("deal_image1", dealDB1.getDealPic());
-		model.addAttribute("deal_image2", dealDB2.getDealPic());
-		model.addAttribute("deal_header1", dealDB1.getHeader());
-		model.addAttribute("deal_header2", dealDB2.getHeader());
-		
 		return "home";
 	}
+	
 	
 	@PostMapping("/delete")
 	public String delete(HttpSession http, Model model) {
@@ -103,8 +99,16 @@ public class AccountSettingsController implements CommandLineRunner {
 		userRepository.delete(actualUser);
 		
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		DealDB dealDB1 = deals.get(0);
-		DealDB dealDB2 = deals.get(2);
+		int random1=(int)Math.random()*deals.size();
+		int random2=(int)Math.random()*deals.size();
+		
+		DealDB dealDB1 = deals.get(random1);
+		DealDB dealDB2 = deals.get(random2);
+		if(dealDB1==dealDB2&&random2!=0) {
+			dealDB2=deals.get(random2--);
+		}else if(dealDB1==dealDB2) {
+			dealDB2=deals.get(random2++);
+		}
 		
 		
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());

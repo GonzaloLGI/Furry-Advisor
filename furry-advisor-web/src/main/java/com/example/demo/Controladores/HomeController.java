@@ -236,19 +236,16 @@ public class HomeController {
 	public String home(Model model) {
 
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		int numaux=(int)Math.random()*deals.size();
-		int aux2=(int)Math.random()*deals.size();
-		DealDB dealDB1 = deals.get(numaux);
-		DealDB dealDB2 = deals.get(aux2);
-		/*if(numaux==aux2&&aux2==0) {
-			dealDB2=deals.get(aux2++);
-		}else if(numaux==aux2) {
-			dealDB2=deals.get(aux2--);
+		int random1=(int)Math.random()*deals.size();
+		int random2=(int)Math.random()*deals.size();
+		
+		DealDB dealDB1 = deals.get(random1);
+		DealDB dealDB2 = deals.get(random2);
+		if(dealDB1==dealDB2&&random2!=0) {
+			dealDB2=deals.get(random2--);
+		}else if(dealDB1==dealDB2) {
+			dealDB2=deals.get(random2++);
 		}
-		*/
-		
-		
-		
 		
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
 		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
