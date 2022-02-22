@@ -6,7 +6,7 @@
 		/* -------------------------------------------------------------------------------------------------------------------------------- */	
 		.iblock{
 			display: inline-block;
-			width: 25%;
+			width: 15%;
 		}
 	
 		/* -------------------------------------------------------------------------------------------------------------------------------- */
@@ -103,20 +103,22 @@
 	
 		<ul>
 			{{#user_reviews}}
+            
+				<div class="iblock">
+					<a href='/place/{{placRef.name}}'>{{placRef.name}}</a>
+				</div>
 		
 				<div class="iblock">
 					<p>{{rating}}</p>
 				</div>
 			
 				<div class="iblock">			
-					<p>{{reviewText}}</p>
-				</div>
-				
-				<div class="iblock">			
 					<p>{{date_rev}}</p>
 				</div>
-						
-				<br>
+                
+				<p>{{reviewText}}</p>
+                
+                <br>
 	
 			{{/user_reviews}}
 		</ul>
