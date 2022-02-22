@@ -86,19 +86,19 @@ public class HomeController {
 		LocationDB loc6 = new LocationDB("Valladolid");
 		LocationDB loc7 = new LocationDB("Albacete");
 		
-		PlaceDB pla1 = new PlaceDB("Panda Ramen","Restaurante",loc1,null,null,3,"C/Don Juan",null);
-		PlaceDB pla2 = new PlaceDB("Simba's Breakfast","Restaurante",loc2,null,null,4,"C/Recuerdo",null);
-		PlaceDB pla3 = new PlaceDB("Escupe el Fuego","Restaurante",loc3,null,null,1,"C/Hincada",null);
-		PlaceDB pla4 = new PlaceDB("La Pelusa","Bar",loc4,null,null,5,"C/Margarina",null);
-		PlaceDB pla5 = new PlaceDB("Foxxes Bar","Bar",loc5,null,null,3,"C/Carrera",null);
-		PlaceDB pla6 = new PlaceDB("Pelusa Picarona","Club",loc6,null,null,4,"C/Me Falta Un Tornillo",null);
-		PlaceDB pla7 = new PlaceDB("Parque Aguadulce","Parque",loc7,null,null,2,"C/Severo Ochoa",null);
+		PlaceDB pla1 = new PlaceDB("Panda Ramen","Restaurante",loc1,"Descripcion1","URL1",3,"C/Don Juan","Schedule1",null);
+		PlaceDB pla2 = new PlaceDB("Simba's Breakfast","Restaurante",loc2,"Descripcion2","URL2",4,"C/Recuerdo","Schedule2",null);
+		PlaceDB pla3 = new PlaceDB("Escupe el Fuego","Restaurante",loc3,"Descripcion3","URL3",1,"C/Hincada","Schedule3",null);
+		PlaceDB pla4 = new PlaceDB("La Pelusa","Bar",loc4,"Descripcion4","URL4",5,"C/Margarina","Schedule4",null);
+		PlaceDB pla5 = new PlaceDB("Foxxes Bar","Bar",loc5,"Descripcion5","URL5",3,"C/Carrera","Schedule5",null);
+		PlaceDB pla6 = new PlaceDB("Pelusa Picarona","Club",loc6,"Descripcion6","URL6",4,"C/Me Falta Un Tornillo","Schedule6",null);
+		PlaceDB pla7 = new PlaceDB("Parque Aguadulce","Parque",loc7,"Descripcion7","URL7",2,"C/Severo Ochoa","Schedule7",null);
 		
-		DealDB deal1 = new DealDB("Comisiones abiertas",null,null,pla2);
-		DealDB deal2 = new DealDB("10% en ramen",null,null,pla1);
-		DealDB deal3 = new DealDB("2x1 en chupitos de absenta",null,null,pla6);
-		DealDB deal4 = new DealDB("Galletas con nata gratis",null,null,pla3);
-		DealDB deal5 = new DealDB("Reunion en Parque Aguadulce",null,null,pla7);
+		DealDB deal1 = new DealDB("Comisiones abiertas","Description1",null,pla2);
+		DealDB deal2 = new DealDB("10% en ramen","Description2",null,pla1);
+		DealDB deal3 = new DealDB("2x1 en chupitos de absenta","Description3",null,pla6);
+		DealDB deal4 = new DealDB("Galletas con nata gratis","Description4",null,pla3);
+		DealDB deal5 = new DealDB("Reunion en Parque Aguadulce","Description5",null,pla7);
 		
 		String txt1 = "El lugar no esta bien. No ofrecen lo que dicen";
 		Date dtR1 = new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01");
@@ -115,11 +115,11 @@ public class HomeController {
 		
 		
 		Date dtC1 = new SimpleDateFormat("yyyy-MM-dd").parse("2015-06-25");
-		CommentDB comm1 = new CommentDB(dtC1,null,0,use5,rev2);
+		CommentDB comm1 = new CommentDB(dtC1,"Texto1",0,use5,rev2);
 		Date dtC2 = new SimpleDateFormat("yyyy-MM-dd").parse("2011-10-13");
-		CommentDB comm2 = new CommentDB(dtC2,null,0,use2,rev4);
+		CommentDB comm2 = new CommentDB(dtC2,"Texto2",0,use2,rev4);
 		Date dtC3 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-09");
-		CommentDB comm3 = new CommentDB(dtC3,null,0,use3,rev3);	
+		CommentDB comm3 = new CommentDB(dtC3,"Texto3",0,use3,rev3);	
 	
 		userRepository.save(use1);
 		userRepository.save(use2);

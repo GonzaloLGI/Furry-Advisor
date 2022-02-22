@@ -46,7 +46,7 @@ public class PlaceDB {
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(String n, String t, LocationDB ct, String desc, String url, int r, String a, Blob photo) {
+	public PlaceDB(String n, String t, LocationDB ct, String desc, String url, int r, String a, String sch, Blob photo) {
 		name = n;
 		type = t;
 		setRating(r);
@@ -55,6 +55,7 @@ public class PlaceDB {
 		description = desc;
 		placeUrl = url;
 		placePic = photo;
+		schedule = sch;
 	}
 
 	public String getName() {

@@ -46,23 +46,24 @@ public class EditProfileController implements CommandLineRunner {
 	@Autowired 
 	private ReviewDBInterface reviewRepository;
 	
-	@PostMapping("/edit_profile")
-	public String edit_profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String newName, @RequestParam String newPassword) {
+	@GetMapping("/edit_profile")
+	public String edit_profile(HttpSession http, Model model) {
 	 
-		
-		UserDB actualUser = userRepository.findByNickname(userName).get(0);
+		UserDB aux = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = userRepository.findByNickname(aux.getNickname()).get(0);
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
+		model.addAttribute("name",actualUser.getNickname());
 			
-		http.setAttribute("actUser", actualUser);//GONZALO EXPLICA ESTO
+		http.setAttribute("actUser", actualUser);
 				
 		model.addAttribute("name", actualUser.getNickname());
 				
-		if(!newPassword.equals("")) {
+		/*if(!newPassword.equals("")) {
 			actualUser.setPassword(newPassword);
 		}
 		if(!newName.equals("")) {
 			actualUser.setNickname(newName);
-		}
+		}*/
 		if(reviews!=null) {
 			model.addAttribute("review_list", reviews);
 		}					

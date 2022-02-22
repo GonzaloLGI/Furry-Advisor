@@ -102,11 +102,6 @@ public class ProfileController implements CommandLineRunner {
 		
 	}
 	
-	@GetMapping("/edit_profile")
-	public String editProfile(Model model) {
-		return "edit_profile";
-	}
-	
 	//La pagina de login y de register son distintas, luego hacer 2 htmls y 2 controladores por separado
 	@Override
 	public void run(String... args) throws Exception {
