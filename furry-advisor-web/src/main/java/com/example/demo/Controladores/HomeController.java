@@ -243,8 +243,9 @@ public class HomeController {
 
 
 	@GetMapping("/home")
-	public String home(Model model) {
-
+	public String home(Model model,HttpSession http) {
+		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		model.addAttribute("user",actualUser);
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		int random1=(int)Math.random()*deals.size();
 		int random2=(int)Math.random()*deals.size();

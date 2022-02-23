@@ -21,7 +21,7 @@ public class PlaceService {
 	}
 	
 	public List<PlaceDB> findByType(String type){
-		return placeRepository.findByName(type);
+		return placeRepository.findByType(type);
 	}
 	
 	public List<PlaceDB> findByCity(LocationDB loc){

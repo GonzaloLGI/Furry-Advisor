@@ -62,7 +62,7 @@ public class RegisterController {
 				http.setAttribute("actUser", newUser);
 				userRepository.save(newUser);
 		
-				return "profile";
+				return "profile/"+userName;
 			
 		}
 	}

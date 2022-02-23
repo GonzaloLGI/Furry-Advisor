@@ -43,7 +43,9 @@ public class SearchController implements CommandLineRunner {
 	}
 	
 	@GetMapping("/searchPlatform")
-	public String searchPlatform(Model model) {
+	public String searchPlatform(Model model,HttpSession http) {
+		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		model.addAttribute("user",actualUser);
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
 		List<PlaceDB> allPlaces = placeRepository.findAll();

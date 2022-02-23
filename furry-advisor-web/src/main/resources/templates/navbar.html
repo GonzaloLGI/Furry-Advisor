@@ -62,9 +62,11 @@
 			<a href="/searchPlatform">Search</a>
 		</li>
 	
+		{{#user}}
 		<li>
-			<a href="/profile">Profile</a>
+			<a method="get" href="/profile/{{user.nickname}}">Profile</a>	
 		</li>
+		{{/user}}
 	
 		<li> 
 			<a href="/login" class="right">Login</a>

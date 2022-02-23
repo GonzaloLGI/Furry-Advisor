@@ -47,7 +47,7 @@ public class LoginController {
 		 
 	 }
 	 
-	 @PostMapping("/accessProfile")
+	 @GetMapping("/accessProfile")
 		public String login(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
 		 
 			List<UserDB> userAux = userRepository.findByNickname(userName);
@@ -62,7 +62,7 @@ public class LoginController {
 					if(revs.size()>0) {
 						model.addAttribute("user_reviews",revs);
 					}
-					return "profile";
+					return "profile/"+userName;
 				}
 				
 				System.out.println("Contraseña incorrecta");

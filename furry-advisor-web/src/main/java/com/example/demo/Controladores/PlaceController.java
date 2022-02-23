@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
@@ -43,7 +44,9 @@ public class PlaceController {
 	
 	
 	@GetMapping("/place/{place_name}")
-	public String place(Model model, @PathVariable String place_name) {    
+	public String place(Model model,HttpSession http, @PathVariable String place_name) {  
+		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		model.addAttribute("user",actualUser);
 	    List<PlaceDB> places = placeRepository.findByName(place_name);
 	    if(places.size()>0) {
 	    	PlaceDB aux = places.get(0);

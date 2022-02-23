@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.PlaceDB;
@@ -53,14 +55,14 @@ public class EditProfileController implements CommandLineRunner {
 	@Autowired 
 	private ReviewService reviewRepository;
 	
-	@PostMapping("/edit_profile")
+	@RequestMapping("/edit_profile")
 	public String edit_profile(HttpSession http, Model model) {
 	 
 		UserDB aux = (UserDB)http.getAttribute("actUser");
 		UserDB actualUser = userRepository.findByNickname(aux.getNickname()).get(0);
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
-		model.addAttribute("name",actualUser.getNickname());
-			
+		model.addAttribute("userName",actualUser.getNickname());
+		model.addAttribute("user",actualUser);	
 		http.setAttribute("actUser", actualUser);
 		
 		if(reviews!=null) {
@@ -70,7 +72,7 @@ public class EditProfileController implements CommandLineRunner {
 	}
 	
 	@PostMapping("/changeNickname")
-	public String changeNickname(HttpSession http, Model model, @RequestParam String newNickname) {
+	public ModelAndView changeNickname(HttpSession http, Model model, @RequestParam String newNickname) {
 	 
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 				
@@ -78,11 +80,12 @@ public class EditProfileController implements CommandLineRunner {
 			actualUser.setNickname(newNickname);
 			http.setAttribute("actUser", actualUser);
 			
-			if(userRepository.findByNickname(actualUser.getNickname()).size()>0) {
-				UserDB aux = userRepository.findByNickname(actualUser.getNickname()).get(0);
-				aux.setNickname(actualUser.getNickname());
-				userRepository.save(aux);
+			if(userRepository.findByNickname(actualUser.getNickname()).size()==0) {
+				userRepository.save(actualUser);
 				
+				
+				//para recargar
+				/*
 				List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 				int random1=(int)Math.random()*deals.size();
 				int random2=(int)Math.random()*deals.size();
@@ -102,14 +105,20 @@ public class EditProfileController implements CommandLineRunner {
 				model.addAttribute("deal_header1", dealDB1.getHeader());
 				model.addAttribute("deal_header2", dealDB2.getHeader());
 				
+				List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
+				model.addAttribute("name",actualUser.getNickname());
+				if(reviews!=null) {
+					model.addAttribute("review_list", reviews);
+				}	
+				*/
 			}
 			
 		}
-		return "home";
+		return new ModelAndView("redirect:/home");
 	}
 	
 	@PostMapping("/upload_image")
-	public String uploadImage(HttpSession http,Model model, @RequestParam MultipartFile image) throws IOException {
+	public ModelAndView uploadImage(HttpSession http,Model model, @RequestParam MultipartFile image) throws IOException {
 		UserDB user = (UserDB)http.getAttribute("actUser");
 		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
 		userRepository.save(user);
@@ -118,22 +127,15 @@ public class EditProfileController implements CommandLineRunner {
 		int random1=(int)Math.random()*deals.size();
 		int random2=(int)Math.random()*deals.size();
 		
-		DealDB dealDB1 = deals.get(random1);
-		DealDB dealDB2 = deals.get(random2);
-		if(dealDB1==dealDB2&&random2!=0) {
-			dealDB2=deals.get(random2--);
-		}else if(dealDB1==dealDB2) {
-			dealDB2=deals.get(random2++);
-		}
 		
-		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
-		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
-		model.addAttribute("deal_image1", dealDB1.getDealPic());
-		model.addAttribute("deal_image2", dealDB2.getDealPic());
-		model.addAttribute("deal_header1", dealDB1.getHeader());
-		model.addAttribute("deal_header2", dealDB2.getHeader());
+		//Para recargar
+		List<ReviewDB> reviews = reviewRepository.findByUserRef(user);
+		model.addAttribute("name",user.getNickname());
+		if(reviews!=null) {
+			model.addAttribute("review_list", reviews);
+		}	
 		
-		return "home";
+		return new ModelAndView("redirect:/home");
 	}	
 	
 	

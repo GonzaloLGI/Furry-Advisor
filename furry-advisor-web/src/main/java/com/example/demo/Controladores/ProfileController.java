@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,36 +49,29 @@ public class ProfileController implements CommandLineRunner {
 	@Autowired 
 	private ReviewService reviewRepository;
 
-	@PostMapping("/profile")
-	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
+	@GetMapping("/profile/{userName}")
+	public String profile(HttpSession http, Model model, @PathVariable String userName) {
 	 
 		List<UserDB> userAux = userRepository.findByNickname(userName);
 		
-		if(userAux.isEmpty()) {
-			System.out.println("Este usuario no existe");
-			return "login";
-		}
-		else {
+		
 			
-			UserDB actualUser = userRepository.findByNickname(userName).get(0);
+		UserDB actualUser = userRepository.findByNickname(userName).get(0);
 		
-			if(actualUser.getPassword().equals(userPassword)) {
-				http.setAttribute("actUser", actualUser);
-				model.addAttribute("name", actualUser.getNickname());
-				model.addAttribute("password",userPassword);
-				model.addAttribute("user",actualUser);
+			
+		http.setAttribute("actUser", actualUser);
+		model.addAttribute("name", actualUser.getNickname());
+		model.addAttribute("password",actualUser.getPassword());
+		model.addAttribute("user",actualUser);
 		
-				List<ReviewDB> revs = reviewRepository.findByUserRef(actualUser);
-				model.addAttribute("user_reviews",revs);
+		List<ReviewDB> revs = reviewRepository.findByUserRef(actualUser);
+		model.addAttribute("user_reviews",revs);
 		
-				return "profile";
-			}
-			else {
-				System.out.println("La contrasña es incorrecta");
-				return "login";
-			}
-		}
+		return "profile";
+			
+			
 	}
+	
 	
 	
 	

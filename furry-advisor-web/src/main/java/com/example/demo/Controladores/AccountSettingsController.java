@@ -50,8 +50,9 @@ public class AccountSettingsController implements CommandLineRunner {
 	private DealService dealRepository;
 	
 	@GetMapping("/account_settings")
-	public String account_settings( Model model) {
-	 
+	public String account_settings( Model model,HttpSession http) {
+		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		model.addAttribute("user",actualUser);
 		return "account_settings";
 	}
 	
