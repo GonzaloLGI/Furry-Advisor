@@ -15,7 +15,7 @@ public class LocationDB {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int location_id;
 	
-	@Column(nullable=false)
+	@Column(nullable=false,unique=true)
 	private String name;
 	
 	protected LocationDB(){};
