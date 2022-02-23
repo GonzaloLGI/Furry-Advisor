@@ -1,0 +1,31 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+html,body{
+	display: grid;
+	height: 100;
+	place-items: center;
+	text-align: center;
+	background: #000;
+}
+
+.container{
+	width: 400px;
+	background: #111;
+	padding: 20px 30px;
+	border: 1px solid #444;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.container .paw input{
+	display: none;
+}
