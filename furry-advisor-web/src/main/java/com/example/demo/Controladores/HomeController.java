@@ -247,16 +247,16 @@ public class HomeController {
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 		model.addAttribute("user",actualUser);
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		int random1=(int)Math.random()*deals.size();
-		int random2=(int)Math.random()*deals.size();
 		
-		DealDB dealDB1 = deals.get(random1);
-		DealDB dealDB2 = deals.get(random2);
-		if(dealDB1==dealDB2&&random2!=0) {
-			dealDB2=deals.get(random2--);
-		}else if(dealDB1==dealDB2) {
-			dealDB2=deals.get(random2++);
+		int max = deals.size();
+		int min = 0;
+		int dl1 = (int) (Math.random() * (max - min - 1) + min);
+		DealDB dealDB1 = deals.get(dl1);
+		int dl2 = (int) (Math.random() * (max - min - 1) + min);
+		while(dl1==dl2) {
+			dl2 = (int) (Math.random() * (max - min - 1) + min);
 		}
+		DealDB dealDB2 = deals.get(dl2);
 		
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
 		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
