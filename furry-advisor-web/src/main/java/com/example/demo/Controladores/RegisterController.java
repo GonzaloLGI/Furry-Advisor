@@ -36,7 +36,7 @@ public class RegisterController {
 	@Autowired
 	private UserService userRepository;
 
-	@PostMapping("/createProfile")
+	@GetMapping("/createProfile")
 	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) throws IOException {
 	 
 		List<UserDB> userAux = userRepository.findByNickname(userName);
