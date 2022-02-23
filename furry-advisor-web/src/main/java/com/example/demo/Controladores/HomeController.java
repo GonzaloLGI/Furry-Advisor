@@ -264,6 +264,22 @@ public class HomeController {
 		model.addAttribute("deal_image2", dealDB2.getDealPic());
 		model.addAttribute("deal_header1", dealDB1.getHeader());
 		model.addAttribute("deal_header2", dealDB2.getHeader());
+		
+		List<PlaceDB> places = placeRepository.findAll();
+
+        int maxPlace = places.size();
+        int minPlace = 0;
+        int pl1=(int)Math.random()*(maxPlace - minPlace - 1) + minPlace;
+        int pl2=(int)Math.random()*(maxPlace - minPlace - 1) + minPlace;
+        PlaceDB place3 = places.get(pl1);
+        PlaceDB place4 = places.get(pl2);
+        model.addAttribute("place_name3",place3.getName());
+        model.addAttribute("place_horario1",place3.getSchedule());
+        model.addAttribute("place_bio1",place3.getDescription());
+        model.addAttribute("place_name4",place4.getName());
+        model.addAttribute("place_horario2",place4.getSchedule());
+        model.addAttribute("place_bio2",place4.getDescription());
+		
 		return "home";
 	}
 	
