@@ -77,8 +77,6 @@ public class EditProfileController implements CommandLineRunner {
 				UserDB aux = userRepository.findByNickname(actualUser.getNickname()).get(0);
 				aux.setNickname(actualUser.getNickname());
 				userRepository.save(aux);
-				System.out.println(aux.getNickname());
-				System.out.println(actualUser.getNickname());
 				
 				List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 				int random1=(int)Math.random()*deals.size();
