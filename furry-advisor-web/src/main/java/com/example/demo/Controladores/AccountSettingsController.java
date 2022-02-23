@@ -35,6 +35,8 @@ import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
+import com.example.demo.Services.DealService;
+import com.example.demo.Services.UserService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML edit_profile
 @Controller
@@ -42,10 +44,10 @@ public class AccountSettingsController implements CommandLineRunner {
 	
 	
 	@Autowired
-	private UserDBInterface userRepository;
+	private UserService userRepository;
 	
 	@Autowired
-	private DealDBInterface dealRepository;
+	private DealService dealRepository;
 	
 	@GetMapping("/account_settings")
 	public String account_settings( Model model) {

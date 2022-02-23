@@ -33,20 +33,25 @@ import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
+import com.example.demo.Services.DealService;
+import com.example.demo.Services.PlaceService;
+import com.example.demo.Services.ReviewService;
+import com.example.demo.Services.UserService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML edit_profile
 @Controller
 public class EditProfileController implements CommandLineRunner {
 	
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+	
 	@Autowired
-	private UserDBInterface userRepository;
+	private UserService userRepository;
+	
 	@Autowired 
-	private PlaceDBInterface placeRepository;
+	private DealService dealRepository;
+	
 	@Autowired 
-	private DealDBInterface dealRepository;
-	@Autowired 
-	private ReviewDBInterface reviewRepository;
+	private ReviewService reviewRepository;
 	
 	@PostMapping("/edit_profile")
 	public String edit_profile(HttpSession http, Model model) {

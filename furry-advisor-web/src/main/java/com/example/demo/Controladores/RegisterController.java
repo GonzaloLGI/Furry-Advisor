@@ -25,15 +25,16 @@ import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
+import com.example.demo.Services.ReviewService;
+import com.example.demo.Services.UserService;
 
 @Controller
 public class RegisterController {
 	
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+	
 	@Autowired
-	private UserDBInterface userRepository;
-	@Autowired 
-	private ReviewDBInterface reviewRepository;
+	private UserService userRepository;
 
 	@PostMapping("/createProfile")
 	public String profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) throws IOException {

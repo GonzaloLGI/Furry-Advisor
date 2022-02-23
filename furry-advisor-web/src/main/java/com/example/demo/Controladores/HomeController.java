@@ -50,6 +50,11 @@ import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
+import com.example.demo.Services.CommentService;
+import com.example.demo.Services.DealService;
+import com.example.demo.Services.PlaceService;
+import com.example.demo.Services.ReviewService;
+import com.example.demo.Services.UserService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Home
 //y de inicializar las entidades ejemplo usadas en la aplicación web
@@ -57,16 +62,21 @@ import com.example.demo.Interfaces.UserDBInterface;
 public class HomeController {
 
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+	
 	@Autowired
-	private PlaceDBInterface placeRepository;
+	private PlaceService placeRepository;
+	
 	@Autowired
-	private UserDBInterface userRepository;
+	private UserService userRepository;
+	
 	@Autowired
-	private CommentDBInterface commentRepository;
+	private CommentService commentRepository;
+	
 	@Autowired
-	private DealDBInterface dealRepository;
+	private DealService dealRepository;
+	
 	@Autowired
-	private ReviewDBInterface reviewRepository;
+	private ReviewService reviewRepository;
 
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {

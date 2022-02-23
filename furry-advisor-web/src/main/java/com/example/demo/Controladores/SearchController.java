@@ -24,23 +24,24 @@ import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
+import com.example.demo.Services.LocationService;
+import com.example.demo.Services.PlaceService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Search
 @Controller
 public class SearchController implements CommandLineRunner {
-	@Autowired
-	private PlaceDBInterface placeRepository;
 	
 	@Autowired
-	private LocationDBInterface locationRepository;
+	private PlaceService placeRepository;
+	
+	@Autowired
+	private LocationService locationRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-		List<PlaceDB> places = placeRepository.findByType("Club");
-		//System.out.println(places.get(0).getRating());
 	}
+	
 	@GetMapping("/searchPlatform")
 	public String searchPlatform(Model model) {
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();

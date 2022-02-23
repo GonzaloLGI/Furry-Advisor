@@ -1,18 +1,11 @@
 package com.example.demo.Entidades;
 
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-
-
-
 
 //Clase de la entidad Location en la BD
 @Entity
@@ -24,10 +17,6 @@ public class LocationDB {
 	
 	@Column(nullable=false)
 	private String name;
-	
-	
-	//private List<PlaceDB> places;
-	
 	
 	protected LocationDB(){};
 	

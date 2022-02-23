@@ -24,19 +24,22 @@ import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
+import com.example.demo.Services.DealService;
+import com.example.demo.Services.LocationService;
+import com.example.demo.Services.PlaceService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Place
 @Controller
 public class PlaceController {
 
 	@Autowired
-	private PlaceDBInterface placeRepository;
+	private PlaceService placeRepository;
 	
 	@Autowired
-	private DealDBInterface dealRepository;
+	private DealService dealRepository;
 	
 	@Autowired
-	private LocationDBInterface locationRepository;
+	private LocationService locationRepository;
 	
 	
 	@GetMapping("/place/{place_name}")

@@ -2,7 +2,6 @@ package com.example.demo.Entidades;
 
 import java.sql.Blob;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,25 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Clase de la entidad Deal en la BD
 @Entity
 public class DealDB {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int deal_id;
 	
 	@Column(nullable=false)
 	private String header;
+	
 	private String description;
+	
 	@Lob
 	@JsonIgnore
 	private Blob dealPic;
+	
 	@ManyToOne
 	private PlaceDB placeOrigin;
 	

@@ -1,7 +1,6 @@
 package com.example.demo.Entidades;
 
 import java.sql.Blob;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,10 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,17 +24,25 @@ public class PlaceDB {
 	
 	@Column(nullable=false)
 	private String name;
+	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private LocationDB city;
+	
 	@Column(nullable=false)
 	private String address;
+	
 	private String description;
+	
 	@Column(nullable=false)
 	private String type;
+	
 	@Column(nullable=false)
 	private float rating;
+	
 	private String placeUrl;
+	
 	private String schedule;
+	
 	@Lob
 	@JsonIgnore
 	private Blob placePic;

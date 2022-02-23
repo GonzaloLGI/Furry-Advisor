@@ -9,11 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.springframework.lang.NonNull;
 
 //Clase de la entidad Comment en la BD
 @Entity
@@ -23,12 +20,16 @@ public class CommentDB {
 	private int comm_id;
 	
 	private String text;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
 	private Date date;
+	
 	private int usefullness;
+	
 	@ManyToOne(cascade=CascadeType.REMOVE)
 	private UserDB userRef;
+	
 	@ManyToOne
 	private ReviewDB reviewRef;
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Interfaces.LocationDBInterface;
 
@@ -24,5 +25,9 @@ public class LocationService {
 	
 	public List<LocationDB> findByName(String name){
 		return locationRepository.findByName(name);
+	}
+	
+	public void save(LocationDB location){
+		locationRepository.save(location);
 	}
 }

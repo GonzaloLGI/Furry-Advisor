@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
-import org.springframework.lang.NonNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Clase de la entidad User en la BD
@@ -26,13 +24,18 @@ public class UserDB {
 	
 	@Column(nullable=false)
 	private String password;
+	
 	@Column(nullable=false,unique=true)
 	private String nickname;
+	
 	private String email;
+	
 	@OneToMany(cascade=CascadeType.REMOVE)
 	private List<ReviewDB> reviews;
+	
 	@OneToMany(cascade=CascadeType.REMOVE)
 	private List<CommentDB> comments;
+	
 	@Lob
 	@JsonIgnore
 	private Blob profPhoto;

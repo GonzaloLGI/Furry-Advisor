@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
@@ -29,5 +30,13 @@ public class PlaceService {
 	
 	public List<PlaceDB> findByCityAndType(LocationDB city,String type){
 		return placeRepository.findByCityAndType(city, type);
+	}
+	
+	public void save(PlaceDB place){
+		placeRepository.save(place);
+	}
+	
+	public List<PlaceDB> findAll(){
+		return placeRepository.findAll();
 	}
 }

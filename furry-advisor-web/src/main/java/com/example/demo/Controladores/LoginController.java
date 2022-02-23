@@ -20,6 +20,9 @@ import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
+import com.example.demo.Services.PlaceService;
+import com.example.demo.Services.ReviewService;
+import com.example.demo.Services.UserService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Login
 @Controller
@@ -27,11 +30,10 @@ public class LoginController {
 	 private Logger log = (Logger) LoggerFactory.getLogger(LoginController.class);
 	 
 	 @Autowired
-	 private ReviewDBInterface reviewRepository;
+	 private ReviewService reviewRepository;
+	 
 	 @Autowired
-	 private UserDBInterface userRepository;
-	 @Autowired
-	 private PlaceDBInterface placeRepository;
+	 private UserService userRepository;
 	 
 	 @GetMapping("/login")
 	 public String page(Model model) {
