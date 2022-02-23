@@ -75,16 +75,7 @@ public class ProfileController implements CommandLineRunner {
 		}
 	}
 	
-	@PostMapping("/upload_image")
-	public String uploadImage(HttpSession http, @RequestParam MultipartFile image) throws IOException {
-		/*Files.createDirectories(IMAGES_FOLDER);
-		Path imagePath = IMAGES_FOLDER.resolve("perfil.jpg");
-		image.transferTo(imagePath);*/
-		UserDB user = (UserDB)http.getAttribute("actUser");
-		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-		userRepository.save(user);
-		return "redirect:profile";
-	}	
+	
 	
 	@GetMapping("/image")
 	public ResponseEntity<Object> downloadImage(HttpSession http, Model model) throws MalformedURLException, SQLException {

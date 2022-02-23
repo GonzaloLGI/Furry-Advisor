@@ -24,20 +24,22 @@
         
 		<h1 style="color: #8080ff;" font-family: Helvetica, sans-serif;>{{name}}</h1>
 
-        <form method='post' action='/edit_profile'>
+        <form method='post' action='/changeNickname'>
         	<label for='name'>Nuevo nombre:</label>
-			<input type='text' name='newName'/>
+			<input type='text' name='newNickname'/>
+			<input type='submit' value='Save Changes'/>
 			<br>
-		
+		</form>
         <hr>
         
     
         <h4>Cambiar foto de perfil:</h4>    
     
-  		<p><img src="/image" width="100" height="100" /></p>
+  		<p><img src="/imageEditProfile" width="100" height="100"/></p>
         
-        <form action="/upload_image" method="post" enctype="multipart/form-data">
+        <form method="post" action="/upload_image"  enctype="multipart/form-data">
 			<input type='file' name='image' accept=".jpg, .jpeg"/>
+			<input type='submit' value='Save Changes'/>
 			<br></br>
 		</form>
         
@@ -49,7 +51,7 @@
         <form>
         
         	<ul>
-			{{#review_list}
+			{{#review_list}}
 
 				<h4>{{placRef.name}}<h4>
 				<p>{{reviewText}}</p>
@@ -66,7 +68,7 @@
 		
         	<hr>
         
-        	<input type='submit' value='Save Changes'/>
+        	
         </form>       
                
 </body> 

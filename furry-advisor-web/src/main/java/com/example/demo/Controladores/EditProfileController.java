@@ -1,6 +1,4 @@
 package com.example.demo.Controladores;
-
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -27,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
+import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
@@ -44,9 +44,11 @@ public class EditProfileController implements CommandLineRunner {
 	@Autowired 
 	private PlaceDBInterface placeRepository;
 	@Autowired 
+	private DealDBInterface dealRepository;
+	@Autowired 
 	private ReviewDBInterface reviewRepository;
 	
-	@GetMapping("/edit_profile")
+	@PostMapping("/edit_profile")
 	public String edit_profile(HttpSession http, Model model) {
 	 
 		UserDB aux = (UserDB)http.getAttribute("actUser");
@@ -55,36 +57,86 @@ public class EditProfileController implements CommandLineRunner {
 		model.addAttribute("name",actualUser.getNickname());
 			
 		http.setAttribute("actUser", actualUser);
-				
-		model.addAttribute("name", actualUser.getNickname());
-				
-		/*if(!newPassword.equals("")) {
-			actualUser.setPassword(newPassword);
-		}
-		if(!newName.equals("")) {
-			actualUser.setNickname(newName);
-		}*/
+		
 		if(reviews!=null) {
 			model.addAttribute("review_list", reviews);
 		}					
 		return "edit_profile";
-			
-		
 	}
-	/*
+	
+	@PostMapping("/changeNickname")
+	public String changeNickname(HttpSession http, Model model, @RequestParam String newNickname) {
+	 
+		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+				
+		if(!newNickname.equals("")) {
+			actualUser.setNickname(newNickname);
+			http.setAttribute("actUser", actualUser);
+			
+			if(userRepository.findByNickname(actualUser.getNickname()).size()>0) {
+				UserDB aux = userRepository.findByNickname(actualUser.getNickname()).get(0);
+				aux.setNickname(actualUser.getNickname());
+				userRepository.save(aux);
+				System.out.println(aux.getNickname());
+				System.out.println(actualUser.getNickname());
+				
+				List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
+				int random1=(int)Math.random()*deals.size();
+				int random2=(int)Math.random()*deals.size();
+				
+				DealDB dealDB1 = deals.get(random1);
+				DealDB dealDB2 = deals.get(random2);
+				if(dealDB1==dealDB2&&random2!=0) {
+					dealDB2=deals.get(random2--);
+				}else if(dealDB1==dealDB2) {
+					dealDB2=deals.get(random2++);
+				}
+				
+				model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
+				model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
+				model.addAttribute("deal_image1", dealDB1.getDealPic());
+				model.addAttribute("deal_image2", dealDB2.getDealPic());
+				model.addAttribute("deal_header1", dealDB1.getHeader());
+				model.addAttribute("deal_header2", dealDB2.getHeader());
+				
+			}
+			
+		}
+		return "home";
+	}
+	
 	@PostMapping("/upload_image")
-	public String uploadImage(HttpSession http, @RequestParam MultipartFile image) throws IOException {
-		/*Files.createDirectories(IMAGES_FOLDER);
-		Path imagePath = IMAGES_FOLDER.resolve("perfil.jpg");
-		image.transferTo(imagePath);
+	public String uploadImage(HttpSession http,Model model, @RequestParam MultipartFile image) throws IOException {
 		UserDB user = (UserDB)http.getAttribute("actUser");
 		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
 		userRepository.save(user);
-		return "redirect:profile";
+		
+		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
+		int random1=(int)Math.random()*deals.size();
+		int random2=(int)Math.random()*deals.size();
+		
+		DealDB dealDB1 = deals.get(random1);
+		DealDB dealDB2 = deals.get(random2);
+		if(dealDB1==dealDB2&&random2!=0) {
+			dealDB2=deals.get(random2--);
+		}else if(dealDB1==dealDB2) {
+			dealDB2=deals.get(random2++);
+		}
+		
+		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
+		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
+		model.addAttribute("deal_image1", dealDB1.getDealPic());
+		model.addAttribute("deal_image2", dealDB2.getDealPic());
+		model.addAttribute("deal_header1", dealDB1.getHeader());
+		model.addAttribute("deal_header2", dealDB2.getHeader());
+		
+		return "home";
 	}	
 	
-	@GetMapping("/image")
-	public ResponseEntity<Object> downloadImage(HttpSession http, Model model) throws MalformedURLException, SQLException {
+	
+	
+	@GetMapping("/imageEditProfile")
+	public ResponseEntity<Object> imageEditProfile(HttpSession http, Model model) throws MalformedURLException, SQLException {
 		UserDB user = (UserDB)http.getAttribute("actUser");
 		if (user.getProf_photo() != null) {
 			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
@@ -99,13 +151,6 @@ public class EditProfileController implements CommandLineRunner {
 		
 	}
 	
-	//La pagina de login y de register son distintas, luego hacer 2 htmls y 2 controladores por separado
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}*/
-
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
