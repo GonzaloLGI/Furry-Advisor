@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.PlaceDB;
@@ -57,7 +58,7 @@ public class AccountSettingsController implements CommandLineRunner {
 	}
 	
 	@PostMapping("/changePassword")
-	public String changePassword(HttpSession http, Model model, @RequestParam String newPassword) {
+	public ModelAndView changePassword(HttpSession http, Model model, @RequestParam String newPassword) {
 	 
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 				
@@ -91,7 +92,7 @@ public class AccountSettingsController implements CommandLineRunner {
 			
 		}
 			
-		return "home";
+		return new ModelAndView("redirect:/home");
 	}
 	
 	
