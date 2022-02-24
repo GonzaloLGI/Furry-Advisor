@@ -30,11 +30,11 @@ public class UserDB {
 	
 	private String email;
 	
-	@OneToMany(cascade=CascadeType.REMOVE)
+	/*@OneToMany(cascade=CascadeType.REMOVE)
 	private List<ReviewDB> reviews;
 	
 	@OneToMany(cascade=CascadeType.REMOVE)
-	private List<CommentDB> comments;
+	private List<CommentDB> comments;*/
 	
 	@Lob
 	@JsonIgnore
