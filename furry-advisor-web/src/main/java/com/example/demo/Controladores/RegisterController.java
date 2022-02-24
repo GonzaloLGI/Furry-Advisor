@@ -28,6 +28,7 @@ import com.example.demo.Interfaces.UserDBInterface;
 import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 
+//Clase que se encarga de gestionar las periciones hacia Registe/Sign Up
 @Controller
 public class RegisterController {
 	

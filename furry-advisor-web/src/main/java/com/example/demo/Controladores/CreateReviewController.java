@@ -14,6 +14,7 @@ import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Services.PlaceService;
 
+//Clase que se encarga de gestionar las peticiones hacia CreateReview
 @Controller
 public class CreateReviewController {
 	

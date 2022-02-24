@@ -286,8 +286,10 @@ public class HomeController {
 	@GetMapping("/perfil")
 	public ResponseEntity<Object> perfil(HttpSession http, Model model) throws MalformedURLException, SQLException {
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		DealDB dealDB1 = deals.get(0);
-		//DealDB dealDB2 = deals.get(2);
+		int maxPlace = deals.size();
+        int minPlace = 0;
+        int pl1=(int)Math.random()*(maxPlace - minPlace - 1) + minPlace;
+		DealDB dealDB1 = deals.get(pl1);
 		
 		if (dealDB1.getDealPic() != null) {
 			Resource image = new InputStreamResource(dealDB1.getDealPic().getBinaryStream());

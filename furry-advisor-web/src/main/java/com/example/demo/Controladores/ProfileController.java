@@ -91,7 +91,6 @@ public class ProfileController implements CommandLineRunner {
 		
 	}
 	
-	//La pagina de login y de register son distintas, luego hacer 2 htmls y 2 controladores por separado
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
