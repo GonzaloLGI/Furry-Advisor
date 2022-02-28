@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidades.CommentDB;
+import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.ReviewDBInterface;
@@ -22,6 +23,10 @@ public class ReviewService {
 	
 	public List<ReviewDB> findByUserRef(UserDB userRef){
 		return reviewRepository.findByUserRef(userRef);
+	}
+	
+	public List<ReviewDB> findByPlacRef(PlaceDB placRef){
+		return reviewRepository.findByPlacRef(placRef);
 	}
 	
 	public void save(ReviewDB review){

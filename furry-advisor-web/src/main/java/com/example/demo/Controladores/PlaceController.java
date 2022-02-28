@@ -18,16 +18,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
+import com.example.demo.Services.CommentService;
 import com.example.demo.Services.DealService;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
+import com.example.demo.Services.ReviewService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Place
 @Controller
@@ -41,6 +45,12 @@ public class PlaceController {
 	
 	@Autowired
 	private LocationService locationRepository;
+	
+	@Autowired
+	private ReviewService reviewRepository;
+	
+	@Autowired
+	private CommentService commentRepository;
 	
 	
 	@GetMapping("/place/{place_name}")
@@ -61,6 +71,14 @@ public class PlaceController {
 		    model.addAttribute("city",auxCity.get(0).getName());
 		    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);
 		    model.addAttribute("deal_list",deals);
+		    //JAVA, aqui estan los nombres de las reviews y los comments para Mustache
+		    List<ReviewDB> reviews = reviewRepository.findByPlacRef(aux);
+		    for(int i = 0; i<reviews.size();i++) {
+		    	List<CommentDB> comms = commentRepository.findByReviewRef(reviews.get(i));
+			    String name = "comment_list"+i;
+			    model.addAttribute(name,comms);
+		    }
+		    model.addAttribute("reviews_list",reviews);
 	    }
 	    
 	    return "place";
