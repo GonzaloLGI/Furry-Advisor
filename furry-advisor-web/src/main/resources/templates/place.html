@@ -51,12 +51,11 @@
   			padding: 40px;
 		}
 
-
 		/* -------------------------------------------------------------------------------------------------------------------------------- */
 		/* Image style */
 		.img {
   			background-color: rgb(230, 183, 194);
-  			width: 100%;
+  			width: 100px;
   			padding: 20px;
 		}
 
@@ -133,6 +132,29 @@
         		<br>
 			
 			{{/deal_list}}
+		</ul>  
+  		
+  		<hr>
+  		
+  		<h3>Reviews:</h3>
+  
+		<ul>
+			{{#reviews_list}}
+			
+				<div class="img" style="height:100px;">
+        			<img src="/userImage/{{userRef.nickname}}" width="100" height="100" />
+    			</div>
+				<h4>{{userRef.nickname}}</h4>
+				<h4>{{rating}}</h4>
+				<h5>overallUsefullness</h5>
+				
+				<p>{{reviewText}}</p>
+				
+				<p>{{date_rev}}</p>
+				
+        		<br>
+			
+			{{/reviews_list}}
 		</ul>  
   
 	</div>

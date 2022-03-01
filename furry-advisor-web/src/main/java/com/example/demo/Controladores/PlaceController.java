@@ -32,11 +32,15 @@ import com.example.demo.Services.DealService;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
 import com.example.demo.Services.ReviewService;
+import com.example.demo.Services.UserService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Place
 @Controller
 public class PlaceController {
 
+	@Autowired
+	private UserService userRepository;
+	
 	@Autowired
 	private PlaceService placeRepository;
 	
@@ -94,6 +98,22 @@ public class PlaceController {
 			return ResponseEntity.ok()
 					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 					 .contentLength(dealDB1.getDealPic().length())
+					 .body(image);
+		}else {
+			System.out.println("No hay foto");
+			return  ResponseEntity.notFound().build();
+		}
+		
+	}
+	@GetMapping("/userImage/{header}")
+	public ResponseEntity<Object> userImage(HttpSession http, Model model, @PathVariable String header) throws MalformedURLException, SQLException {
+		List<UserDB> profiles = userRepository.findByNickname(header);
+		UserDB user = profiles.get(0);
+		if (user.getProf_photo() != null) {
+			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			return ResponseEntity.ok()
+					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					 .contentLength(user.getProf_photo().length())
 					 .body(image);
 		}else {
 			System.out.println("No hay foto");
