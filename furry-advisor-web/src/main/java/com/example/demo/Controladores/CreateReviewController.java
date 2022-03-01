@@ -35,9 +35,7 @@ public class CreateReviewController {
 	@Autowired
 	private ReviewService reviewRepository;
 	@Autowired
-	private LocationService locationRepository;
-	@Autowired
-	private DealService dealRepository;
+	private UserService userRepository;
 	
 	private PlaceDB pl;
 
@@ -63,11 +61,17 @@ public class CreateReviewController {
 			@RequestParam String review) throws ParseException {
 		Date dt = new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-20");
 		ReviewDB rev = new ReviewDB(rating,review,dt,0,null,null);
+		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 		
 		rev.setPlaceOwn(pl);
-		rev.setUserOwn((UserDB)http.getAttribute("actUser"));
+		rev.setUserOwn(actualUser);
+		List<ReviewDB> userReviews = actualUser.getReviews();
+		userReviews.add(rev);
+		actualUser.setReviews(userReviews);
 		
 		reviewRepository.save(rev);
+		userRepository.save(actualUser);
+		http.setAttribute("actUser", actualUser);
 		
 		return new ModelAndView("redirect:/home");
 	}
