@@ -101,7 +101,7 @@ public class AccountSettingsController implements CommandLineRunner {
 		
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 		//actualUser.setComments(null);
-		actualUser.setReviews(null);
+		//actualUser.setReviews(null);
 		userRepository.delete(actualUser);
 		
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();

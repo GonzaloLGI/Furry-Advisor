@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import com.example.demo.Services.DealService;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
 import com.example.demo.Services.ReviewService;
+import com.example.demo.Services.UserService;
 
 //Clase que se encarga de gestionar las peticiones hacia CreateReview
 @Controller
@@ -56,6 +58,7 @@ public class CreateReviewController {
         return "create_review";
     }
 	
+	
 	@PostMapping("/confirmReview")
 	public ModelAndView confirmReview(HttpSession http, Model model, @RequestParam int rating,
 			@RequestParam String review) throws ParseException {
@@ -69,7 +72,7 @@ public class CreateReviewController {
 		userReviews.add(rev);
 		actualUser.setReviews(userReviews);
 		
-		reviewRepository.save(rev);
+		//reviewRepository.save(rev);
 		userRepository.save(actualUser);
 		http.setAttribute("actUser", actualUser);
 		

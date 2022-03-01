@@ -34,8 +34,9 @@ public class UserDB {
 	
 	private String email;
 	
+	
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "userRef", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<ReviewDB> reviews;
 	
 	/*@OneToMany(mappedBy="userRef", cascade=CascadeType.ALL, orphanRemoval = true)
