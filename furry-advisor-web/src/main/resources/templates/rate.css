@@ -71,10 +71,6 @@ input:checked ~ label{
   color: pink;
 }
 
-.container form{
-  display: none;
-}
-
 input:checked ~ form{
   display: block;
 }
