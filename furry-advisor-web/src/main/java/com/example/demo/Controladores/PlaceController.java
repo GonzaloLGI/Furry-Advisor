@@ -75,7 +75,6 @@ public class PlaceController {
 		    model.addAttribute("city",auxCity.get(0).getName());
 		    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);
 		    model.addAttribute("deal_list",deals);
-		    //JAVA, aqui estan los nombres de las reviews y los comments para Mustache
 		    List<ReviewDB> reviews = reviewRepository.findByPlacRef(aux);
 		    for(int i = 0; i<reviews.size();i++) {
 		    	List<CommentDB> comms = commentRepository.findByReviewRef(reviews.get(i));

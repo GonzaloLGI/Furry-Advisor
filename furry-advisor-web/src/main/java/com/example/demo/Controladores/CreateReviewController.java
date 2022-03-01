@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
@@ -58,7 +59,7 @@ public class CreateReviewController {
     }
 	
 	@PostMapping("/confirmReview")
-	public String confirmReview(HttpSession http, Model model, @RequestParam int rating,
+	public ModelAndView confirmReview(HttpSession http, Model model, @RequestParam int rating,
 			@RequestParam String review) throws ParseException {
 		Date dt = new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-20");
 		ReviewDB rev = new ReviewDB(rating,review,dt,0,null,null);
@@ -67,11 +68,13 @@ public class CreateReviewController {
 		rev.setUserOwn((UserDB)http.getAttribute("actUser"));
 		
 		reviewRepository.save(rev);
-		
 		List<PlaceDB> places = placeRepository.findByName(pl.getName());
 	    if(places.size()>0) {
 	    	PlaceDB aux = places.get(0);
 		    model.addAttribute("place_name",aux.getName());
+	    }
+		/*
+		
 		    model.addAttribute("place_address",aux.getAddress());
 		    model.addAttribute("place_desc",aux.getDescription());
 		    model.addAttribute("place_type",aux.getType());
@@ -83,8 +86,8 @@ public class CreateReviewController {
 		    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);
 		    model.addAttribute("deal_list",deals);
 	    }
-		
-		return "place";
+		*/
+		return new ModelAndView("redirect:/place/{place_name}");
 	}
 	
 }
