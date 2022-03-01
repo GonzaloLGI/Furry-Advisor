@@ -68,11 +68,7 @@ public class CreateReviewController {
 		rev.setUserOwn((UserDB)http.getAttribute("actUser"));
 		
 		reviewRepository.save(rev);
-		List<PlaceDB> places = placeRepository.findByName(pl.getName());
-	    if(places.size()>0) {
-	    	PlaceDB aux = places.get(0);
-		    model.addAttribute("place_name",aux.getName());
-	    }
+		
 		/*
 		
 		    model.addAttribute("place_address",aux.getAddress());
@@ -87,7 +83,7 @@ public class CreateReviewController {
 		    model.addAttribute("deal_list",deals);
 	    }
 		*/
-		return new ModelAndView("redirect:/place/{place_name}");
+		return new ModelAndView("redirect:/home");
 	}
 	
 }

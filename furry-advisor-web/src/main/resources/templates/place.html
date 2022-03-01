@@ -64,7 +64,7 @@
   			background-color: rgb(230, 183, 194);
   			width: 100px;
   			padding: 20px;
-  			float: left;
+  			
 		}
 
 		/* -------------------------------------------------------------------------------------------------------------------------------- */
@@ -143,6 +143,7 @@
 		</ul>  
   		
   		<hr>
+  		<br>
   		
   		<h3>Reviews:</h3>
   
@@ -156,17 +157,16 @@
 				</div>
     		
 				<div class="iblock">
-					<h4>{{userRef.nickname}}</h4>
+					<h4>{{userRef.nickname}} - Rate: {{rating}}</h4>
+					<h5>overallUsefullness</h5>
 				</div>
 			
 				<br>
 				
-				<h4>{{rating}}</h4>
-				<h5>overallUsefullness</h5>
-				
-				<p>{{reviewText}}</p>
-				
-				<p>{{date_rev}}</p>
+				<div class="iblock">
+					<p>{{reviewText}}</p>
+					<p>{{date_rev}}</p>
+				</div>
 				
         		<br>
 			
