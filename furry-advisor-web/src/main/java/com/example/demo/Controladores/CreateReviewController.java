@@ -69,20 +69,6 @@ public class CreateReviewController {
 		
 		reviewRepository.save(rev);
 		
-		/*
-		
-		    model.addAttribute("place_address",aux.getAddress());
-		    model.addAttribute("place_desc",aux.getDescription());
-		    model.addAttribute("place_type",aux.getType());
-		    model.addAttribute("place_rating",aux.getRating());
-		    model.addAttribute("place_url",aux.getPlace_url());
-		    model.addAttribute("place_schedule",aux.getSchedule());
-		    List<LocationDB> auxCity = locationRepository.findByName(aux.getCity().getName());
-		    model.addAttribute("city",auxCity.get(0).getName());
-		    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);
-		    model.addAttribute("deal_list",deals);
-	    }
-		*/
 		return new ModelAndView("redirect:/home");
 	}
 	

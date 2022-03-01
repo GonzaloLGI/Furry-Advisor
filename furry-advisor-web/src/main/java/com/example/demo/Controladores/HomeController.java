@@ -122,27 +122,7 @@ public class HomeController {
 		String txt4 = "RECOMENDADISIMO!!";
 		Date dtR4 = new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-20");
 		ReviewDB rev4 = new ReviewDB(4,txt4,dtR4,5,use6,pla5);//use6
-		
-		
-		/*Date dtC1 = new SimpleDateFormat("yyyy-MM-dd").parse("2015-06-25");
-		CommentDB comm1 = new CommentDB(dtC1,"Texto1",0,use5,rev2);
-		Date dtC2 = new SimpleDateFormat("yyyy-MM-dd").parse("2011-10-13");
-		CommentDB comm2 = new CommentDB(dtC2,"Texto2",0,use2,rev4);
-		Date dtC3 = new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-09");
-		CommentDB comm3 = new CommentDB(dtC3,"Texto3",0,use3,rev3);	
 	
-		List<CommentDB> aux5 = new ArrayList<>();
-		aux5.add(comm1);
-		List<CommentDB> aux2 = new ArrayList<>();
-		aux2.add(comm2);
-		List<CommentDB> aux3 = new ArrayList<>();
-		aux3.add(comm3);
-		use5.setComments(aux5);
-		use2.setComments(aux2);
-		use3.setComments(aux3);
-		use1.setComments(new ArrayList<>());
-		use4.setComments(new ArrayList<>());
-		use6.setComments(new ArrayList<>());*/
 		
 		List<ReviewDB> aux6 = new ArrayList<>();
 		aux6.add(rev1);
@@ -158,11 +138,6 @@ public class HomeController {
 		use6.setReviews(aux9);
 		use2.setReviews(new ArrayList<>());
 		use4.setReviews(new ArrayList<>());
-		
-		//pla3.setRevs(aux6);
-		/*pla1.setRevs(aux7);
-		pla7.setRevs(aux8);*/
-		//pla5.setRevs(aux9);
 		
 		placeRepository.save(pla1);
 		placeRepository.save(pla2);
@@ -190,20 +165,6 @@ public class HomeController {
 		userRepository.save(use5);
 		userRepository.save(use6);
 		
-		
-		
-		
-		
-		
-		
-		/*reviewRepository.save(rev1);
-		reviewRepository.save(rev2);
-		reviewRepository.save(rev3);
-		reviewRepository.save(rev4);
-		
-		commentRepository.save(comm1);
-		commentRepository.save(comm2);
-		commentRepository.save(comm3);*/
 		
 		Path imagePath1 = IMAGES_FOLDER.resolve("perfil1.jpg");
 		File img1 = new File(imagePath1.toUri());
