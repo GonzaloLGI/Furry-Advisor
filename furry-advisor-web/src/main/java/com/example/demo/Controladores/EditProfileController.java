@@ -83,34 +83,6 @@ public class EditProfileController implements CommandLineRunner {
 			if(userRepository.findByNickname(actualUser.getNickname()).size()==0) {
 				userRepository.save(actualUser);
 				
-				
-				//para recargar
-				/*
-				List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-				int random1=(int)Math.random()*deals.size();
-				int random2=(int)Math.random()*deals.size();
-				
-				DealDB dealDB1 = deals.get(random1);
-				DealDB dealDB2 = deals.get(random2);
-				if(dealDB1==dealDB2&&random2!=0) {
-					dealDB2=deals.get(random2--);
-				}else if(dealDB1==dealDB2) {
-					dealDB2=deals.get(random2++);
-				}
-				
-				model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
-				model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
-				model.addAttribute("deal_image1", dealDB1.getDealPic());
-				model.addAttribute("deal_image2", dealDB2.getDealPic());
-				model.addAttribute("deal_header1", dealDB1.getHeader());
-				model.addAttribute("deal_header2", dealDB2.getHeader());
-				
-				List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
-				model.addAttribute("name",actualUser.getNickname());
-				if(reviews!=null) {
-					model.addAttribute("review_list", reviews);
-				}	
-				*/
 			}
 			
 		}
