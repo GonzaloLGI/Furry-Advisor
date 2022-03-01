@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 //Clase de la entidad Review en la BD
@@ -29,7 +30,7 @@ public class ReviewDB {
 	@Column(nullable=false)
 	private int overallUsefness;
 	
-	@ManyToOne(cascade=CascadeType.REMOVE)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private UserDB userRef;
 	
 	@ManyToOne

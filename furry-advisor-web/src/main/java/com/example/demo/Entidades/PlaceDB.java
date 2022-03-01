@@ -1,6 +1,7 @@
 package com.example.demo.Entidades;
 
 import java.sql.Blob;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -43,6 +45,9 @@ public class PlaceDB {
 	
 	private String schedule;
 	
+	/*@OneToMany(mappedBy="placRef", orphanRemoval=true)
+	private List<ReviewDB> revs;*/
+
 	@Lob
 	@JsonIgnore
 	private Blob placePic;
@@ -137,4 +142,19 @@ public class PlaceDB {
 		this.city = city;
 	}
 	
+	public String getPlaceUrl() {
+		return placeUrl;
+	}
+
+	public void setPlaceUrl(String placeUrl) {
+		this.placeUrl = placeUrl;
+	}
+
+	/*public List<ReviewDB> getRevs() {
+		return revs;
+	}
+
+	public void setRevs(List<ReviewDB> revs) {
+		this.revs = revs;
+	}*/
 }

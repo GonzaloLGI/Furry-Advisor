@@ -27,7 +27,7 @@ public class CommentDB {
 	
 	private int usefullness;
 	
-	@ManyToOne(cascade=CascadeType.REMOVE)
+	@ManyToOne
 	private UserDB userRef;
 	
 	@ManyToOne

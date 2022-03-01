@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Clase de la entidad User en la BD
@@ -30,17 +33,19 @@ public class UserDB {
 	
 	private String email;
 	
-	@OneToMany(cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "userRef", cascade=CascadeType.REMOVE, orphanRemoval = true)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<ReviewDB> reviews;
 	
-	@OneToMany(cascade=CascadeType.REMOVE)
-	private List<CommentDB> comments;
-	
+	/*@OneToMany(mappedBy="userRef", cascade=CascadeType.ALL, orphanRemoval = true)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private List<CommentDB> comments;*/
+
 	@Lob
 	@JsonIgnore
 	private Blob profPhoto;
 	
-	protected UserDB(){};
+	public UserDB(){};
 	
 	public UserDB(String nk, String psw, String em, Blob photo) {
 		setNickname(nk);
@@ -80,4 +85,20 @@ public class UserDB {
 	public void setProf_photo(Blob prof_photo) {
 		this.profPhoto = prof_photo;
 	}
+	
+	public List<ReviewDB> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<ReviewDB> reviews) {
+		this.reviews = reviews;
+	}
+
+	/*public List<CommentDB> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDB> comments) {
+		this.comments = comments;
+	}*/
 }

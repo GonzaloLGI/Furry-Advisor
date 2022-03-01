@@ -97,9 +97,11 @@ public class AccountSettingsController implements CommandLineRunner {
 	
 	
 	@PostMapping("/delete")
-	public String delete(HttpSession http, Model model) {
+	public ModelAndView delete(HttpSession http, Model model) {
 		
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		//actualUser.setComments(null);
+		actualUser.setReviews(null);
 		userRepository.delete(actualUser);
 		
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
@@ -122,7 +124,7 @@ public class AccountSettingsController implements CommandLineRunner {
 		model.addAttribute("deal_header1", dealDB1.getHeader());
 		model.addAttribute("deal_header2", dealDB2.getHeader());
 		
-		return "home";
+		return new ModelAndView("redirect:/home");
 	}
 	
 
