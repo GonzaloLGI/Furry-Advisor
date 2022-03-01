@@ -53,8 +53,7 @@ public class PlaceController {
 	@Autowired
 	private ReviewService reviewRepository;
 	
-	@Autowired
-	private CommentService commentRepository;
+
 	
 	
 	@GetMapping("/place/{place_name}")
@@ -76,11 +75,16 @@ public class PlaceController {
 		    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);
 		    model.addAttribute("deal_list",deals);
 		    List<ReviewDB> reviews = reviewRepository.findByPlacRef(aux);
-		    for(int i = 0; i<reviews.size();i++) {
-		    	List<CommentDB> comms = commentRepository.findByReviewRef(reviews.get(i));
-			    String name = "comment_list"+i;
-			    model.addAttribute(name,comms);
-		    }
+		    int rate=0;
+		    if(reviews.size()>0) {
+		    	
+		    	for(int i = 0; i<reviews.size();i++) {
+		    		rate+= reviews.get(i).getRating();
+		    	}
+		    	rate = rate/reviews.size();
+		    	
+	    	}
+		    model.addAttribute("placeRating",rate);
 		    model.addAttribute("reviews_list",reviews);
 	    }
 	    
