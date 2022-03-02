@@ -27,7 +27,7 @@
         <form method='post' action='/changeNickname'>
         	<label for='name'>Nuevo nombre:</label>
 			<input type='text' name='newNickname'/>
-			<input type='submit' value='Save Changes'/>
+			<input type='submit' value='Guardar cambios'/>
 			<br>
 		</form>
         <hr>
@@ -39,7 +39,7 @@
         
         <form method="post" action="/upload_image"  enctype="multipart/form-data">
 			<input type='file' name='image' accept=".jpg, .jpeg"/>
-			<input type='submit' value='Save Changes'/>
+			<input type='submit' value='Guardar cambios'/>
 			<br></br>
 		</form>
         
@@ -48,7 +48,7 @@
         
         <h4>¿Desea mostrar sus reviews? </h4>
 
-        <form>
+        <form method="get" action="/deleteReviews">
         
         	<ul>
 			{{#review_list}}
@@ -57,7 +57,7 @@
 				<p>{{reviewText}}</p>
 				
                 <label>Eliminar review:</label>
-				<input type='checkbox' name='rev1'/>
+				<input type='submit' value='Aceptar'/>
 			
 				<br>
 			

@@ -31,4 +31,8 @@ public class ReviewService {
 	public void save(ReviewDB review){
 		reviewRepository.save(review);
 	}
+	
+	public void delete(ReviewDB review){
+		reviewRepository.delete(review);
+	}
 }

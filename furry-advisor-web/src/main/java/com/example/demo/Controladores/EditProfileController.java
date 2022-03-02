@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -107,7 +108,22 @@ public class EditProfileController implements CommandLineRunner {
 		return new ModelAndView("redirect:/home");
 	}	
 	
-	
+	@GetMapping("/deleteReviews")
+	public ModelAndView deleteReviews(HttpSession http, Model model) {
+		System.out.println("alo");
+		UserDB aux = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = userRepository.findByNickname(aux.getNickname()).get(0);
+		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
+		
+		for(int i = 0; i<reviews.size();i++) {
+			reviewRepository.delete(reviews.get(i));
+		}
+		
+		actualUser.setReviews(new ArrayList<>());
+		userRepository.save(actualUser);
+		
+		return new ModelAndView("redirect:/home");
+	}
 	
 	@GetMapping("/imageEditProfile")
 	public ResponseEntity<Object> imageEditProfile(HttpSession http, Model model) throws MalformedURLException, SQLException {
