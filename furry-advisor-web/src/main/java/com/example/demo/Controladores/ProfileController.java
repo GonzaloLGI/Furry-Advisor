@@ -40,9 +40,6 @@ import com.example.demo.Services.UserService;
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Profile
 @Controller
 public class ProfileController implements CommandLineRunner {
-	
-	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
-	
 	@Autowired
 	private UserService userRepository;
 	
@@ -52,10 +49,6 @@ public class ProfileController implements CommandLineRunner {
 	@GetMapping("/profile/{userName}")
 	public String profile(HttpSession http, Model model, @PathVariable String userName) {
 	 
-		List<UserDB> userAux = userRepository.findByNickname(userName);
-		
-		
-			
 		UserDB actualUser = userRepository.findByNickname(userName).get(0);
 		
 			

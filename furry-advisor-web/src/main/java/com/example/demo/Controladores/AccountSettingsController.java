@@ -100,8 +100,6 @@ public class AccountSettingsController implements CommandLineRunner {
 	public ModelAndView delete(HttpSession http, Model model) {
 		
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
-		//actualUser.setComments(null);
-		//actualUser.setReviews(null);
 		userRepository.delete(actualUser);
 		
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();

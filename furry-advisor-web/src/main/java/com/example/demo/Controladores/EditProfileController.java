@@ -43,9 +43,6 @@ import com.example.demo.Services.UserService;
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML edit_profile
 @Controller
 public class EditProfileController implements CommandLineRunner {
-	
-	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
-	
 	@Autowired
 	private UserService userRepository;
 	

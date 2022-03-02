@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
@@ -27,7 +26,6 @@ import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
-import com.example.demo.Services.CommentService;
 import com.example.demo.Services.DealService;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;

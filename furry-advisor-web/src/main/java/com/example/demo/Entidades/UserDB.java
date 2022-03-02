@@ -34,14 +34,8 @@ public class UserDB {
 	
 	private String email;
 	
-	
-	//@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "userRef", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewDB> reviews;
-	
-	/*@OneToMany(mappedBy="userRef", cascade=CascadeType.ALL, orphanRemoval = true)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<CommentDB> comments;*/
 
 	@Lob
 	@JsonIgnore
@@ -95,12 +89,4 @@ public class UserDB {
 	public void setReviews(List<ReviewDB> reviews) {
 		this.reviews = reviews;
 	}
-
-	/*public List<CommentDB> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentDB> comments) {
-		this.comments = comments;
-	}*/
 }

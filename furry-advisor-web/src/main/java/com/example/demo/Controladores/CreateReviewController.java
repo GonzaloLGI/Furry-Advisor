@@ -35,8 +35,6 @@ public class CreateReviewController {
 	@Autowired
 	private PlaceService placeRepository;
 	@Autowired
-	private ReviewService reviewRepository;
-	@Autowired
 	private UserService userRepository;
 	
 	private PlaceDB pl;
@@ -72,7 +70,6 @@ public class CreateReviewController {
 		userReviews.add(rev);
 		actualUser.setReviews(userReviews);
 		
-		//reviewRepository.save(rev);
 		userRepository.save(actualUser);
 		http.setAttribute("actUser", actualUser);
 		

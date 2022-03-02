@@ -45,9 +45,6 @@ public class PlaceDB {
 	
 	private String schedule;
 	
-	/*@OneToMany(mappedBy="placRef", orphanRemoval=true)
-	private List<ReviewDB> revs;*/
-
 	@Lob
 	@JsonIgnore
 	private Blob placePic;
@@ -149,12 +146,4 @@ public class PlaceDB {
 	public void setPlaceUrl(String placeUrl) {
 		this.placeUrl = placeUrl;
 	}
-
-	/*public List<ReviewDB> getRevs() {
-		return revs;
-	}
-
-	public void setRevs(List<ReviewDB> revs) {
-		this.revs = revs;
-	}*/
 }

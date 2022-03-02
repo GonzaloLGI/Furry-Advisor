@@ -39,18 +39,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.Entidades.CommentDB;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
-import com.example.demo.Interfaces.CommentDBInterface;
 import com.example.demo.Interfaces.DealDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
-import com.example.demo.Services.CommentService;
 import com.example.demo.Services.DealService;
 import com.example.demo.Services.PlaceService;
 import com.example.demo.Services.ReviewService;
@@ -68,9 +65,6 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userRepository;
-	
-	@Autowired
-	private CommentService commentRepository;
 	
 	@Autowired
 	private DealService dealRepository;
