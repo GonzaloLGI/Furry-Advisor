@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.PlaceTypeDB;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
@@ -13,9 +14,9 @@ import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 //objetos de la clase Place
 public interface PlaceDBInterface extends JpaRepository<PlaceDB, Integer> {
 	List<PlaceDB> findByName(String name);
-	List<PlaceDB> findByType(String type);
+	List<PlaceDB> findByType(PlaceTypeDB type);
 	List<PlaceDB> findByCity(LocationDB city);
-	List<PlaceDB> findByCityAndType(LocationDB city,String type);
+	List<PlaceDB> findByCityAndType(LocationDB city,PlaceTypeDB type);
 	
 	
 	//List<PlaceDB> findByNameSorted(String name, Sort sort);

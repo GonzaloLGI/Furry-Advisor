@@ -42,6 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.PlaceTypeDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.DealDBInterface;
@@ -49,7 +50,9 @@ import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Interfaces.ReviewDBInterface;
 import com.example.demo.Interfaces.UserDBInterface;
 import com.example.demo.Services.DealService;
+import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
+import com.example.demo.Services.PlaceTypeService;
 import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 
@@ -62,6 +65,12 @@ public class HomeController {
 	
 	@Autowired
 	private PlaceService placeRepository;
+	
+	@Autowired
+	private PlaceTypeService placeTypeRepository;
+	
+	@Autowired
+	private LocationService locationRepository;
 	
 	@Autowired
 	private UserService userRepository;
@@ -90,13 +99,18 @@ public class HomeController {
 		LocationDB loc6 = new LocationDB("Valladolid");
 		LocationDB loc7 = new LocationDB("Albacete");
 		
-		PlaceDB pla1 = new PlaceDB("Panda Ramen","Restaurante",loc1,"Descripcion1","URL1",3,"C/Don Juan","Schedule1",null);
-		PlaceDB pla2 = new PlaceDB("Simba's Breakfast","Restaurante",loc2,"Descripcion2","URL2",4,"C/Recuerdo","Schedule2",null);
-		PlaceDB pla3 = new PlaceDB("Escupe el Fuego","Restaurante",loc3,"Descripcion3","URL3",1,"C/Hincada","Schedule3",null);
-		PlaceDB pla4 = new PlaceDB("La Pelusa","Bar",loc4,"Descripcion4","URL4",5,"C/Margarina","Schedule4",null);
-		PlaceDB pla5 = new PlaceDB("Foxxes Bar","Bar",loc5,"Descripcion5","URL5",3,"C/Carrera","Schedule5",null);
-		PlaceDB pla6 = new PlaceDB("Pelusa Picarona","Club",loc6,"Descripcion6","URL6",4,"C/Me Falta Un Tornillo","Schedule6",null);
-		PlaceDB pla7 = new PlaceDB("Parque Aguadulce","Parque",loc7,"Descripcion7","URL7",2,"C/Severo Ochoa","Schedule7",null);
+		PlaceTypeDB type1 = new PlaceTypeDB("Restaurante");
+		PlaceTypeDB type2 = new PlaceTypeDB("Bar");
+		PlaceTypeDB type3 = new PlaceTypeDB("Club");
+		PlaceTypeDB type4 = new PlaceTypeDB("Parque");
+		
+		PlaceDB pla1 = new PlaceDB("Panda Ramen",type1,loc1,"Descripcion1","URL1",3,"C/Don Juan","Schedule1",null);
+		PlaceDB pla2 = new PlaceDB("Simba's Breakfast",type1,loc2,"Descripcion2","URL2",4,"C/Recuerdo","Schedule2",null);
+		PlaceDB pla3 = new PlaceDB("Escupe el Fuego",type1,loc3,"Descripcion3","URL3",1,"C/Hincada","Schedule3",null);
+		PlaceDB pla4 = new PlaceDB("La Pelusa",type2,loc4,"Descripcion4","URL4",5,"C/Margarina","Schedule4",null);
+		PlaceDB pla5 = new PlaceDB("Foxxes Bar",type2,loc5,"Descripcion5","URL5",3,"C/Carrera","Schedule5",null);
+		PlaceDB pla6 = new PlaceDB("Pelusa Picarona",type3,loc6,"Descripcion6","URL6",4,"C/Me Falta Un Tornillo","Schedule6",null);
+		PlaceDB pla7 = new PlaceDB("Parque Aguadulce",type4,loc7,"Descripcion7","URL7",2,"C/Severo Ochoa","Schedule7",null);
 		
 		DealDB deal1 = new DealDB("Comisiones abiertas","Description1",null,pla2);
 		DealDB deal2 = new DealDB("10% en ramen","Description2",null,pla1);
@@ -132,6 +146,21 @@ public class HomeController {
 		use6.setReviews(aux9);
 		use2.setReviews(new ArrayList<>());
 		use4.setReviews(new ArrayList<>());
+		
+		placeTypeRepository.save(type1);
+		placeTypeRepository.save(type2);
+		placeTypeRepository.save(type3);
+		placeTypeRepository.save(type4);
+		
+		locationRepository.save(loc1);
+		locationRepository.save(loc2);
+		locationRepository.save(loc3);
+		locationRepository.save(loc4);
+		locationRepository.save(loc5);
+		locationRepository.save(loc6);
+		locationRepository.save(loc7);
+		
+		
 		
 		placeRepository.save(pla1);
 		placeRepository.save(pla2);

@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.PlaceTypeDB;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Interfaces.LocationDBInterface;
 import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
+import com.example.demo.Services.PlaceTypeService;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Search
 @Controller
@@ -36,7 +38,9 @@ public class SearchController implements CommandLineRunner {
 	
 	@Autowired
 	private LocationService locationRepository;
-
+	@Autowired
+	private PlaceTypeService placeTypeRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
@@ -48,6 +52,8 @@ public class SearchController implements CommandLineRunner {
 		model.addAttribute("user",actualUser);
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
+		List<PlaceTypeDB> allTypes = placeTypeRepository.findAllByOrderByType();
+		model.addAttribute("types_list", allTypes);
 		List<PlaceDB> allPlaces = placeRepository.findAll();
 		model.addAttribute("places_list", allPlaces);
 		return "search";
@@ -58,6 +64,8 @@ public class SearchController implements CommandLineRunner {
 	public String search(Model model, @RequestParam String locationFilter, @RequestParam String typeFilter) { 
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
+		List<PlaceTypeDB> allTypes = placeTypeRepository.findAllByOrderByType();
+		model.addAttribute("types_list", allTypes);
 		
 		List<PlaceDB> placesFilteredByLocation = null;
 		List<PlaceDB> placesFilteredByType = null;
@@ -66,7 +74,8 @@ public class SearchController implements CommandLineRunner {
 		
 		if(!typeFilter.equals("")&&!locationFilter.equals("")) {
 			List<LocationDB> listAux = locationRepository.findByName(locationFilter);
-			placesSuperFiltered2 = placeRepository.findByCityAndType(listAux.get(0),typeFilter);
+			List<PlaceTypeDB> listAux2 = placeTypeRepository.findByType(typeFilter);
+			placesSuperFiltered2 = placeRepository.findByCityAndType(listAux.get(0),listAux2.get(0));
 		}
 		
 		else if(!locationFilter.equals("")) {
@@ -74,7 +83,8 @@ public class SearchController implements CommandLineRunner {
 			placesFilteredByLocation = placeRepository.findByCity(listAux.get(0));
 		}
 		else if(!typeFilter.equals("")) {
-			placesFilteredByType = placeRepository.findByType(typeFilter);
+			List<PlaceTypeDB> listAux2 = placeTypeRepository.findByType(locationFilter);
+			placesFilteredByType = placeRepository.findByType(listAux2.get(0));
 		}
 		else {
 			allPlaces = placeRepository.findAll();

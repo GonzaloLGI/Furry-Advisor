@@ -122,11 +122,11 @@
 				<div>
 					<input list = "type_list" type = "text"  name='typeFilter'> 			
 					<datalist id = "type_list">		
-						<option value = Restaurante>						
-						<option value = Tienda>							
-						<option value = Club>						
-						<option value = Bar>	
-						<option value = Evento>	
+						<ul>
+							{{#types_list}}
+								<option value = {{type}}>
+							{{/types_list}}
+						</ul>
 					</datalist>
 				</div>			
 			

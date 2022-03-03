@@ -27,7 +27,7 @@ public class PlaceDB {
 	@Column(nullable=false)
 	private String name;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private LocationDB city;
 	
 	@Column(nullable=false)
@@ -35,8 +35,8 @@ public class PlaceDB {
 	
 	private String description;
 	
-	@Column(nullable=false)
-	private String type;
+	@ManyToOne
+	private PlaceTypeDB type;
 	
 	@Column(nullable=false)
 	private float rating;
@@ -51,7 +51,7 @@ public class PlaceDB {
 	
 	protected PlaceDB(){};
 	
-	public PlaceDB(String n, String t, LocationDB ct, String desc, String url, int r, String a, String sch, Blob photo) {
+	public PlaceDB(String n, PlaceTypeDB t, LocationDB ct, String desc, String url, int r, String a, String sch, Blob photo) {
 		name = n;
 		type = t;
 		setRating(r);
@@ -71,11 +71,11 @@ public class PlaceDB {
 		this.name = name;
 	}
 
-	public String getType() {
+	public PlaceTypeDB getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(PlaceTypeDB type) {
 		this.type = type;
 	}
 

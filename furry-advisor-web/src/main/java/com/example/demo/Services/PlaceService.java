@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
+import com.example.demo.Entidades.PlaceTypeDB;
 import com.example.demo.Interfaces.PlaceDBInterface;
 
 @Service
@@ -19,7 +20,7 @@ public class PlaceService {
 		return placeRepository.findByName(name);
 	}
 	
-	public List<PlaceDB> findByType(String type){
+	public List<PlaceDB> findByType(PlaceTypeDB type){
 		return placeRepository.findByType(type);
 	}
 	
@@ -27,8 +28,8 @@ public class PlaceService {
 		return placeRepository.findByCity(loc);
 	}
 	
-	public List<PlaceDB> findByCityAndType(LocationDB city,String type){
-		return placeRepository.findByCityAndType(city, type);
+	public List<PlaceDB> findByCityAndType(LocationDB city,PlaceTypeDB placeTypeDB){
+		return placeRepository.findByCityAndType(city, placeTypeDB);
 	}
 	
 	public void save(PlaceDB place){
