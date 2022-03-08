@@ -1,10 +1,12 @@
 package com.example.demo.Entidades;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,6 +38,9 @@ public class UserDB {
 	
 	@OneToMany(mappedBy = "userRef", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewDB> reviews;
+	
+	@ElementCollection//(fetch=FetchType.EAGER)
+	private List<String> roles;
 
 	@Lob
 	@JsonIgnore
@@ -43,11 +48,13 @@ public class UserDB {
 	
 	public UserDB(){};
 	
-	public UserDB(String nk, String psw, String em, Blob photo) {
+	public UserDB(String nk, String psw, String em, Blob photo, String rol) {
 		setNickname(nk);
 		setPassword(psw);
 		email = em;
 		profPhoto = photo;
+		roles = new ArrayList<>();
+		roles.add(rol);
 	}
 
 	public String getPassword() {
@@ -88,5 +95,13 @@ public class UserDB {
 
 	public void setReviews(List<ReviewDB> reviews) {
 		this.reviews = reviews;
+	}
+	
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }

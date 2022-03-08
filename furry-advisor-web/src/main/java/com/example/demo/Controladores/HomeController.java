@@ -84,12 +84,12 @@ public class HomeController {
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {
 		
-		UserDB use1 = new UserDB("xxVicente69xx","sasageyo","manitas@gmail.com",null);
-		UserDB use2 = new UserDB("Javier","tierrasanta","h0iboy@hotmail.com",null);
-		UserDB use3 = new UserDB("Vico420","blockchain","c.ham.pion@outlook.com",null);
-		UserDB use4 = new UserDB("Javapor","asia","vaperwave@hotmail.com",null);
-		UserDB use5 = new UserDB("CMarrano","huevoscocidos","sunday_girl@gmail.com",null);
-		UserDB use6 = new UserDB("LoboCastellano","brumbrum","motorstormer@gmail.com",null);
+		UserDB use1 = new UserDB("xxVicente69xx","sasageyo","manitas@gmail.com",null,"ROLE_ADMIN");
+		UserDB use2 = new UserDB("Javier","tierrasanta","h0iboy@hotmail.com",null,"ROLE_USER");
+		UserDB use3 = new UserDB("Vico420","blockchain","c.ham.pion@outlook.com",null,"ROLE_USER");
+		UserDB use4 = new UserDB("Javapor","asia","vaperwave@hotmail.com",null,"ROLE_USER");
+		UserDB use5 = new UserDB("CMarrano","huevoscocidos","sunday_girl@gmail.com",null,"ROLE_USER");
+		UserDB use6 = new UserDB("LoboCastellano","brumbrum","motorstormer@gmail.com",null,"ROLE_USER");
 		
 		LocationDB loc1 = new LocationDB("Mostoles");
 		LocationDB loc2 = new LocationDB("Badajoz");

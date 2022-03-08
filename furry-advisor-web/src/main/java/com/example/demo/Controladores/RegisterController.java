@@ -49,7 +49,7 @@ public class RegisterController {
 		else {
 		
 				
-				UserDB newUser = new UserDB(userName,userPassword,null,null);
+				UserDB newUser = new UserDB(userName,userPassword,null,null,"ROLE_USER");
 				http.setAttribute("actUser", newUser);
 				userRepository.save(newUser);
 				
