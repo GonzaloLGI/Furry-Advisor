@@ -83,7 +83,7 @@ public class SearchController implements CommandLineRunner {
 			placesFilteredByLocation = placeRepository.findByCity(listAux.get(0));
 		}
 		else if(!typeFilter.equals("")) {
-			List<PlaceTypeDB> listAux2 = placeTypeRepository.findByType(locationFilter);
+			List<PlaceTypeDB> listAux2 = placeTypeRepository.findByType(typeFilter);
 			placesFilteredByType = placeRepository.findByType(listAux2.get(0));
 		}
 		else {
