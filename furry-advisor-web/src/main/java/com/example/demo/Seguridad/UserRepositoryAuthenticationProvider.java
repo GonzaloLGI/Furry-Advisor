@@ -30,9 +30,12 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 			throw new BadCredentialsException("User not found");
 		}
 		String password = (String) auth.getCredentials();
-		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+		if(!password.trim().equals(user.getPassword())) {
 			throw new BadCredentialsException("Wrong password");
 		}
+		/*if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+			throw new BadCredentialsException("Wrong password");
+		}*/
 	 
 		List<GrantedAuthority> roles = new ArrayList<>();
 		for (String role : user.getRoles()) {
@@ -44,6 +47,8 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 	@Override
 	public boolean supports(Class<?> authentication) {
 		// TODO Auto-generated method stub
-		return false;
+		System.out.println(authentication);
+		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 	}
+	
 }

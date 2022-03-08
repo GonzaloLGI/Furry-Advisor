@@ -36,10 +36,10 @@ public class UserDB {
 	
 	private String email;
 	
-	@OneToMany(mappedBy = "userRef", fetch=FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "userRef", /*fetch=FetchType.EAGER,*/ cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewDB> reviews;
 	
-	@ElementCollection//(fetch=FetchType.EAGER)
+	@ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
 
 	@Lob

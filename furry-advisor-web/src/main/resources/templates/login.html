@@ -10,12 +10,12 @@
 	
 	{{>navbar}}
 	
-	<form method='post' action='/login'>
+	<form action='/login' method='post'>
 		<p>Por favor, introduzca sus datos para iniciar sesión: </p>
-			<label for='nombre'>Nombre de usuario: </label>
-			<input type='text' id='nombre' name='userName'/>
-			<label for='contraseña'>Contraseña: </label>
-			<input type='password' id='contraseña' name='userPassword'/>
+			<label for='userName'>Nombre de usuario: </label>
+			<input type='text' id='userName' name='userName'/>
+			<label for='userPassword'>Contraseña: </label>
+			<input type='password' id='userPassword' name='userPassword'/>
 			
 		<p> <input type='submit' value='Enviar'/> </p>
 	</form>
