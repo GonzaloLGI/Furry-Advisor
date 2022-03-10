@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +50,9 @@ public class RegisterController {
 		}
 		else {
 		
-				
-				UserDB newUser = new UserDB(userName,userPassword,null,null,"ROLE_USER");
+				PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+				String newPassword = encoder.encode(userPassword);
+				UserDB newUser = new UserDB(userName,newPassword,null,null,"ROLE_USER");
 				http.setAttribute("actUser", newUser);
 				userRepository.save(newUser);
 				

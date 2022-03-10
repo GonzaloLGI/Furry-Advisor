@@ -32,6 +32,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,12 +87,21 @@ public class HomeController {
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {
 		
-		UserDB use1 = new UserDB("xxVicente69xx","sasageyo","manitas@gmail.com",null,"ROLE_ADMIN");
-		UserDB use2 = new UserDB("Javier","tierrasanta","h0iboy@hotmail.com",null,"ROLE_USER");
-		UserDB use3 = new UserDB("Vico420","blockchain","c.ham.pion@outlook.com",null,"ROLE_USER");
-		UserDB use4 = new UserDB("Javapor","asia","vaperwave@hotmail.com",null,"ROLE_USER");
-		UserDB use5 = new UserDB("CMarrano","huevoscocidos","sunday_girl@gmail.com",null,"ROLE_USER");
-		UserDB use6 = new UserDB("LoboCastellano","brumbrum","motorstormer@gmail.com",null,"ROLE_USER");
+		//El problema era que no se usaba el mismo objeto para hacer hash (BCryptPasswordEncoder vs PasswordEncoder)
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String pass1 = encoder.encode("sasageyo");
+		String pass2 = encoder.encode("tierrasanta");
+		String pass3 = encoder.encode("blockchain");
+		String pass4 = encoder.encode("asia");
+		String pass5 = encoder.encode("huevoscocidos");
+		String pass6 = encoder.encode("brumbrum");
+		
+		UserDB use1 = new UserDB("xxVicente69xx",pass1,"manitas@gmail.com",null,"ROLE_ADMIN");
+		UserDB use2 = new UserDB("Javier",pass2,"h0iboy@hotmail.com",null,"ROLE_USER");
+		UserDB use3 = new UserDB("Vico420",pass3,"c.ham.pion@outlook.com",null,"ROLE_USER");
+		UserDB use4 = new UserDB("Javapor",pass4,"vaperwave@hotmail.com",null,"ROLE_USER");
+		UserDB use5 = new UserDB("CMarrano",pass5,"sunday_girl@gmail.com",null,"ROLE_USER");
+		UserDB use6 = new UserDB("LoboCastellano",pass6,"motorstormer@gmail.com",null,"ROLE_USER");
 		
 		LocationDB loc1 = new LocationDB("Mostoles");
 		LocationDB loc2 = new LocationDB("Badajoz");

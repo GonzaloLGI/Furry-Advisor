@@ -20,37 +20,28 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// Database authentication provider
-		//auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
-		auth.authenticationProvider(authenticationProvider); //ESTE NO FUNCIONA, NO ENTRA
+		auth.authenticationProvider(authenticationProvider);
 	 }
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests().antMatchers("/login").permitAll();
+		http.authorizeRequests().antMatchers("/register").permitAll();
 		http.authorizeRequests().antMatchers("/home").permitAll();
 		//http.authorizeRequests().antMatchers("/searchPlatform").permitAll();
 		
 		http.authorizeRequests().anyRequest().authenticated();
 		
-		http.authenticationProvider(authenticationProvider);
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("userName");
 		http.formLogin().passwordParameter("userPassword");
 		http.formLogin().failureUrl("/home");
-		http.formLogin().defaultSuccessUrl("/search");
+		http.formLogin().defaultSuccessUrl("/profile/username");
 		http.logout().logoutUrl("/logout");
 		http.logout().logoutSuccessUrl("/");
 		
 		http.csrf().disable();
 	}
-	
-	
-	
-	/*@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-	    return super.authenticationManagerBean();
-	}*/
 	
 
 }

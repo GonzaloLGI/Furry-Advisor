@@ -19,6 +19,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +51,10 @@ public class ProfileController implements CommandLineRunner {
 	@GetMapping("/profile/{userName}")
 	public String profile(HttpSession http, Model model, @PathVariable String userName) {
 	 
-		UserDB actualUser = userRepository.findByNickname(userName).get(0);
+		SecurityContextImpl aux = (SecurityContextImpl)http.getAttribute("SPRING_SECURITY_CONTEXT");
+		Authentication auth = aux.getAuthentication();
+		
+		UserDB actualUser = userRepository.findByNickname(auth.getName()).get(0);
 		
 			
 		http.setAttribute("actUser", actualUser);
