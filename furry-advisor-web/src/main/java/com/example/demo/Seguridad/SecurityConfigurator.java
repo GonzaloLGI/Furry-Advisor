@@ -46,7 +46,7 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		http.formLogin().failureUrl("/home");
 		http.formLogin().defaultSuccessUrl("/profile/username");
 		http.logout().logoutUrl("/logout");
-		http.logout().logoutSuccessUrl("/");
+		http.logout().logoutSuccessUrl("/home");
 		
 		http.csrf().disable();
 	}
