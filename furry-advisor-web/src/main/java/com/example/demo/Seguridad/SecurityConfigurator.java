@@ -27,8 +27,16 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/register").permitAll();
+		http.authorizeRequests().antMatchers("/createProfile").permitAll();
 		http.authorizeRequests().antMatchers("/home").permitAll();
-		//http.authorizeRequests().antMatchers("/searchPlatform").permitAll();
+		http.authorizeRequests().antMatchers("/searchPlatform").permitAll();
+		http.authorizeRequests().antMatchers("/search").permitAll();
+		//Como hago para hcer publicas las urls que cuentan con un path variable y son del palo /pathvariable
+		http.authorizeRequests().antMatchers("/place/{place_name}").permitAll();
+		http.authorizeRequests().antMatchers("/dealImage/{header}").permitAll();
+		http.authorizeRequests().antMatchers("/userImage/{header}").permitAll();
+		http.authorizeRequests().antMatchers("/image/{name}").permitAll();
+		http.authorizeRequests().antMatchers("/perfil").permitAll();
 		
 		http.authorizeRequests().anyRequest().authenticated();
 		

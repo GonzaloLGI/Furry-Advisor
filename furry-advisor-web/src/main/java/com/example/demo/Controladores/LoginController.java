@@ -42,6 +42,7 @@ public class LoginController {
 		 
 	 }
 	 
+	 //ESTO ES INUTIL CON SPRING SECURITY. BORRAR
 	 @GetMapping("/accessProfile")
 		public String login(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
 		 
