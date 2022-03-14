@@ -16,6 +16,7 @@
 			<input type='text' id='nombre' name='userName'/>
 			<label for='contraseña'>Contraseña: </label>
 			<input type='password' id='contraseña' name='userPassword'/>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 			
 		<p> <input type='submit' value='Enviar'/> </p>
 	</form>
