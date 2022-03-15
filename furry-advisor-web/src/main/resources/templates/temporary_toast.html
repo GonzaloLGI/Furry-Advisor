@@ -1,0 +1,17 @@
+<html>
+<body>
+
+<button onclick="funcToast()">Toast</button>
+
+<div id="toast">Papito Grillo te desea felices fiestas</div>
+
+<script>
+    function funcToast() {
+        var x = document.getElementById("toast");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>
+
+</body>
+</html>

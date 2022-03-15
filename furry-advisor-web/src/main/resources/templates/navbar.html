@@ -1,61 +1,14 @@
-<html>
+<head>
 
-	<head>    
-  	
-  	<script src="https://kit.fontawesome.com/44cc13b6b7.js" crossorigin="anonymous"></script>
-  	
-	<style type=text/css> 
- 
-	navbar {
-		background-color: rgb(47, 65, 79);
-		position: sticky;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		font-family: Helvetica, sans-serif;
-	}
-	
+	<link rel="stylesheet" href="/navbar.css">
+	<link rel="stylesheet" href="/toast.css">
+	<link rel="stylesheet" href="/popupbox.css">
+	<script src="https://kit.fontawesome.com/44cc13b6b7.js" crossorigin="anonymous"></script>
 
-	navbar * {
-		display: inline;
-	}
-  
-	navbar li {
-		margin: 0;
-	}
-  
-	navbar li a {
-		color: white;
-		text-decoration: none;
-	}
-	
-	navbar a {
-  		float: left;
-  		display: block;
-  		color: white;
-  		text-align: center;
-  		padding: 14px 20px;
-  		text-decoration: none;
-	}
-	
-	navbar a.right {
-  		float: right;
-	}
-  
-	
-	navbar a:hover {
-  		background-color: azure;
-  		color: black;
-	}
-	
-
-  
-	</style> 
-  
 </head>
-  
+
 <navbar>
-  
+
 	<nav>
 		<li>
 			<a href="/home"><div class="fa-solid fa-house"></div> Home</a>
@@ -70,6 +23,14 @@
 			<a method="get" href="/profile/{{user.nickname}}"><div class="fa-solid fa-user"></div> Profile</a>	
 		</li>
 		{{/user}}
+
+		<li>
+			<a><div class="fa-solid fa-teddy-bear"></div> Papito</a>
+		</li>
+
+		<li>
+			<a><div class="fa-solid fa-circle-info"></div> Papito</a>
+		</li>
 	
 		<li> 
 			<a href="/login" method='get' class="right">Login</a>
@@ -85,10 +46,8 @@
 				<input type='hidden' name='_csrf' value="{{token}}"/>
 			</form>
 		</li>
-	
+
 	</nav>
 
 </navbar>
-
-</html>
   
