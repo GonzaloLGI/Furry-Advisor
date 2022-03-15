@@ -10,8 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//Pregunta para mañana: tenemos que meter el csrf en todos los formularios que tengamos en la aplicacion web,
-//aunque no sea para transicionar a paginas privadas?
 @Configuration
 public class CSRFHandlerConfiguration implements WebMvcConfigurer {
 	@Override
