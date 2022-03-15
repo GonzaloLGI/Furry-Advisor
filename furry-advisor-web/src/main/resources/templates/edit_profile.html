@@ -28,6 +28,7 @@
         	<label for='name'>Nuevo nombre:</label>
 			<input type='text' name='newNickname'/>
 			<input type='submit' value='Guardar cambios'/>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 			<br>
 		</form>
         <hr>
@@ -40,6 +41,7 @@
         <form method="post" action="/upload_image"  enctype="multipart/form-data">
 			<input type='file' name='image' accept=".jpg, .jpeg"/>
 			<input type='submit' value='Guardar cambios'/>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 			<br></br>
 		</form>
         
@@ -49,7 +51,7 @@
         <h4>¿Desea mostrar sus reviews? </h4>
 
         <form method="get" action="/deleteReviews">
-        
+        	<input type='hidden' name='_csrf' value="{{token}}"/>
         	<ul>
 			{{#review_list}}
 

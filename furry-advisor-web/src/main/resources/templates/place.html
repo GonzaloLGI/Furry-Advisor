@@ -119,6 +119,7 @@
     	
     	<form method='get' action='/create_review/{{place_name}}'>
 			<p><input type='submit' value='Crear review'/></p>	
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
     	
     	<hr>

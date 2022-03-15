@@ -22,6 +22,7 @@
 		<label for='password'><b>Cambiar contraseña: </b></label>
 		<input type='text' name='newPassword'/>
 		<input type='submit' value='Guardar cambios'/>
+		<input type='hidden' name='_csrf' value="{{token}}"/>
 		<br></br>
 	</form>
 
@@ -31,6 +32,7 @@
     <p>
     	<form method='post' action='/delete'>
 			<input type='submit' value='Deseo eliminar mi cuenta'/>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
 	</p>	
 		

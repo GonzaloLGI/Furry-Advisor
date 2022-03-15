@@ -97,10 +97,12 @@
 		
 		<form method='post' action='/edit_profile'>
 			<p><input type='submit' value='Editar Perfil'/></p>	
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
 		
 		<form method='get' action='/account_settings'>
 			<p><input type='submit' value='Ajustes de la cuenta'/></p>	
+			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
 		
 		<h4>Reseñas del usuario</h4>
