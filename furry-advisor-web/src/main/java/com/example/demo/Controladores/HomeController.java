@@ -352,20 +352,14 @@ public class HomeController {
 	@GetMapping("/checkRest")
 	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
-		//String base = "https://localhost:8443";
 		String base = "http://localhost:8080";
 		String url = base+"/getExistingDeal";
-		//DealResponse data = rest.getForObject(url, DealResponse.class);
-		//DEVUELVE ARRAYNODE, NO OBJENODE. ESOS ESTAN DENTRO
+		//DEVUELVE ARRAYNODE, NO OBJENODE. ESOS ESTAN DENTROn
 		ArrayNode data = rest.getForObject(url, ArrayNode.class);
-		//ArrayNode items = (ArrayNode)data.get("items");
-		/*JsonNode node = items.get(0);
-		String deal = node.get("description").asText();*/
+		for(int i = 0; i<data.size();i++) {
+			System.out.println(data.get(i).get("header").asText());
+		}
 		System.out.println("La mamba negra de Aisayan es chiquita");
 		return new ModelAndView("redirect:/home");
-	}
-	
-	public class DealResponse{
-		public List<DealDB> items;
 	}
 }
