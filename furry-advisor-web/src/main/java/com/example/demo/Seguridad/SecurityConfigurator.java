@@ -31,6 +31,8 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/home").permitAll();
 		http.authorizeRequests().antMatchers("/searchPlatform").permitAll();
 		http.authorizeRequests().antMatchers("/search").permitAll();
+		http.authorizeRequests().antMatchers("/checkRest").permitAll();
+		http.authorizeRequests().antMatchers("/getDealByHeader/{header}").permitAll();
 		//Como hago para hcer publicas las urls que cuentan con un path variable y son del palo /pathvariable
 		http.authorizeRequests().antMatchers("/place/{place_name}").permitAll();
 		http.authorizeRequests().antMatchers("/dealImage/{header}").permitAll();
