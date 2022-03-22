@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
@@ -349,15 +350,22 @@ public class HomeController {
 	}
 	
 	@GetMapping("/checkRest")
-	public void checkRest() {
+	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
 		//String base = "https://localhost:8443";
 		String base = "http://localhost:8080";
-		String url = base+"/getDealByHeader/"+"Comisiones abiertas";
-		ObjectNode data = rest.getForObject(url, ObjectNode.class);
-		ArrayNode items = (ArrayNode)data.get("items");
-		JsonNode node = items.get(0);
-		String deal = node.get("description").asText();
-		System.out.println(deal);
+		String url = base+"/getExistingDeal";
+		//DealResponse data = rest.getForObject(url, DealResponse.class);
+		//DEVUELVE ARRAYNODE, NO OBJENODE. ESOS ESTAN DENTRO
+		ArrayNode data = rest.getForObject(url, ArrayNode.class);
+		//ArrayNode items = (ArrayNode)data.get("items");
+		/*JsonNode node = items.get(0);
+		String deal = node.get("description").asText();*/
+		System.out.println("La mamba negra de Aisayan es chiquita");
+		return new ModelAndView("redirect:/home");
+	}
+	
+	public class DealResponse{
+		public List<DealDB> items;
 	}
 }

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RestController
 public class DealRest {
 	
-	interface DealComplete extends DealDB.Basico,DealDB.Completo{}
+	interface DealComplete extends DealDB.Basico,DealDB.Completo,PlaceDB.Basico{}
 	
 	@Autowired
 	private DealDBInterface dealRepository;
@@ -38,7 +38,7 @@ public class DealRest {
 		}
 	}
 	
-	@JsonView(DealDB.Basico.class)
+	@JsonView(DealDB.Completo.class)
 	@GetMapping("/getExistingDeal")
 	public ResponseEntity<List<DealDB>> findAllByPlaceOriginIsNotNull(){
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();

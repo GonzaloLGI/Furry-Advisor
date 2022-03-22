@@ -13,36 +13,49 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.example.demo.Entidades.DealDB.Basico;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 //Clase de la entidad Place en la BD
 
 @Entity
 public class PlaceDB {
 
+	public interface Basico{}
+	
 	@Id
+	@JsonView(Basico.class)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int place_id;
 	
+	@JsonView(Basico.class)
 	@Column(nullable=false)
 	private String name;
 	
+	@JsonView(Basico.class)
 	@ManyToOne
 	private LocationDB city;
 	
+	@JsonView(Basico.class)
 	@Column(nullable=false)
 	private String address;
 	
+	@JsonView(Basico.class)
 	private String description;
 	
+	@JsonIgnore
 	@ManyToOne
 	private PlaceTypeDB type;
 	
+	@JsonView(Basico.class)
 	@Column(nullable=false)
 	private float rating;
 	
+	@JsonView(Basico.class)
 	private String placeUrl;
 	
+	@JsonView(Basico.class)
 	private String schedule;
 	
 	@Lob
