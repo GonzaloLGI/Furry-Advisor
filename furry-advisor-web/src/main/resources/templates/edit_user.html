@@ -1,0 +1,76 @@
+<html> 
+<head>
+
+	{{>navbar}}
+
+	<style>
+		/* Style font */
+		body {
+  			font-family: Arial, Helvetica, sans-serif;
+  			margin: 50;
+		}
+
+	</style>
+
+</head>
+
+<body>
+    
+    <h2> AJUSTES DEL USUARIO: {{user_name}} </h2>
+    
+    <p>Desde aquí podrás acceder a los datos del usuario para revisar y modificar cualquier parámetro</p>
+    <p>Como administrador podrás eliminar la foto de perfil del usuario o sus reviews en caso de que sean ofensivos</p>
+    <p>También podrás eliminar directamente la cuenta si lo crees necesario</p>
+  
+    <hr>
+  
+    <p><b>Contraseña: </b> {{user_password}}</p>
+  
+    <p><b>Foto de perfil:</b></p>
+    <p><img src="/imageEditProfile" width="100" height="100"/></p>
+  
+    <form method="get" action="/deleteImage">
+      <input type='submit' value='Eliminar foto'/>
+    </form>
+  
+	<hr>
+  
+    <p><b>Reviews del usuario:</b></p>
+
+        <form method="get" action="/deleteReviews">
+        	<input type='hidden' name='_csrf' value="{{token}}"/>
+        	<ul>
+			{{#review_list}}
+
+				<h4>{{placRef.name}}<h4>
+				<p>{{reviewText}}</p>
+				
+                <label>Eliminar review:</label>
+				<input type='submit' value='Aceptar'/>
+			
+				<br>
+			
+			{{/review_list}}
+			</ul>
+
+		
+		
+        	<hr>
+        
+        	
+        </form>   
+    
+    <p>
+    	<form method='post' action='/delete'>
+			<input type='submit' value='Eliminar cuenta'/>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
+		</form>
+        <form method="post">
+            <input type='submit' value='Guardar cambios'/>
+        </form>
+	</p>	
+		
+	<hr>
+    
+</body> 
+</html>
