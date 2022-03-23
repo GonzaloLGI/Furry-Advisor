@@ -1,8 +1,6 @@
 <head>
 
 	<link rel="stylesheet" href="/navbar.css">
-	<link rel="stylesheet" href="/toast.css">
-	<link rel="stylesheet" href="/popupbox.css">
 	<script src="https://kit.fontawesome.com/44cc13b6b7.js" crossorigin="anonymous"></script>
 
 </head>
@@ -25,12 +23,12 @@
 		{{/user}}
 
 		<li>
-			<a><div class="fa-solid fa-teddy-bear"></div> Papito</a>
+          <a><div onclick="openForm()">Papito</div></a>
 		</li>
-
-		<li>
-			<a><div class="fa-solid fa-circle-info"></div> Papito</a>
-		</li>
+      
+        <li>
+          <a href="/" class="right"><div id="toast">INFO: Papito Grillo te desea felices fiestas</div>  </a>
+        </li>
 	
 		<li> 
 			<a href="/login" method='get' class="right">Login</a>
@@ -50,4 +48,40 @@
 	</nav>
 
 </navbar>
+
+<body>
+
+	<div class="chat-popup" id="myForm">
+    	<form class="form-container">
+        	<h1>{{place}}</h1>
+
+        	<label for="msg"><b>{{offer}}</b></label>
+      
+        	<hr>
+
+        	<button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+    	</form>
+	</div>
+
+	<button onclick="funcToast()">Toast REEMPLAZAR</button>
+  
+<script>
+  
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+  
+    function funcToast() {
+        var x = document.getElementById("toast");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }  
+  
+</script>
+
+</body>
   
