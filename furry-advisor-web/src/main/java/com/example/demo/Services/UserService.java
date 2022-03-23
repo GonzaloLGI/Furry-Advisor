@@ -30,4 +30,8 @@ public class UserService {
 	public void delete(UserDB user){
 		userRepository.delete(user);
 	}
+	
+	public List<UserDB> findAll(){
+		return userRepository.findAll();
+	}
 }

@@ -41,6 +41,9 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/image/{name}").permitAll();
 		http.authorizeRequests().antMatchers("/perfil").permitAll();
 		
+		http.authorizeRequests().antMatchers("/userSearch").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/editUser").hasAnyRole("ADMIN");
+		
 		http.authorizeRequests().anyRequest().authenticated();
 		
 		http.formLogin().loginPage("/login");
