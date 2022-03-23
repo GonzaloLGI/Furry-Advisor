@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search</title>
+
+	<script src="https://kit.fontawesome.com/44cc13b6b7.js" crossorigin="anonymous"></script>
+	
+	<style>
+	
+		/* -------------------------------------------------------------------------------------------------------------------------------- */	
+		.iblock{
+			display: inline-block;
+			width: 25%;
+		}
+	
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		* {
+  			box-sizing: border-box;
+		}
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Style font */
+		body {
+  			font-family: Arial, Helvetica, sans-serif;
+  			margin: 0;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Column container */
+		.row {  
+  			display: -ms-flexbox; /* IE10 */
+  			display: flex;
+  			-ms-flex-wrap: wrap; /* IE10 */
+  			flex-wrap: wrap;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Create two unequal columns that sits next to each other */
+		
+		/* Sidebar column */
+		.side {
+  			-ms-flex: 20%; /* IE10 */
+  			flex: 20%;
+  			background-color: rgb(164, 153, 196);
+  			padding: 40px;
+		}
+
+		/* Main column */
+		.main {   
+  			-ms-flex: 80%; /* IE10 */
+  			flex: 80%;
+  			background-color: rgb(183, 221, 219);
+  			padding: 40px;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Image style */
+		.img {
+  			background-color: rgb(230, 183, 194);
+  			width: 100%;
+  			padding: 20px;
+		}
+
+
+		/* -------------------------------------------------------------------------------------------------------------------------------- */
+		/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 700px) {
+  			.row {   
+    			flex-direction: column;
+  			}
+		}
+
+		/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+		@media screen and (max-width: 400px) {
+  			.navbar a {
+    			float: none;
+    			width: 100%;
+  			}
+		}
+		
+	</style>
+	
+</head>
+
+<body>
+
+	{{>navbar}}
+
+	<div class="row">
+	
+  	<div class="side">
+
+		<form method='get' action='/search'>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
+			<fieldset>
+				<legend><b>Busca un usuario <div class="fa-solid fa-magnifying-glass"></div></b></legend>
+			
+                <div><input type="text" placeholder="Vico420, Bicen1..."></div>
+                
+				<br>
+			
+				<div>
+    				<button>  Buscar <div class="fa-solid fa-magnifying-glass"></div></button>
+  				</div>
+		
+			</fieldset>
+		</form>
+	
+  	</div>
+  	
+	<div class="main">
+	
+	<ul>
+		{{#users_list}}
+		
+			<div class="iblock">
+		    	<div style="height:100px;">
+        			<img src="/image/{{name}}" width="100" height="100"/>
+    			</div>
+			</div>
+    		
+			<div class="iblock">
+				<a href="/edit_user/{{name}}">{{name}}</a>
+			</div>
+			
+			<br>
+			
+		{{/users_list}}
+	</ul>
+	
+	</div>
+	
+</body>
+</html>
