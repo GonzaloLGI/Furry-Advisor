@@ -74,7 +74,9 @@ public class RegisterController {
 	}
 	
 	@GetMapping("/register")
-	public String register(Model model) {
+	public String register(Model model,HttpSession http) {
+		model.addAttribute("place",http.getAttribute("place"));
+	     model.addAttribute("offer",http.getAttribute("offer"));
 		return "register";
 	}
 }

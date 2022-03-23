@@ -61,6 +61,8 @@ public class ProfileController implements CommandLineRunner {
 		model.addAttribute("name", actualUser.getNickname());
 		model.addAttribute("password",actualUser.getPassword());
 		model.addAttribute("user",actualUser);
+		model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
 		
 		List<ReviewDB> revs = reviewRepository.findByUserRef(actualUser);
 		model.addAttribute("user_reviews",revs);

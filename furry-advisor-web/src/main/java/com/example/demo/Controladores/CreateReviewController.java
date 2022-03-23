@@ -50,6 +50,8 @@ public class CreateReviewController {
             pl = place;
         }
         model.addAttribute("place_name", place.getName());
+        model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
 
 
 

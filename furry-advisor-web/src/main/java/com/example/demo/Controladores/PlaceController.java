@@ -84,6 +84,8 @@ public class PlaceController {
 	    	}
 		    model.addAttribute("placeRating",rate);
 		    model.addAttribute("reviews_list",reviews);
+		    model.addAttribute("place",http.getAttribute("place"));
+		    model.addAttribute("offer",http.getAttribute("offer"));
 	    }
 	    
 	    return "place";

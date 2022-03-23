@@ -56,12 +56,14 @@ public class SearchController implements CommandLineRunner {
 		model.addAttribute("types_list", allTypes);
 		List<PlaceDB> allPlaces = placeRepository.findAll();
 		model.addAttribute("places_list", allPlaces);
+		model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
 		return "search";
 	}
 	
 	
 	@GetMapping("/search")
-	public String search(Model model, @RequestParam String locationFilter, @RequestParam String typeFilter) { 
+	public String search(Model model, @RequestParam String locationFilter, @RequestParam String typeFilter, HttpSession http) { 
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);
 		List<PlaceTypeDB> allTypes = placeTypeRepository.findAllByOrderByType();
@@ -104,6 +106,9 @@ public class SearchController implements CommandLineRunner {
 		else {
 			model.addAttribute("places_list", allPlaces);
 		}
+		
+		model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
 		
 	    return "search";
 	}

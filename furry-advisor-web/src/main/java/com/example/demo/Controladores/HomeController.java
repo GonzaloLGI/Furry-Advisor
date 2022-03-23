@@ -324,6 +324,11 @@ public class HomeController {
         model.addAttribute("place_name4",place4.getName());
         model.addAttribute("place_horario2",place4.getSchedule());
         model.addAttribute("place_bio2",place4.getDescription());
+        model.addAttribute("place",dealDB1.getPlaceOrigin().getName());
+        model.addAttribute("offer",dealDB1.getHeader());
+        
+        http.setAttribute("place", dealDB1.getPlaceOrigin().getName());
+        http.setAttribute("offer", dealDB1.getHeader());
 		
 		return "home";
 	}
@@ -350,7 +355,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/checkRest")
-	public ModelAndView checkRest() {
+	public String checkRest() {
 		RestTemplate rest = new RestTemplate();
 		String base = "http://localhost:8080";
 		String url = base+"/getExistingDeal";
@@ -360,6 +365,6 @@ public class HomeController {
 			System.out.println(data.get(i).get("header").asText());
 		}
 		System.out.println("La mamba negra de Aisayan es chiquita");
-		return new ModelAndView("redirect:/home");
+		return "home";
 	}
 }

@@ -61,6 +61,8 @@ public class EditProfileController implements CommandLineRunner {
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
 		model.addAttribute("userName",actualUser.getNickname());
 		model.addAttribute("user",actualUser);	
+		model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
 		http.setAttribute("actUser", actualUser);
 		
 		if(reviews!=null) {

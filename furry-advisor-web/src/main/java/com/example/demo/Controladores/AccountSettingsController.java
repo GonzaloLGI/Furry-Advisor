@@ -54,6 +54,8 @@ public class AccountSettingsController implements CommandLineRunner {
 	public String account_settings( Model model,HttpSession http) {
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 		model.addAttribute("user",actualUser);
+		model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
 		return "account_settings";
 	}
 	

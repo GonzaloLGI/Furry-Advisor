@@ -36,8 +36,9 @@ public class LoginController {
 	 private UserService userRepository;
 	 
 	 @GetMapping("/login")
-	 public String page(Model model) {
-		 
+	 public String page(Model model,HttpSession http) {
+		 model.addAttribute("place",http.getAttribute("place"));
+	     model.addAttribute("offer",http.getAttribute("offer"));
 		 return "login";
 		 
 	 }
