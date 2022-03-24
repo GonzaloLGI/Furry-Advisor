@@ -11,33 +11,31 @@
 		<li>
 			<a href="/home"><div class="fa-solid fa-house"></div> Home</a>
 		</li>
-	
+
 		<li>
 			<a href="/searchPlatform"><div class="fa-solid fa-magnifying-glass"></div> Search</a>
 		</li>
-	
+
 		{{#user}}
 		<li>
-			<a method="get" href="/profile/{{user.nickname}}"><div class="fa-solid fa-user"></div> Profile</a>	
+			<a method="get" href="/profile/{{user.nickname}}"><div class="fa-solid fa-user"></div> Profile</a>
 		</li>
 		{{/user}}
 
 		<li>
-          <a><div onclick="openForm()">Papito</div></a>
+			{{#newoffer}}
+			<a class="right"><div onclick="openForm()" class="fa-solid fa-info"> ¡Hay nuevas ofertas! uwu</div></a>
+			{{/newoffer}}
 		</li>
-      
-        <li>
-          <a href="/" class="right"><div id="toast">INFO: Papito Grillo te desea felices fiestas</div>  </a>
-        </li>
-	
-		<li> 
+
+		<li>
 			<a href="/login" method='get' class="right">Login</a>
 		</li>
-		
+
 		<li>
 			<a href="/register" class="right">Sign up</a>
 		</li>
-		
+
 		<li>
 			<form method="post" action="/logout">
 				<input type="submit" value="Log Out"></input>
@@ -51,37 +49,31 @@
 
 <body>
 
-	<div class="chat-popup" id="myForm">
-    	<form class="form-container">
-        	<h1>{{place}}</h1>
+<div class="chat-popup" id="myForm">
+	<form class="form-container">
 
-        	<label for="msg"><b>{{offer}}</b></label>
-      
-        	<hr>
+		<button href="/place/{{name}}" type="button" class="btn">Ir al sitio</button>
 
-        	<button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
-    	</form>
-	</div>
+		<button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+	</form>
+</div>
 
-	<button onclick="funcToast()">Toast REEMPLAZAR</button>
-  
 <script>
-  
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
 
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
-  
-    function funcToast() {
-        var x = document.getElementById("toast");
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    }  
-  
+	function openForm() {
+		document.getElementById("myForm").style.display = "block";
+	}
+
+	function closeForm() {
+		document.getElementById("myForm").style.display = "none";
+	}
+
+	function funcToast() {
+		var x = document.getElementById("toast");
+		x.className = "show";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+
 </script>
 
 </body>
-  
