@@ -101,7 +101,7 @@ public class HomeController {
 	public void init() throws ParseException, IOException, URISyntaxException {
 		
 		//El problema era que no se usaba el mismo objeto para hacer hash (BCryptPasswordEncoder vs PasswordEncoder)
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		/*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String pass1 = encoder.encode("sasageyo");
 		String pass2 = encoder.encode("tierrasanta");
 		String pass3 = encoder.encode("blockchain");
@@ -291,7 +291,7 @@ public class HomeController {
 		File img18 = new File(imagePath4.toUri());
 		FileInputStream input18 = new FileInputStream(img18);
 		deal5.setDealPic(BlobProxy.generateProxy(input18, Files.size(imagePath4)));
-		dealRepository.save(deal5);
+		dealRepository.save(deal5);*/
 	}
 
 
