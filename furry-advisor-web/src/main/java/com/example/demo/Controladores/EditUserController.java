@@ -52,7 +52,7 @@ public class EditUserController {
 		return "edit_user";
 	}
 	
-	@PostMapping("/delete")
+	@PostMapping("/deleteUser")
 	public ModelAndView delete(HttpSession http, Model model) {
 		
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
@@ -61,7 +61,7 @@ public class EditUserController {
 		return new ModelAndView("redirect:/userSearch");
 	}
 	
-	@PostMapping("/deleteImage")
+	@PostMapping("/deleteUserImage")
 	public ModelAndView uploadImage(HttpSession http, Model model) throws IOException {
 		UserDB user = (UserDB)http.getAttribute("actUser");
 		
