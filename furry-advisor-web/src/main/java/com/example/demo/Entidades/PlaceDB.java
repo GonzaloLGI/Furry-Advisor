@@ -116,6 +116,7 @@ public class PlaceDB {
 		this.description = description;
 	}
 
+	@JsonIgnore
 	public void setRating(float rating) {
 		this.rating = rating;
 	}

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
@@ -33,16 +34,28 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/search").permitAll();
 		http.authorizeRequests().antMatchers("/checkRest").permitAll();
 		http.authorizeRequests().antMatchers("/getDealByHeader/{header}").permitAll();
-		http.authorizeRequests().antMatchers("/getExistingDeal").permitAll();
+		http.authorizeRequests().antMatchers("/existingDeal").permitAll();
 		//Como hago para hcer publicas las urls que cuentan con un path variable y son del palo /pathvariable
 		http.authorizeRequests().antMatchers("/place/{place_name}").permitAll();
 		http.authorizeRequests().antMatchers("/dealImage/{header}").permitAll();
 		http.authorizeRequests().antMatchers("/userImage/{header}").permitAll();
 		http.authorizeRequests().antMatchers("/image/{name}").permitAll();
 		http.authorizeRequests().antMatchers("/perfil").permitAll();
+		http.authorizeRequests().antMatchers("/addNewDeal").permitAll();
+		http.authorizeRequests().antMatchers("/prueba").permitAll();
+		http.authorizeRequests().antMatchers("/pruebaRest").permitAll();
 		
 		http.authorizeRequests().antMatchers("/userSearch").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/editUser").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/profile/{username}").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/account_settings").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/changePassword").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/delete").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/edit_profile").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/imageEditProfile").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/deleteReviews").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/upload_image").hasAnyRole("ADMIN","USER");
+		http.authorizeRequests().antMatchers("/changeNickname").hasAnyRole("ADMIN","USER");
 		
 		http.authorizeRequests().anyRequest().authenticated();
 		
@@ -57,5 +70,10 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		//http.csrf().disable();
 	}
 	
+	@Override
+	public void configure(WebSecurity web) throws Exception{
+		web.ignoring().antMatchers("/css/**");
+		
+	}
 
 }

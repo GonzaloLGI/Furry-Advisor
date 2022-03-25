@@ -9,8 +9,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.http.HttpClient;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,11 +32,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,7 +75,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @Controller
 public class HomeController {
 
+	//Lo del csrf y el problema de los - en las urls de los endpoints
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+	
 	
 	@Autowired
 	private PlaceService placeRepository;
@@ -355,16 +363,52 @@ public class HomeController {
 	}
 	
 	@GetMapping("/checkRest")
-	public String checkRest() {
+	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
 		String base = "http://localhost:8080";
-		String url = base+"/getExistingDeal";
+		String url = base+"/existingDeal";
 		//DEVUELVE ARRAYNODE, NO OBJENODE. ESOS ESTAN DENTROn
 		ArrayNode data = rest.getForObject(url, ArrayNode.class);
 		for(int i = 0; i<data.size();i++) {
 			System.out.println(data.get(i).get("header").asText());
 		}
+		
+		List<DealDB> deals = dealRepository.findByHeader("cabecera");
+		System.out.println(deals.get(0).getHeader());
+		
 		System.out.println("La mamba negra de Aisayan es chiquita");
-		return "home";
+		return new ModelAndView("redirect:/home");
 	}
+	
+	/*@PostMapping("/prueba")
+	public ModelAndView prueba() {
+		RestTemplate rest = new RestTemplate();
+
+		DealDB newDeal = new DealDB("cabecera","descripcion",null, placeRepository.findByName("Panda Ramen").get(0));
+
+		String base = "http://localhost:8080";
+		String url = base+"/pruebaRest";
+		rest.postForEntity(url, newDeal,DealDB.class);
+		System.out.println("Prueba");
+		return new ModelAndView("redirect:/home");
+	}
+	
+	@PostMapping("/addNewDeal")
+	public ModelAndView addNewDeal(Model model,HttpSession http) throws URISyntaxException {
+		RestTemplate rest = new RestTemplate();
+		DealDB newDeal = new DealDB("cabecera","descripcion",null, placeRepository.findByName("Panda Ramen").get(0));
+		
+		/*HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<DealDB> entity = new HttpEntity<>(newDeal,headers);*/
+		/*String base = "http://localhost:8080";
+		String url = base+"/addDeal";
+		URI uri = new URI(url);
+		ResponseEntity<DealDB> aux = rest.postForEntity(uri, newDeal,DealDB.class);
+
+	    model.addAttribute("place",http.getAttribute("place"));
+	    model.addAttribute("offer",http.getAttribute("offer"));
+		System.out.println("Subido");
+		return new ModelAndView("redirect:/home");
+	}*/
 }

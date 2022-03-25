@@ -19,6 +19,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,7 +66,10 @@ public class AccountSettingsController implements CommandLineRunner {
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 				
 		if(!newPassword.equals("")) {
-			actualUser.setPassword(newPassword);
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			
+			
+			actualUser.setPassword(encoder.encode(newPassword));
 			http.setAttribute("actUser", actualUser);
 			
 			UserDB aux = userRepository.findByNickname(actualUser.getNickname()).get(0);

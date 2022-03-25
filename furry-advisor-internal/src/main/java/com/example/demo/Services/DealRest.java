@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class DealRest {
 	@Autowired
 	private DealDBInterface dealRepository;
 	
-	@JsonView(DealDB.Basico.class)
+	/*@JsonView(DealDB.Basico.class)
 	@GetMapping("/getDealByHeader/{header}")
 	public ResponseEntity<List<DealDB>> findByHeader(@PathVariable String header){
 		List<DealDB> deals = dealRepository.findByHeader(header);
@@ -36,11 +37,13 @@ public class DealRest {
 		}else {
 			return  ResponseEntity.notFound().build();
 		}
-	}
+	}*/
 	
 	@JsonView(DealDB.Basico.class)
-	@GetMapping("/getExistingDeal")
+	@GetMapping("/existingDeal")
 	public ResponseEntity<List<DealDB>> findAllByPlaceOriginIsNotNull(){
+		DealDB newDeal = new DealDB("cabecera2","descripcion23",null,null);
+		dealRepository.save(newDeal);
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		if(deals!=null) {
 			return ResponseEntity.ok(deals);
@@ -49,7 +52,7 @@ public class DealRest {
 		}
 	}
 	
-	@JsonView(DealDB.Basico.class)
+	/*@JsonView(DealDB.Basico.class)
 	@GetMapping("/getDealByPlace/{place}")
 	public ResponseEntity<List<DealDB>> findAllByPlaceOrigin(@PathVariable PlaceDB placeOrigin){
 		List<DealDB> deals = dealRepository.findAllByPlaceOrigin(placeOrigin);
@@ -58,14 +61,21 @@ public class DealRest {
 		}else {
 			return ResponseEntity.notFound().build();
 		}
+	}*/
+	
+	/*@JsonView(DealDB.Basico.class)
+	@PostMapping("/pruebaRest")
+	public void prueba() {
+		System.out.println("Entre");
 	}
 	
-	@JsonView(DealComplete.class)
-	@PostMapping("/addDeal/{deal}")
+	@JsonView(DealDB.Basico.class)
+	@PostMapping("/addDeal")
 	public ResponseEntity<DealDB> save(@RequestBody DealDB deal){
 		dealRepository.save(deal);
-		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(deal.getDeal_id()).toUri();
-		return ResponseEntity.created(location).body(deal);
-	}
+		System.out.println("Añadido");
+		//URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(deal.getDeal_id()).toUri();
+		//return ResponseEntity.body(deal);
+		return new ResponseEntity<DealDB>(deal,HttpStatus.OK);
+	}*/
 }
