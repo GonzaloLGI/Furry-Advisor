@@ -52,18 +52,18 @@ public class EditUserController {
 		return "edit_user";
 	}
 	
-	@PostMapping("/deleteUser")
-	public ModelAndView delete(HttpSession http, Model model) {
+	@PostMapping("/deleteUser/{nickname}")
+	public ModelAndView delete(@PathVariable String nickname, Model model) {
 		
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = userRepository.findByNickname(nickname).get(0);
 		userRepository.delete(actualUser);
 		
 		return new ModelAndView("redirect:/userSearch");
 	}
 	
-	@PostMapping("/deleteUserImage")
-	public ModelAndView uploadImage(HttpSession http, Model model) throws IOException {
-		UserDB user = (UserDB)http.getAttribute("actUser");
+	@PostMapping("/deleteUserImage/{nickname}")
+	public ModelAndView uploadImage(@PathVariable String nickname, Model model) throws IOException {
+		UserDB user = userRepository.findByNickname(nickname).get(0);
 		
 		Path image_path = IMAGES_FOLDER.resolve("unknown.jpg");
 		File imagen = new File(image_path.toUri());
@@ -72,7 +72,22 @@ public class EditUserController {
 		user.setProf_photo(BlobProxy.generateProxy(input, Files.size(image_path)));
 		userRepository.save(user);
 		
-		return new ModelAndView("redirect:/edit_user");
+		return new ModelAndView(("redirect:/editUser/"+nickname));
 	}
 	
+	@GetMapping("/getUserProfileImage/{user_name}")
+	public ResponseEntity<Object> getUserProfileImage(@PathVariable String user_name) throws SQLException {
+		UserDB user = (UserDB)userRepository.findByNickname(user_name).get(0);
+		if (user.getProf_photo() != null) {
+			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			return ResponseEntity.ok()
+					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					 .contentLength(user.getProf_photo().length())
+					 .body(image);
+		}else {
+			System.out.println("No hay foto");
+			return  ResponseEntity.notFound().build();
+		}
+		
+	}
 }

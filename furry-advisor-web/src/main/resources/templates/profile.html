@@ -106,7 +106,7 @@
 		</form>
 		
 		{{#admin}}
-		<form>
+		<form method="get" action="/userSearch">
 			<input type='submit' value='Buscar usuarios'></input>
 			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
