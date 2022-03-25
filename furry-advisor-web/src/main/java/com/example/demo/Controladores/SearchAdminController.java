@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Services.UserService;
@@ -20,10 +21,16 @@ public class SearchAdminController {
 	
 	@GetMapping("/userSearch")
 	public String userSearch(Model model,HttpSession http) {
-		model.addAttribute("place", http.getAttribute("place"));
-        model.addAttribute("offer", http.getAttribute("offer"));
         List<UserDB> allUsers = userRepository.findAll();
 		model.addAttribute("users_list", allUsers);
+		return "search_admin";
+	}
+	
+	@GetMapping("/searchByName")
+	public String search(Model model, @RequestParam String filter, HttpSession http){
+		List<UserDB> userName = userRepository.findByNickname(filter);
+		model.addAttribute("users_list",userName);
+	
 		return "search_admin";
 	}
 }
