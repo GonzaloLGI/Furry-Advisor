@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,7 @@ public class PlaceController {
 	
 	
 	@GetMapping("/place/{place_name}")
-	public String place(Model model,HttpSession http, @PathVariable String place_name) {  
+	public String place(Model model,HttpSession http, @PathVariable String place_name, HttpServletRequest request) {  
 		UserDB actualUser = (UserDB)http.getAttribute("actUser");
 		model.addAttribute("user",actualUser);
 	    List<PlaceDB> places = placeRepository.findByName(place_name);
@@ -84,6 +86,9 @@ public class PlaceController {
 	    	}
 		    model.addAttribute("placeRating",rate);
 		    model.addAttribute("reviews_list",reviews);
+		    
+		    model.addAttribute("admin",request.isUserInRole("ADMIN"));
+		    
 		    model.addAttribute("place",http.getAttribute("place"));
 		    model.addAttribute("offer",http.getAttribute("offer"));
 	    }

@@ -105,6 +105,13 @@
 			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
 		
+		{{#admin}}
+		<form>
+			<input type='submit' value='Buscar usuarios'></input>
+			<input type='hidden' name='_csrf' value="{{token}}"/>
+		</form>
+		{{/admin}}
+		
 		<h4>Reseñas del usuario</h4>
 	
 		<ul>

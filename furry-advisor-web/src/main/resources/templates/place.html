@@ -127,8 +127,8 @@
 		<h3>Ofertas actuales:</h3>
 
 		{{#admin}}
-		<form method='get' action='/create_review/{{place_name}}'>
-			<p><input type='submit' value='Crear review'/></p>
+		<form method='get' action='/createDeal/{{place_name}}'>
+			<p><input type='submit' value='Crear Deal'/></p>
 			<input type='hidden' name='_csrf' value="{{token}}"/>
 		</form>
 		{{/admin}}

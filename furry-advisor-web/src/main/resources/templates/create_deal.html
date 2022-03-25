@@ -5,7 +5,7 @@
 
     <title>Create Deal</title>
 
-    <link rel="stylesheet" href="/createdeal.css">
+    <link rel="stylesheet" href="/css/createdeal.css">
 
     {{>navbar}}
 
@@ -23,13 +23,13 @@
     <p style="color: white"><b>Lugar: </b> {{place_name}}</p>
     <br>
 
-    <form method="post" action="/confirmDeal">
+    <form method="post" action="/addNewDeal">
 
         <p style="color: white"><b>Cabecera de la oferta: </b></p>
         <br>
 
         <div class="headarea">
-            <textarea cols="30" name="review" placeholder="Añade una cabecera para la oferta..."></textarea>
+            <textarea cols="30" name="header" placeholder="Añade una cabecera para la oferta..."></textarea>
         </div>
 
         <br>
@@ -37,7 +37,7 @@
         <br>
 
         <div class="textarea">
-            <textarea cols="30" name="review" placeholder="Añade una descripción de la oferta..."></textarea>
+            <textarea cols="30" name="description" placeholder="Añade una descripción de la oferta..."></textarea>
         </div>
 
         <div class="btn">

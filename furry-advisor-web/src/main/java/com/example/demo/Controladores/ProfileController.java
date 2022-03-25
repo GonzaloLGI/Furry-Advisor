@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.engine.jdbc.BlobProxy;
@@ -49,7 +50,7 @@ public class ProfileController implements CommandLineRunner {
 	private ReviewService reviewRepository;
 
 	@GetMapping("/profile/{userName}")
-	public String profile(HttpSession http, Model model, @PathVariable String userName) {
+	public String profile(HttpSession http, Model model, @PathVariable String userName, HttpServletRequest request) {
 	 
 		SecurityContextImpl aux = (SecurityContextImpl)http.getAttribute("SPRING_SECURITY_CONTEXT");
 		Authentication auth = aux.getAuthentication();
@@ -63,6 +64,8 @@ public class ProfileController implements CommandLineRunner {
 		model.addAttribute("user",actualUser);
 		model.addAttribute("place",http.getAttribute("place"));
 	    model.addAttribute("offer",http.getAttribute("offer"));
+	    
+	    model.addAttribute("admin",request.isUserInRole("ADMIN"));
 		
 		List<ReviewDB> revs = reviewRepository.findByUserRef(actualUser);
 		model.addAttribute("user_reviews",revs);
