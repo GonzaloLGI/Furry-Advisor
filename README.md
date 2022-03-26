@@ -19,15 +19,17 @@ Las entidades principales de Furry Advisor son:
 
 ## Servicios internos ##
 Los servicios que proporciona el servidor son:
-- Notificaciones de Ofertas y eventos recien sacados.
-- Avisar de interacciones de otros Usuarios con tus Reseñas: valoración de utilidad, comentarios, etc.
+- Notificaciones de Ofertas recien añadidas.
+- Avisar de interacciones de otros Usuarios con tus Reseñas: valoración de utilidad, comentarios, etc. //BORRAR SI NO DA TIEMPO
 
 ## Descripción y diagrama de relación y opciones disponibles en cada HTML ##
-La aplicación web cuenta con 9 páginas: home, search, login, sign up, profile, place, account settings, edit profile y create review. Las opciones disponibles en cada página y el salto entre ellas se muestra en la siguiente imagen:
+La aplicación web cuenta con 12 páginas: home, search, login, sign up, profile, place, account settings, edit profile, create review, create deal, user search y edit user. Las opciones disponibles en cada página y el salto entre ellas se muestra en la siguiente imagen:
 
-![html_2 drawio](https://user-images.githubusercontent.com/56488179/155422754-052b51d0-2994-48b4-8743-761bf9668a0a.png)
+![UML_HTMLs](https://user-images.githubusercontent.com/56488179/160238190-217801bd-4678-4643-9aec-1587ef614696.png)
 
 A continuación una breve explicación de cada página:
+- Navbar: no es una página en sí, pero se ha modificado con respecto a la anterior fase y aparece en el resto de páginas. Permite el acceso a la página principal, la búsqueda de lugares y el acceso a la cuenta de un usuario ya registrado o el registro de un nuevo usuario. //AÑADIR CUANDO ESTE PAPITO
+
 - Home: página de inicio de la aplicación en la que se muestran algunas de las ofertas disponibles y un espacio dedicado a las novedades.
 ![home](https://user-images.githubusercontent.com/56488179/155429671-5bca192a-1437-481a-8304-e4a9aad9cc86.png)
 - Search: página en la que se hace la búsqueda de un lugar en concreto o de un conjunto de lugares según unos criterios. 
@@ -36,29 +38,47 @@ A continuación una breve explicación de cada página:
 ![login](https://user-images.githubusercontent.com/56488179/155429710-f5ed7608-0fea-4e6a-a127-b567a59b3507.png)
 - Sign Up: página a la que accede un usuario sin identificar para registrarse en el sistema por primera vez.
 ![register](https://user-images.githubusercontent.com/56488179/155429723-4667a01f-5e97-4726-9b81-5e5e5481a53d.png)
-- Profile: página en la que se muestra la información del usuario identificado y las reseñas escritas por él/ella.
+- Profile: página en la que se muestra la información del usuario identificado y las reseñas escritas por él/ella. Si es administrador, le aparece un opción extra para buscar a los usuarios registrados.
 ![profile](https://user-images.githubusercontent.com/56488179/155429736-8bc5264b-1510-4419-919e-c26a7547cc17.png)
-- Place: página en la que se muestran los datos de un lugar seleccionado como resultado de la búsqueda en Search. Además se pueden consultar las reseñas de otros usuarios registrados sobre el lugar, al igual que se da la opción de escribir una reseña nueva.
+![image](https://user-images.githubusercontent.com/56488179/160236446-8127aa14-4894-4f23-bd79-703ceef7f975.png)
+- Place: página en la que se muestran los datos de un lugar seleccionado como resultado de la búsqueda en Search. Además se pueden consultar las reseñas de otros usuarios registrados sobre el lugar, al igual que se da la opción de escribir una reseña nueva. Si el usuario actual es administrador, le aparece una opción para añadir nuevas ofertas al estableciemiento.
 ![place](https://user-images.githubusercontent.com/56488179/155429745-5b90f431-d3be-4b36-84f1-883ff40d6ccc.png)
+![image](https://user-images.githubusercontent.com/56488179/160236472-3430ba70-d094-4175-b2ec-60d5322a9a8c.png)
+- Create Deal: el administrador puede añadir ofertas a un lugar concreto, tras lo cual todos los usuarios que estén actualmente en la aplicación serán notificados mediante un mensaje en el Nav Bar.
+![image](https://user-images.githubusercontent.com/56488179/160236689-8c99861a-a6a9-4d78-a96e-4258e250b156.png)
 - Account Settings: página en la que un usuario registrado e identificado puede modificar elementos de su cuenta tales como la contraseña, permitiendo además borrar su cuenta.
 ![account_settings](https://user-images.githubusercontent.com/56488179/155429762-6ea69e47-7243-4245-933a-362a6a0c9841.png)
 - Edit Profile: página en la que un usuario registrado e identificado puede modificar los elementos públicos de su perfil como el nombre o la foto de perfil.
 ![edit_profile](https://user-images.githubusercontent.com/56488179/155429774-cf01670f-60fc-40aa-9857-282be1c99fe2.png)
 - Create Review: página en la que un usuario registrado e identificado puede escribir una reseña sobre un lugar en concreto. El usuario aporta una puntuación sobre 5 y, si quiere, un texto de reseña.
-![create_review](https://user-images.githubusercontent.com/56488179/155429835-324e55ac-3612-49fd-bf62-aae964001693.png)
+![image](https://user-images.githubusercontent.com/56488179/160236739-43365db6-6e1b-43c4-94ff-0a2793786ad5.png)
+- User Search: el administrador cuenta con un buscador exclusivo de usuarios, pudiendo buscar y seleccionar cualquiera de los usuarios registrados en la plataforma para realizar algunas acciones.
+![image](https://user-images.githubusercontent.com/56488179/160236522-34b205aa-ac1b-4ca9-b2cf-f5bfa6572831.png)
+- Edit User: el administrador, tras seleccionar a uno de los usuarios en User Search, se le da opción de borrar la foto del usuario (por si es necesario), borrar sus reviews (por si contienen material ofensivo o inadecuado) y, en última instancia, borrar la cuenta.
+![image](https://user-images.githubusercontent.com/56488179/160236577-2736aa93-a91f-4bb3-ad48-d94b2a8c89c9.png)
 
-De todas las ellas, las páginas públicas serían: home, search, login, sign up y place. Las páginas privadas serían: profile, account settings, edit profile y create review.
+De todas las ellas, las páginas públicas serían: home, search, login, sign up y place. Las páginas privadas serían: profile, account settings, edit profile, create review, user search, create deal y edit user.
 
-Todas las paginas cuentan con una barra de navegación desde el que acceder a las páginas principales de la aplicación web (Home, Search y Login/Sign Up) y un pie de página. Además, una vez se haya identificado un usuario en la aplicación, aparece una nueva opción para acceder directamente a su página de perfil.
+Todas las paginas cuentan con una barra de navegación desde el que acceder a las páginas principales de la aplicación web (Home, Search y Login/Sign Up) y un pie de página. Además, una vez se haya identificado un usuario en la aplicación, aparece una nueva opción para acceder directamente a su página de perfil y otra opción para cerrar sesión.
 La presencia de la barra de navegación en una página viene marcado con un * al lado del nombre de la página en el diagrama UML de los HTML.
 
 ## Diagrama de relación entre las distintas entidades ##
 
 ![UML_Entidades drawio](https://user-images.githubusercontent.com/56488179/155424509-cb8713f6-b474-4459-8b04-77841ae28067.png)
 
-## Diagrama de las clases del programa ##
+## Diagrama de las clases del programa y relación entre controladores y templates ##
 
-![UML_Clases](https://user-images.githubusercontent.com/56488179/155433780-0ee9ad89-cd65-4605-a5f6-685035af72aa.png)
+![UML_Clases](https://user-images.githubusercontent.com/56488179/160241444-7ff7d7d8-b8ea-4800-9ad1-0643e2e8e94e.png)
+
+Leyenda de colores:
+- Naranja: @Configuration
+- Rojo: Interface
+- Amarillo: @Service
+- Azul: @Entity
+- Verde: @Controller
+- Gris: @Component
+- Fucsia: Template html
+- Lila: @RestController
 
 ## Enlace a tablero Trello ##
 https://trello.com/b/qQkhZRH9/furry-advisor
