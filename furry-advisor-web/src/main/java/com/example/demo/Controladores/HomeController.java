@@ -88,9 +88,6 @@ public class HomeController {
 	@Autowired
 	public NewOffer newOffer;
 	
-	/*@Autowired
-	public TaskScheduler taskScheduler;*/
-	
 	@Autowired
 	private PlaceService placeRepository;
 	
@@ -108,10 +105,6 @@ public class HomeController {
 	
 	@Autowired
 	private ReviewService reviewRepository;
-	
-	/*public void scheduleRules() {
-		MyTask task = new MyTaskImpl()
-	}*/
 
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {

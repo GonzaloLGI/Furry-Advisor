@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;

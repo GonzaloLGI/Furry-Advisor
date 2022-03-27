@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
