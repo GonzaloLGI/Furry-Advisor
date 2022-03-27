@@ -41,7 +41,6 @@ public class CreateReviewController {
 
 	@GetMapping("/create_review/{placeName}")
     public String createReview(Model model,HttpSession http, @PathVariable String placeName) {
-
         UserDB user=(UserDB)http.getAttribute("actUser");
         List<PlaceDB> placeList =placeRepository.findByName(placeName);
         PlaceDB place = null;
