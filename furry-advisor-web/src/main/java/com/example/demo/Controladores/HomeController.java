@@ -37,6 +37,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -52,6 +53,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
@@ -84,6 +86,12 @@ public class HomeController {
 	public static int dealCuantity;
 	
 	@Autowired
+	public NewOffer newOffer;
+	
+	/*@Autowired
+	public TaskScheduler taskScheduler;*/
+	
+	@Autowired
 	private PlaceService placeRepository;
 	
 	@Autowired
@@ -100,6 +108,10 @@ public class HomeController {
 	
 	@Autowired
 	private ReviewService reviewRepository;
+	
+	/*public void scheduleRules() {
+		MyTask task = new MyTaskImpl()
+	}*/
 
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {
@@ -300,8 +312,7 @@ public class HomeController {
 
 
 	@GetMapping("/home")
-	public String home(Model model,HttpSession http) {
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+	public String home(Model model,HttpSession http) {UserDB actualUser = (UserDB)http.getAttribute("actUser");
 		model.addAttribute("user",actualUser);
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		
@@ -315,7 +326,7 @@ public class HomeController {
 		}
 		DealDB dealDB2 = deals.get(dl2);
 
-		model.addAttribute("newoffer", false);
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
 		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
 		model.addAttribute("deal_image1", dealDB1.getDealPic());
@@ -367,9 +378,9 @@ public class HomeController {
 		
 	}
 
-	@Scheduled(fixedRate=10000)
+	@Scheduled(fixedRate=20000)
 	@GetMapping("/checkRest")
-	public ModelAndView checkRest(Model model) {
+	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
 		String base = "http://localhost:8080";
 		String url = base+"/existingDeal";
@@ -386,24 +397,17 @@ public class HomeController {
 			dealCuantity = newDealCuantity;
 			System.out.println("Hay nuevas ofertas");
 
-			boolean newOffer = model.getAttribute("newoffer");
-			newOffer = true;
-			model.addAttribute("newoffer", newOffer);
+			newOffer.setNewOffer(true);
 		}
 		else{
 			System.out.println("No hay nueva ofertas");
 
-			boolean newOffer = model.getAttribute("newoffer");
-			newOffer = false;
-			model.addAttribute("newoffer", newOffer);
+			newOffer.setNewOffer(false);
 		}
 		
 		/*
 		List<DealDB> deals = dealRepository.findByHeader("cabecera");
-		System.out.println(deals.get(0).getHeader());
-		
-		System.out.println("La mamba negra de Aisayan es chiquita");
-		 */
+		System.out.println(deals.get(0).getHeader());*/
 		return new ModelAndView("redirect:/home");
 	}
 	
@@ -438,4 +442,5 @@ public class HomeController {
 		System.out.println("Subido");
 		return new ModelAndView("redirect:/home");
 	}*/
+	
 }

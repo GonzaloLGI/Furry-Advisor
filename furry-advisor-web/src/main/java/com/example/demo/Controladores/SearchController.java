@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
@@ -38,8 +39,12 @@ public class SearchController implements CommandLineRunner {
 	
 	@Autowired
 	private LocationService locationRepository;
+	
 	@Autowired
 	private PlaceTypeService placeTypeRepository;
+	
+	@Autowired
+	private NewOffer newOffer;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -58,6 +63,7 @@ public class SearchController implements CommandLineRunner {
 		model.addAttribute("places_list", allPlaces);
 		model.addAttribute("place",http.getAttribute("place"));
 	    model.addAttribute("offer",http.getAttribute("offer"));
+	    model.addAttribute("newoffer",newOffer.getNewOffer());
 		return "search";
 	}
 	

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.PlaceDB;
-import com.example.demo.Interfaces.DealDBInterface;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
@@ -26,7 +25,7 @@ public class DealRest {
 	interface DealComplete extends DealDB.Basico,DealDB.Completo{}
 	
 	@Autowired
-	private DealDBInterface dealRepository;
+	private DealService dealRepository;
 	
 	/*@JsonView(DealDB.Basico.class)
 	@GetMapping("/getDealByHeader/{header}")
