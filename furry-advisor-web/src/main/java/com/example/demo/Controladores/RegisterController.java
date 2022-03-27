@@ -37,6 +37,9 @@ import com.example.demo.Services.UserService;
 public class RegisterController {
 	
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+
+	@Autowired
+	public NewOffer newOffer;
 	
 	@Autowired
 	private UserService userRepository;
@@ -60,6 +63,7 @@ public class RegisterController {
 				
 				model.addAttribute("name", userName);
 				model.addAttribute("password",userPassword);
+				model.addAttribute("newoffer",newOffer.getNewOffer());
 				
 				Path imagePathReg = IMAGES_FOLDER.resolve("unknown.jpg");
 				File imgReg = new File(imagePathReg.toUri());

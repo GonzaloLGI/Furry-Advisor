@@ -18,6 +18,9 @@ import com.example.demo.Services.PlaceService;
 public class CreateDeals {
 
 	@Autowired
+	public NewOffer newOffer;
+
+	@Autowired
 	private DealService dealRepository;
 	
 	@Autowired
@@ -26,6 +29,7 @@ public class CreateDeals {
 	@GetMapping("/createDeal/{placeName}")
 	public String creatDeal(Model model, @PathVariable String placeName) {
 		model.addAttribute("place_name",placeName);
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 		return "create_deal";
 	}
 	

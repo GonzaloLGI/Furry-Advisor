@@ -28,7 +28,10 @@ import com.example.demo.Services.UserService;
 @Controller
 public class LoginController {
 	 private Logger log = (Logger) LoggerFactory.getLogger(LoginController.class);
-	 
+
+	@Autowired
+	public NewOffer newOffer;
+
 	 @Autowired
 	 private ReviewService reviewRepository;
 	 
@@ -39,6 +42,7 @@ public class LoginController {
 	 public String page(Model model,HttpSession http) {
 		 model.addAttribute("place",http.getAttribute("place"));
 	     model.addAttribute("offer",http.getAttribute("offer"));
+		 model.addAttribute("newoffer",newOffer.getNewOffer());
 		 return "login";
 		 
 	 }

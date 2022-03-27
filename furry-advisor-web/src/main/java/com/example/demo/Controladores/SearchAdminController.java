@@ -15,6 +15,9 @@ import com.example.demo.Services.UserService;
 
 @Controller
 public class SearchAdminController {
+
+	@Autowired
+	public NewOffer newOffer;
 	
 	@Autowired
 	private UserService userRepository;
@@ -23,6 +26,7 @@ public class SearchAdminController {
 	public String userSearch(Model model,HttpSession http) {
         List<UserDB> allUsers = userRepository.findAll();
 		model.addAttribute("users_list", allUsers);
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 		return "search_admin";
 	}
 	

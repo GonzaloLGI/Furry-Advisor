@@ -39,6 +39,9 @@ import com.example.demo.Services.UserService;
 public class PlaceController {
 
 	@Autowired
+	public NewOffer newOffer;
+
+	@Autowired
 	private UserService userRepository;
 	
 	@Autowired
@@ -70,6 +73,7 @@ public class PlaceController {
 		    model.addAttribute("place_rating",aux.getRating());
 		    model.addAttribute("place_url",aux.getPlace_url());
 		    model.addAttribute("place_schedule",aux.getSchedule());
+			model.addAttribute("newoffer",newOffer.getNewOffer());
 		    List<LocationDB> auxCity = locationRepository.findByName(aux.getCity().getName());
 		    model.addAttribute("city",auxCity.get(0).getName());
 		    List<DealDB> deals = dealRepository.findAllByPlaceOrigin(aux);

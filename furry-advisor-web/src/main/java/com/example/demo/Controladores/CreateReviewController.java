@@ -31,6 +31,9 @@ import com.example.demo.Services.UserService;
 //Clase que se encarga de gestionar las peticiones hacia CreateReview
 @Controller
 public class CreateReviewController {
+
+	@Autowired
+	public NewOffer newOffer;
 	
 	@Autowired
 	private PlaceService placeRepository;
@@ -51,6 +54,7 @@ public class CreateReviewController {
         model.addAttribute("place_name", place.getName());
         model.addAttribute("place",http.getAttribute("place"));
 	    model.addAttribute("offer",http.getAttribute("offer"));
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 
 
 

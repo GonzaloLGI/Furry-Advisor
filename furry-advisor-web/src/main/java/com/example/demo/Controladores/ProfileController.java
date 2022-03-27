@@ -43,6 +43,10 @@ import com.example.demo.Services.UserService;
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Profile
 @Controller
 public class ProfileController implements CommandLineRunner {
+
+	@Autowired
+	public NewOffer newOffer;
+
 	@Autowired
 	private UserService userRepository;
 	
@@ -56,8 +60,8 @@ public class ProfileController implements CommandLineRunner {
 		Authentication auth = aux.getAuthentication();
 		
 		UserDB actualUser = userRepository.findByNickname(auth.getName()).get(0);
-		
-			
+
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 		http.setAttribute("actUser", actualUser);
 		model.addAttribute("name", actualUser.getNickname());
 		model.addAttribute("password",actualUser.getPassword());

@@ -44,6 +44,10 @@ import com.example.demo.Services.UserService;
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML edit_profile
 @Controller
 public class EditProfileController implements CommandLineRunner {
+
+	@Autowired
+	public NewOffer newOffer;
+
 	@Autowired
 	private UserService userRepository;
 	
@@ -64,6 +68,7 @@ public class EditProfileController implements CommandLineRunner {
 		model.addAttribute("place",http.getAttribute("place"));
 	    model.addAttribute("offer",http.getAttribute("offer"));
 		http.setAttribute("actUser", actualUser);
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 		
 		if(reviews!=null) {
 			model.addAttribute("review_list", reviews);

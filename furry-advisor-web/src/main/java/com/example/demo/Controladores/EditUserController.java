@@ -38,6 +38,9 @@ import com.example.demo.Services.UserService;
 public class EditUserController {
 	
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
+
+	@Autowired
+	public NewOffer newOffer;
 	
 	@Autowired
 	public UserService userRepository;
@@ -49,6 +52,7 @@ public class EditUserController {
         model.addAttribute("offer", http.getAttribute("offer"));
         model.addAttribute("user_name", nickname);
         model.addAttribute("user_password", user.getPassword());
+		model.addAttribute("newoffer",newOffer.getNewOffer());
 		return "edit_user";
 	}
 	

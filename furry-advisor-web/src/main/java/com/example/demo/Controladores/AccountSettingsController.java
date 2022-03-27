@@ -43,7 +43,9 @@ import com.example.demo.Services.UserService;
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML edit_profile
 @Controller
 public class AccountSettingsController implements CommandLineRunner {
-	
+
+	@Autowired
+	public NewOffer newOffer;
 	
 	@Autowired
 	private UserService userRepository;
