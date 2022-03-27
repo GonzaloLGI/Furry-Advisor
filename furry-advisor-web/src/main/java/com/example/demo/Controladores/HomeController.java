@@ -314,7 +314,8 @@ public class HomeController {
 			dl2 = (int) (Math.random() * (max - min - 1) + min);
 		}
 		DealDB dealDB2 = deals.get(dl2);
-		
+
+		model.addAttribute("newoffer", false);
 		model.addAttribute("place_name1", dealDB1.getPlaceOrigin().getName());
 		model.addAttribute("place_name2", dealDB2.getPlaceOrigin().getName());
 		model.addAttribute("deal_image1", dealDB1.getDealPic());
@@ -368,7 +369,7 @@ public class HomeController {
 
 	@Scheduled(fixedRate=10000)
 	@GetMapping("/checkRest")
-	public ModelAndView checkRest() {
+	public ModelAndView checkRest(Model model) {
 		RestTemplate rest = new RestTemplate();
 		String base = "http://localhost:8080";
 		String url = base+"/existingDeal";
@@ -384,9 +385,17 @@ public class HomeController {
 		if(newDealCuantity > dealCuantity){
 			dealCuantity = newDealCuantity;
 			System.out.println("Hay nuevas ofertas");
+
+			boolean newOffer = model.getAttribute("newoffer");
+			newOffer = true;
+			model.addAttribute("newoffer", newOffer);
 		}
 		else{
 			System.out.println("No hay nueva ofertas");
+
+			boolean newOffer = model.getAttribute("newoffer");
+			newOffer = false;
+			model.addAttribute("newoffer", newOffer);
 		}
 		
 		/*
