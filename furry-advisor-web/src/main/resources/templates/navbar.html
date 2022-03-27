@@ -24,7 +24,7 @@
 
 		<li>
 			{{#newoffer}}
-			<a class="right"><div onclick="openForm()" class="fa-solid fa-info"> ¡Hay nuevas ofertas! uwu</div></a>
+			<a class="right" href="/searchPlatform"><div class="fa-solid fa-info"> ¡Hay nuevas ofertas! uwu</div></a>
 			{{/newoffer}}
 		</li>
 
@@ -38,7 +38,7 @@
 
 		<li>
 			<form method="post" action="/logout">
-				<input type="submit" value="Log Out"></input>
+				<a><div>Log out</div></a>
 				<input type='hidden' name='_csrf' value="{{token}}"/>
 			</form>
 		</li>
@@ -48,14 +48,6 @@
 </navbar>
 
 <body>
-
-<div class="chat-popup" id="myForm">
-	<form class="form-container">
-
-
-		<button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
-	</form>
-</div>
 
 <script>
 
