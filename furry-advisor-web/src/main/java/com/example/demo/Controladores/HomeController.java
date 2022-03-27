@@ -37,6 +37,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -72,12 +74,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Home
 //y de inicializar las entidades ejemplo usadas en la aplicación web
+
+@EnableScheduling
 @Controller
 public class HomeController {
 
-	//Lo del csrf y el problema de los - en las urls de los endpoints
+	//Lo del csrf y el problema de los - en las urls de los endpoint
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
-	
+	public static int dealCuantity;
 	
 	@Autowired
 	private PlaceService placeRepository;
@@ -361,7 +365,8 @@ public class HomeController {
 		}
 		
 	}
-	
+
+	@Scheduled(fixedRate=10000)
 	@GetMapping("/checkRest")
 	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
@@ -369,14 +374,27 @@ public class HomeController {
 		String url = base+"/existingDeal";
 		//DEVUELVE ARRAYNODE, NO OBJENODE. ESOS ESTAN DENTROn
 		ArrayNode data = rest.getForObject(url, ArrayNode.class);
+
+		int newDealCuantity = data.size();
+
 		for(int i = 0; i<data.size();i++) {
 			System.out.println(data.get(i).get("header").asText());
 		}
+
+		if(newDealCuantity > dealCuantity){
+			dealCuantity = newDealCuantity;
+			System.out.println("Hay nuevas ofertas");
+		}
+		else{
+			System.out.println("No hay nueva ofertas");
+		}
 		
+		/*
 		List<DealDB> deals = dealRepository.findByHeader("cabecera");
 		System.out.println(deals.get(0).getHeader());
 		
 		System.out.println("La mamba negra de Aisayan es chiquita");
+		 */
 		return new ModelAndView("redirect:/home");
 	}
 	
