@@ -23,6 +23,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +60,7 @@ public class EditUserController {
         model.addAttribute("user_name", nickname);
         model.addAttribute("user_password", user.getPassword());
 		model.addAttribute("newoffer",newOffer.getNewOffer());
+		model.addAttribute("review_list",user.getReviews());
 		return "edit_user";
 	}
 	
@@ -100,7 +102,7 @@ public class EditUserController {
 		}
 	}
 
-	@GetMapping("/deleteUserReviews")
+	@GetMapping("/deleteUserReviews/{nickname}")
 	public ModelAndView deleteUserReviews(@PathVariable String nickname, Model model) {
 		UserDB user = (UserDB)userRepository.findByNickname(nickname).get(0);
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(user);

@@ -38,7 +38,7 @@
   
     <p><b>Reviews del usuario:</b></p>
 
-        <form method="post" action="/deleteUserReviews/{{user_name}}">
+        <form method="get" action="/deleteUserReviews/{{user_name}}">
         	<input type='hidden' name='_csrf' value="{{token}}"/>
         	<ul>
 			{{#review_list}}
