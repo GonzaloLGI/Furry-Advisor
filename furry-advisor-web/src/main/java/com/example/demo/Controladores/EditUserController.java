@@ -93,6 +93,20 @@ public class EditUserController {
 			System.out.println("No hay foto");
 			return  ResponseEntity.notFound().build();
 		}
-		
+	}
+
+	@GetMapping("/deleteUserReviews")
+	public ModelAndView deleteUserReviews(@PathVariable String nickname, Model model) {
+		UserDB user = (UserDB)userRepository.findByNickname(nickname).get(0);
+		List<ReviewDB> reviews = reviewRepository.findByUserRef(user);
+
+		for(int i = 0; i<reviews.size();i++) {
+			reviewRepository.delete(reviews.get(i));
+		}
+
+		user.setReviews(new ArrayList<>());
+		userRepository.save(user);
+
+		return new ModelAndView("redirect:/home");
 	}
 }

@@ -7,7 +7,7 @@
 		/* Style font */
 		body {
   			font-family: Arial, Helvetica, sans-serif;
-  			margin: 50;
+  			margin: 50px;
 		}
 
 	</style>
@@ -38,15 +38,15 @@
   
     <p><b>Reviews del usuario:</b></p>
 
-        <form method="post" action="/deleteReviews/{{user_name}}">
+        <form method="post" action="/deleteUserReviews/{{user_name}}">
         	<input type='hidden' name='_csrf' value="{{token}}"/>
         	<ul>
 			{{#review_list}}
 
-				<h4>{{placRef.name}}<h4>
+				<h4>{{placRef.name}}</h4>
 				<p>{{reviewText}}</p>
 				
-                <label>Eliminar review:</label>
+                <label>¿Eliminar review?</label>
 				<input type='submit' value='Aceptar'/>
 			
 				<br>
