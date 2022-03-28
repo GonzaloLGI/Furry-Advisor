@@ -30,4 +30,8 @@ public class DealService {
 	public void save(DealDB deal){
 		dealRepository.save(deal);
 	}
+	
+	public void delete(DealDB deal) {
+		dealRepository.delete(deal);
+	}
 }

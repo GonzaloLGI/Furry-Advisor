@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Blob;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -66,10 +69,12 @@ public class RegisterController {
 				model.addAttribute("password",userPassword);
 				model.addAttribute("newoffer",newOffer.getNewOffer());
 				
-				Path imagePathReg = IMAGES_FOLDER.resolve("unknown.jpg");
+				Resource dealPic = new ClassPathResource("/images/unknown.jpg");
+				/*Path imagePathReg = IMAGES_FOLDER.resolve("unknown.jpg");
 				File imgReg = new File(imagePathReg.toUri());
-				FileInputStream input2 = new FileInputStream(imgReg);
-				newUser.setProf_photo(BlobProxy.generateProxy(input2, Files.size(imagePathReg)));
+				FileInputStream input2 = new FileInputStream(imgReg);*/
+				//newUser.setProf_photo(BlobProxy.generateProxy(input2, Files.size(imagePathReg)));
+				newUser.setProf_photo((Blob)dealPic);
 				http.setAttribute("actUser", newUser);
 				userRepository.save(newUser);
 		

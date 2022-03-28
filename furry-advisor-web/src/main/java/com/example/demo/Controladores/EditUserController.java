@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -33,6 +34,7 @@ import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
+import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 
 @Controller
@@ -45,6 +47,9 @@ public class EditUserController {
 	
 	@Autowired
 	public UserService userRepository;
+	
+	@Autowired
+	private ReviewService reviewRepository;
 	
 	@GetMapping("/editUser/{nickname}")
 	public String editUser(Model model, HttpSession http, @PathVariable String nickname) {

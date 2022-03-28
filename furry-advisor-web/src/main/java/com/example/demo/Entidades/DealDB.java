@@ -34,7 +34,6 @@ public class DealDB {
 	
 	@JsonView(DealDB.Completo.class)
 	@Lob
-	@JsonIgnore
 	private Blob dealPic;
 	
 	@JsonView(DealDB.Completo.class)
@@ -48,6 +47,12 @@ public class DealDB {
 		setHeader(h);
 		description = desc;
 		dealPic = photo;
+	}
+	
+	public DealDB(String h, String desc, PlaceDB pl) {
+		placeOrigin = pl;
+		description = desc;
+		setHeader(h);
 	}
 
 	public int getDeal_id() {

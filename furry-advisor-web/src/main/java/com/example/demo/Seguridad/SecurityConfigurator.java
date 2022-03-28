@@ -42,6 +42,7 @@ public class SecurityConfigurator extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/image/{name}").permitAll();
 		http.authorizeRequests().antMatchers("/perfil").permitAll();
 		http.authorizeRequests().antMatchers("/addNewDeal").permitAll();
+		http.authorizeRequests().antMatchers("/deal").permitAll();
 		http.authorizeRequests().antMatchers("/prueba").permitAll();
 		http.authorizeRequests().antMatchers("/pruebaRest").permitAll();
 		

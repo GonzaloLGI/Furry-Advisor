@@ -96,10 +96,6 @@ public class PlaceDB {
 		return rating;
 	}
 
-	public void setRating(int score) {
-		this.rating = score;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -116,7 +112,6 @@ public class PlaceDB {
 		this.description = description;
 	}
 
-	@JsonIgnore
 	public void setRating(float rating) {
 		this.rating = rating;
 	}

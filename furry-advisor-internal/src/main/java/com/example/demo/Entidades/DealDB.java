@@ -49,6 +49,12 @@ public class DealDB {
 		description = desc;
 		dealPic = photo;
 	}
+	
+	public DealDB(String h, String desc, PlaceDB pl) {
+		placeOrigin = pl;
+		description = desc;
+		setHeader(h);
+	}
 
 	public int getDeal_id() {
 		return deal_id;

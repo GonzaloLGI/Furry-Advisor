@@ -49,7 +49,7 @@ public class LoginController {
 	 }
 	 
 	 //ESTO ES INUTIL CON SPRING SECURITY. BORRAR
-	 @GetMapping("/accessProfile")
+	 /*@GetMapping("/accessProfile")
 		public String login(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
 		 
 			List<UserDB> userAux = userRepository.findByNickname(userName);
@@ -76,5 +76,5 @@ public class LoginController {
 				
 			}
 			
-	 }
+	 }*/
 }

@@ -19,6 +19,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //Clase de la entidad User en la BD
 @Entity
@@ -36,7 +37,9 @@ public class UserDB {
 	
 	private String email;
 	
-	@OneToMany(mappedBy = "userRef", /*fetch=FetchType.EAGER,*/ cascade=CascadeType.ALL, orphanRemoval = true)
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@OneToMany(mappedBy = "userRef",fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+	//@ElementCollection(fetch=FetchType.EAGER)
 	private List<ReviewDB> reviews;
 	
 	@ElementCollection(fetch=FetchType.EAGER)

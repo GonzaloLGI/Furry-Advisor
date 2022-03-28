@@ -34,11 +34,11 @@ public class CreateDeals {
 		return "create_deal";
 	}
 	
-	@PostMapping("/addNewDeal/{place_name}")
+	/*@PostMapping("/addNewDeal/{place_name}")
 	public ModelAndView addDeal(Model model, @RequestParam String header, @RequestParam String description, @PathVariable String place_name) {
 		PlaceDB place = placeRepository.findByName(place_name).get(0);
 		DealDB newDeal = new DealDB(header,description,null,place);
 		dealRepository.save(newDeal);
 		return new ModelAndView(("redirect:/place/"+place_name));
-	}
+	}*/
 }
