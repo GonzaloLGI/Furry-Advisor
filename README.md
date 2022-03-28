@@ -117,11 +117,11 @@ Leyenda de colores:
 
 En máquina original:
 - Instalar JDK version 17 o superior de Java en el sistema que vaya a compilar.
-	- Instalar Maven.
-	- Crear Variables del Entorno JAVA_HOME y modificar Path para añadir la ruta a la carpeta Bin de Maven y del JDK.
-	- Abrir PowerShell en la carpeta raiz del proyecto y ejecutar el comando "mvn clean package" que creará un ejecutable en la carpeta Target.
+- Instalar Maven.
+- Crear Variables del Entorno JAVA_HOME y modificar Path para añadir la ruta a la carpeta Bin de Maven y del JDK.
+- Abrir PowerShell en la carpeta raiz del proyecto y ejecutar el comando "mvn clean package" que creará un ejecutable en la carpeta Target.
 - Repetir paso anterior con el proyecto del servicio interno.
-	- Pasar los ejecutables creados a la máquina virtual (por ejemplo subirlo a drive y descargarlo desde la maquina virtual)
+- Pasar los ejecutables creados a la máquina virtual (por ejemplo subirlo a drive y descargarlo desde la maquina virtual)
   
   
 
