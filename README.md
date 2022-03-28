@@ -116,28 +116,28 @@ Leyenda de colores:
 ## Despliege de aplicación en Máquina Virtual ##
 En máquina original:
   Instalar JDK version 17 o superior de Java en el sistema que vaya a compilar.
-	Instalar Maven.
-	Crear Variables del Entorno JAVA_HOME y modificar Path para añadir la ruta a la carpeta Bin de Maven y del JDK.
-	Abrir PowerShell en la carpeta raiz del proyecto y ejecutar el comando "mvn clean package" que creará un ejecutable en la carpeta Target.
+	-Instalar Maven.
+	-Crear Variables del Entorno JAVA_HOME y modificar Path para añadir la ruta a la carpeta Bin de Maven y del JDK.
+	-Abrir PowerShell en la carpeta raiz del proyecto y ejecutar el comando "mvn clean package" que creará un ejecutable en la carpeta Target.
   Repetir paso anterior con el proyecto del servicio interno.
-	Pasar los ejecutables creados a la máquina virtual (por ejemplo subirlo a drive y descargarlo desde la maquina virtual)
+	-Pasar los ejecutables creados a la máquina virtual (por ejemplo subirlo a drive y descargarlo desde la maquina virtual)
   
 
 En máquina virtual:
   Ejecutar comando sudo apt update
-	Instalar el JDK con comando sudo apt install openjdk-11-jre-headless
-	Instalar Mysql con comando sudo apt install mysql-server-8.0
-	Iniciar sesion con sudo mysql -u root (el sudo solo la primera vez) 
-	Cambiar el usuario y la contraseña de Mysql mediante ALTER USER 'root'@'locahost' IDENTIFIED WITH mysql_native_password BY 'nuevacontraseñafurry';
-	Utilizar comando FLUSH PRIVILEGES;
-	Salir de mysql para comprobar el cambio con exit;
-	Iniciar sesion en mysql con el comando mysql -u root -p y la contraseña nuevacontraseñafurry.
-	Una vez dentro, crear base de datos con el comando create database posts;  (se pueden ver las bases de datos creadas con el comando show databases)
-	Utilizar comando use posts;
-	Salir con exit; 
-	Ejecutar comando java -jar "furry-advisor-internal.jar"
+	-Instalar el JDK con comando sudo apt install openjdk-11-jre-headless
+	-Instalar Mysql con comando sudo apt install mysql-server-8.0
+	-Iniciar sesion con sudo mysql -u root (el sudo solo la primera vez) 
+	-Cambiar el usuario y la contraseña de Mysql mediante ALTER USER 'root'@'locahost' IDENTIFIED WITH mysql_native_password BY 'nuevacontraseñafurry';
+	-Utilizar comando FLUSH PRIVILEGES;
+	-Salir de mysql para comprobar el cambio con exit;
+	-Iniciar sesion en mysql con el comando mysql -u root -p y la contraseña nuevacontraseñafurry.
+	-Una vez dentro, crear base de datos con el comando create database posts;  (se pueden ver las bases de datos creadas con el comando show databases)
+	-Utilizar comando use posts;
+	-Salir con exit; 
+	-Ejecutar comando java -jar "furry-advisor-internal.jar"
   Abrir otro terminal
-	Ejecutar comando java -jar "furry-advisor.jar" (es posible que haya que ejecutarlo más de una vez para que no aparezca ningún error)
+	-Ejecutar comando java -jar "furry-advisor.jar" (es posible que haya que ejecutarlo más de una vez para que no aparezca ningún error)
 
 Una vez ejecutados ambos, podemos disfrutar de la mejor (y única) web de tursimo furry! :P
 
