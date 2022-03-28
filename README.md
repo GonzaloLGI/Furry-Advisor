@@ -130,13 +130,13 @@ En máquina virtual:
 	- Instalar el JDK con comando sudo apt install openjdk-11-jre-headless
 	- Instalar Mysql con comando sudo apt install mysql-server-8.0
 	- Iniciar sesion con sudo mysql -u root (el sudo solo la primera vez) 
-	- Cambiar el usuario y la contraseña de Mysql mediante ALTER USER 'root'@'locahost' IDENTIFIED WITH mysql_native_password BY 'nuevacontraseñafurry';
-	- Utilizar comando FLUSH PRIVILEGES;
-	- Salir de mysql para comprobar el cambio con exit;
+		- Cambiar el usuario y la contraseña de Mysql mediante ALTER USER 'root'@'locahost' IDENTIFIED WITH mysql_native_password BY 'nuevacontraseñafurry';
+		- Utilizar comando FLUSH PRIVILEGES;
+		- Salir de mysql para comprobar el cambio con exit;
 	- Iniciar sesion en mysql con el comando mysql -u root -p y la contraseña nuevacontraseñafurry.
-	- Una vez dentro, crear base de datos con el comando create database posts;  (se pueden ver las bases de datos creadas con el comando show databases)
-	- Utilizar comando use posts;
-	- Salir con exit; 
+		- Crear base de datos con el comando create database posts;  (se pueden ver las bases de datos creadas con el comando show databases)
+		- Utilizar comando use posts;
+		- Salir con exit; 
 	- Ejecutar comando java -jar "furry-advisor-internal.jar"
 	- Abrir otro terminal
 	- Ejecutar comando java -jar "furry-advisor.jar" (es posible que haya que ejecutarlo más de una vez para que no aparezca ningún error)
