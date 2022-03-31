@@ -1,13 +1,11 @@
 package com.example.demo.Controladores;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Blob;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.NewOffer;
-import com.example.demo.Entidades.PlaceDB;
-import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
-import com.example.demo.Interfaces.PlaceDBInterface;
-import com.example.demo.Interfaces.ReviewDBInterface;
-import com.example.demo.Interfaces.UserDBInterface;
-import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 
 //Clase que se encarga de gestionar las periciones hacia Registe/Sign Up
@@ -66,18 +56,20 @@ public class RegisterController {
 				String newPassword = encoder.encode(userPassword);
 				UserDB newUser = new UserDB(userName,newPassword,null,null,"ROLE_USER");
 				component.setLoggedUser(newUser);
-				userRepository.save(newUser);
+				//userRepository.save(newUser);
 				
 				model.addAttribute("name", userName);
 				model.addAttribute("password",userPassword);
 				model.addAttribute("newoffer",newOffer.getNewOffer());
 				
-				Resource dealPic = new ClassPathResource("/images/unknown.jpg");
+				Resource dealPic = new ClassPathResource("images/unknown.jpg");
 				/*Path imagePathReg = IMAGES_FOLDER.resolve("unknown.jpg");
 				File imgReg = new File(imagePathReg.toUri());
 				FileInputStream input2 = new FileInputStream(imgReg);*/
 				//newUser.setProf_photo(BlobProxy.generateProxy(input2, Files.size(imagePathReg)));
-				newUser.setProf_photo((Blob)dealPic);
+				InputStream is = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+				//FileInputStream picInput = (FileInputStream) dealPic.getInputStream();
+				//newUser.setProf_photo(BlobProxy.generateProxy(is, Files.size(is)));
 				component.setLoggedUser(newUser);
 				userRepository.save(newUser);
 		
