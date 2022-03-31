@@ -14,12 +14,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.Controladores.UserComponent;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Services.UserService;
 
 @Component
 public class UserRepositoryAuthenticationProvider implements AuthenticationProvider {
 
+	@Autowired
+	private UserComponent component;
+	
 	@Autowired
 	private UserService userRepository;
 	
@@ -34,7 +38,7 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
 			throw new BadCredentialsException("Wrong password");
 		}
-	 
+		component.setLoggedUser(user);
 		List<GrantedAuthority> roles = new ArrayList<>();
 		for (String role : user.getRoles()) {
 			roles.add(new SimpleGrantedAuthority(role));

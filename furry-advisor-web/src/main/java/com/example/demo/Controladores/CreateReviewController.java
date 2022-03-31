@@ -6,9 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.NewOffer;
-import com.example.demo.Entidades.DealDB;
-import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
-import com.example.demo.Services.DealService;
-import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
-import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 
 //Clase que se encarga de gestionar las peticiones hacia CreateReview
@@ -36,6 +29,8 @@ public class CreateReviewController {
 
 	@Autowired
 	public NewOffer newOffer;
+	@Autowired
+	private UserComponent component;
 	
 	@Autowired
 	private PlaceService placeRepository;
@@ -65,11 +60,11 @@ public class CreateReviewController {
 	
 	
 	@PostMapping("/confirmReview")
-	public ModelAndView confirmReview(HttpSession http, Model model, @RequestParam int rating,
+	public ModelAndView confirmReview(Model model, @RequestParam int rating,
 			@RequestParam String review) throws ParseException {
 		Date dt = new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-20");
 		ReviewDB rev = new ReviewDB(rating,review,dt,0,null,null);
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 		
 		rev.setPlaceOwn(pl);
 		rev.setUserOwn(actualUser);
@@ -79,7 +74,6 @@ public class CreateReviewController {
 		actualUser.setReviews(userReviews);
 		
 		userRepository.save(actualUser);
-		http.setAttribute("actUser", actualUser);
 		
 		return new ModelAndView("redirect:/home");
 	}
