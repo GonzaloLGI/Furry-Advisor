@@ -36,10 +36,8 @@ public class UserDB {
 	
 	private String email;
 	
-	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "userRef", cascade=CascadeType.ALL, orphanRemoval = true)
-	//@ElementCollection(fetch=FetchType.EAGER)
 	private List<ReviewDB> reviews;
 	
 	@ElementCollection(fetch=FetchType.EAGER)

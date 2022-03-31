@@ -1,54 +1,37 @@
 package com.example.demo.Controladores;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Date;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.http.HttpClient;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
-import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.hibernate.engine.jdbc.BlobProxy;
 //import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +39,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.NewOffer;
@@ -67,19 +49,13 @@ import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.PlaceTypeDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
-import com.example.demo.Interfaces.DealDBInterface;
-import com.example.demo.Interfaces.PlaceDBInterface;
-import com.example.demo.Interfaces.ReviewDBInterface;
-import com.example.demo.Interfaces.UserDBInterface;
 import com.example.demo.Services.DealService;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
 import com.example.demo.Services.PlaceTypeService;
 import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Home
 //y de inicializar las entidades ejemplo usadas en la aplicación web
@@ -93,6 +69,9 @@ public class HomeController {
 	
 	@Autowired
 	public NewOffer newOffer;
+	
+	@Autowired
+	private UserComponent component;
 	
 	@Autowired
 	private PlaceService placeRepository;
@@ -314,7 +293,8 @@ public class HomeController {
 
 
 	@GetMapping("/home")
-	public String home(Model model,HttpSession http) {UserDB actualUser = (UserDB)http.getAttribute("actUser");
+	public String home(Model model,HttpSession http) {
+		UserDB actualUser = component.getLoggedUser();
 		model.addAttribute("user",actualUser);
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		
@@ -360,7 +340,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/perfil")
-	public ResponseEntity<Object> perfil(HttpSession http, Model model) throws MalformedURLException, SQLException {
+	public ResponseEntity<Object> perfil(Model model) throws MalformedURLException, SQLException {
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		int maxPlace = deals.size();
         int minPlace = 0;

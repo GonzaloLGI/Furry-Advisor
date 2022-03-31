@@ -1,13 +1,9 @@
 package com.example.demo.Controladores;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,15 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
-import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
-import com.example.demo.Interfaces.DealDBInterface;
-import com.example.demo.Interfaces.PlaceDBInterface;
-import com.example.demo.Interfaces.ReviewDBInterface;
-import com.example.demo.Interfaces.UserDBInterface;
 import com.example.demo.Services.DealService;
-import com.example.demo.Services.PlaceService;
 import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 
@@ -48,6 +37,9 @@ public class EditProfileController implements CommandLineRunner {
 
 	@Autowired
 	public NewOffer newOffer;
+	
+	@Autowired
+	private UserComponent component;
 
 	@Autowired
 	private UserService userRepository;
@@ -61,7 +53,7 @@ public class EditProfileController implements CommandLineRunner {
 	@RequestMapping("/edit_profile")
 	public String edit_profile(HttpSession http, Model model) {
 	 
-		UserDB aux = (UserDB)http.getAttribute("actUser");
+		UserDB aux = component.getLoggedUser();
 		UserDB actualUser = userRepository.findByNickname(aux.getNickname()).get(0);
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
 		model.addAttribute("userName",actualUser.getNickname());
@@ -80,7 +72,7 @@ public class EditProfileController implements CommandLineRunner {
 	@PostMapping("/changeNickname")
 	public ModelAndView changeNickname(HttpSession http, Model model, @RequestParam String newNickname) {
 	 
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 				
 		if(!newNickname.equals("")) {
 			actualUser.setNickname(newNickname);
@@ -97,7 +89,7 @@ public class EditProfileController implements CommandLineRunner {
 	
 	@PostMapping("/upload_image")
 	public ModelAndView uploadImage(HttpSession http,Model model, @RequestParam MultipartFile image) throws IOException {
-		UserDB user = (UserDB)http.getAttribute("actUser");
+		UserDB user = component.getLoggedUser();
 		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
 		userRepository.save(user);
 		
@@ -119,7 +111,7 @@ public class EditProfileController implements CommandLineRunner {
 	@GetMapping("/deleteReviews")
 	public ModelAndView deleteReviews(HttpSession http, Model model) {
 		System.out.println("alo");
-		UserDB aux = (UserDB)http.getAttribute("actUser");
+		UserDB aux = component.getLoggedUser();
 		UserDB actualUser = userRepository.findByNickname(aux.getNickname()).get(0);
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(actualUser);
 		
@@ -135,7 +127,7 @@ public class EditProfileController implements CommandLineRunner {
 	
 	@GetMapping("/imageEditProfile")
 	public ResponseEntity<Object> imageEditProfile(HttpSession http, Model model) throws MalformedURLException, SQLException {
-		UserDB user = (UserDB)http.getAttribute("actUser");
+		UserDB user = component.getLoggedUser();
 		if (user.getProf_photo() != null) {
 			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
 			return ResponseEntity.ok()

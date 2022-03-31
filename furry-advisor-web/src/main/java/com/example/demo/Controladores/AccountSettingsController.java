@@ -52,11 +52,14 @@ public class AccountSettingsController implements CommandLineRunner {
 	private UserService userRepository;
 	
 	@Autowired
+	private UserComponent component;
+	
+	@Autowired
 	private DealService dealRepository;
 	
 	@GetMapping("/account_settings")
 	public String account_settings( Model model,HttpSession http) {
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 		model.addAttribute("user",actualUser);
 		model.addAttribute("place",http.getAttribute("place"));
 	    model.addAttribute("offer",http.getAttribute("offer"));
@@ -66,7 +69,7 @@ public class AccountSettingsController implements CommandLineRunner {
 	@PostMapping("/changePassword")
 	public ModelAndView changePassword(HttpSession http, Model model, @RequestParam String newPassword) {
 	 
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 				
 		if(!newPassword.equals("")) {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -108,7 +111,7 @@ public class AccountSettingsController implements CommandLineRunner {
 	@PostMapping("/delete")
 	public ModelAndView delete(HttpSession http, Model model) {
 		
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 		userRepository.delete(actualUser);
 		
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();

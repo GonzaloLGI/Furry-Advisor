@@ -2,8 +2,6 @@ package com.example.demo.Controladores;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +22,7 @@ public class SearchAdminController {
 	private UserService userRepository;
 	
 	@GetMapping("/userSearch")
-	public String userSearch(Model model,HttpSession http) {
+	public String userSearch(Model model) {
         List<UserDB> allUsers = userRepository.findAll();
 		model.addAttribute("users_list", allUsers);
 		model.addAttribute("newoffer",newOffer.getNewOffer());
@@ -32,7 +30,7 @@ public class SearchAdminController {
 	}
 	
 	@GetMapping("/searchByName")
-	public String search(Model model, @RequestParam String filter, HttpSession http){
+	public String search(Model model, @RequestParam String filter){
 		List<UserDB> userName = userRepository.findByNickname(filter);
 		model.addAttribute("users_list",userName);
 	

@@ -35,6 +35,9 @@ import com.example.demo.Services.PlaceTypeService;
 public class SearchController implements CommandLineRunner {
 	
 	@Autowired
+	private UserComponent component;
+	
+	@Autowired
 	private PlaceService placeRepository;
 	
 	@Autowired
@@ -53,7 +56,7 @@ public class SearchController implements CommandLineRunner {
 	
 	@GetMapping("/searchPlatform")
 	public String searchPlatform(Model model,HttpSession http) {
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 		model.addAttribute("user",actualUser);
 		List<LocationDB> allLocations = locationRepository.findAllByOrderByName();
 		model.addAttribute("location_list", allLocations);

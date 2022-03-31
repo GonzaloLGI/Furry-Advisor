@@ -43,13 +43,16 @@ public class RegisterController {
 	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
 
 	@Autowired
+	private UserComponent component;
+	
+	@Autowired
 	public NewOffer newOffer;
 	
 	@Autowired
 	private UserService userRepository;
 
 	@PostMapping("/createProfile")
-	public ModelAndView profile(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) throws IOException {
+	public ModelAndView profile(Model model, @RequestParam String userName, @RequestParam String userPassword) throws IOException {
 	 
 		List<UserDB> userAux = userRepository.findByNickname(userName);
 		System.out.println("Esto es el registro de un nuevo usuario");
@@ -62,7 +65,7 @@ public class RegisterController {
 				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 				String newPassword = encoder.encode(userPassword);
 				UserDB newUser = new UserDB(userName,newPassword,null,null,"ROLE_USER");
-				http.setAttribute("actUser", newUser);
+				component.setLoggedUser(newUser);
 				userRepository.save(newUser);
 				
 				model.addAttribute("name", userName);
@@ -75,7 +78,7 @@ public class RegisterController {
 				FileInputStream input2 = new FileInputStream(imgReg);*/
 				//newUser.setProf_photo(BlobProxy.generateProxy(input2, Files.size(imagePathReg)));
 				newUser.setProf_photo((Blob)dealPic);
-				http.setAttribute("actUser", newUser);
+				component.setLoggedUser(newUser);
 				userRepository.save(newUser);
 		
 				return new ModelAndView("redirect:/home");

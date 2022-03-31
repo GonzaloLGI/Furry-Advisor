@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,8 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
@@ -26,9 +23,6 @@ import com.example.demo.Entidades.LocationDB;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
 import com.example.demo.Entidades.UserDB;
-import com.example.demo.Interfaces.DealDBInterface;
-import com.example.demo.Interfaces.LocationDBInterface;
-import com.example.demo.Interfaces.PlaceDBInterface;
 import com.example.demo.Services.DealService;
 import com.example.demo.Services.LocationService;
 import com.example.demo.Services.PlaceService;
@@ -39,6 +33,9 @@ import com.example.demo.Services.UserService;
 @Controller
 public class PlaceController {
 
+	@Autowired
+	private UserComponent component;
+	
 	@Autowired
 	public NewOffer newOffer;
 
@@ -62,7 +59,7 @@ public class PlaceController {
 	
 	@GetMapping("/place/{place_name}")
 	public String place(Model model,HttpSession http, @PathVariable String place_name, HttpServletRequest request) {  
-		UserDB actualUser = (UserDB)http.getAttribute("actUser");
+		UserDB actualUser = component.getLoggedUser();
 		model.addAttribute("user",actualUser);
 	    List<PlaceDB> places = placeRepository.findByName(place_name);
 	    if(places.size()>0) {
@@ -102,7 +99,7 @@ public class PlaceController {
 	}
 	
 	@GetMapping("/dealImage/{header}")
-	public ResponseEntity<Object> dealImage(HttpSession http, Model model, @PathVariable String header) throws MalformedURLException, SQLException {
+	public ResponseEntity<Object> dealImage(Model model, @PathVariable String header) throws MalformedURLException, SQLException {
 		List<DealDB> deals = dealRepository.findByHeader(header);
 		DealDB dealDB1 = deals.get(0);
 		System.out.println(dealDB1.getHeader());
@@ -119,7 +116,7 @@ public class PlaceController {
 		
 	}
 	@GetMapping("/userImage/{header}")
-	public ResponseEntity<Object> userImage(HttpSession http, Model model, @PathVariable String header) throws MalformedURLException, SQLException {
+	public ResponseEntity<Object> userImage(Model model, @PathVariable String header) throws MalformedURLException, SQLException {
 		List<UserDB> profiles = userRepository.findByNickname(header);
 		UserDB user = profiles.get(0);
 		if (user.getProf_photo() != null) {

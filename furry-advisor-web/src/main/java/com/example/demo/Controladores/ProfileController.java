@@ -46,6 +46,9 @@ import com.example.demo.Services.UserService;
 public class ProfileController implements CommandLineRunner {
 
 	@Autowired
+	private UserComponent component;
+	
+	@Autowired
 	public NewOffer newOffer;
 
 	@Autowired
@@ -63,7 +66,7 @@ public class ProfileController implements CommandLineRunner {
 		UserDB actualUser = userRepository.findByNickname(auth.getName()).get(0);
 
 		model.addAttribute("newoffer",newOffer.getNewOffer());
-		http.setAttribute("actUser", actualUser);
+		component.setLoggedUser(actualUser);
 		model.addAttribute("name", actualUser.getNickname());
 		model.addAttribute("password",actualUser.getPassword());
 		model.addAttribute("user",actualUser);
@@ -85,7 +88,7 @@ public class ProfileController implements CommandLineRunner {
 	
 	@GetMapping("/image")
 	public ResponseEntity<Object> downloadImage(HttpSession http, Model model) throws MalformedURLException, SQLException {
-		UserDB user = (UserDB)http.getAttribute("actUser");
+		UserDB user = component.getLoggedUser();
 		if (user.getProf_photo() != null) {
 			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
 			return ResponseEntity.ok()
