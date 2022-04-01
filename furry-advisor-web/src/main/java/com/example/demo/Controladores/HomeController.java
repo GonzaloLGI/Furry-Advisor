@@ -224,73 +224,87 @@ public class HomeController {
 			userRepository.save(use2);
 			/*File img3 = new File(imagePath2.toUri());
 			FileInputStream input3 = new FileInputStream(img3);*/
-			use3.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
+			InputStream input3 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+			use3.setProf_photo(BlobProxy.generateProxy(input3, input3.available()));
 			userRepository.save(use3);
 			/*File img4 = new File(imagePath2.toUri());
 			FileInputStream input4 = new FileInputStream(img4);*/
-			use4.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
+			InputStream input4 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+			use4.setProf_photo(BlobProxy.generateProxy(input4, input4.available()));
 			userRepository.save(use4);
 			/*File img5 = new File(imagePath2.toUri());
 			FileInputStream input5 = new FileInputStream(img5);*/
-			use5.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
+			InputStream input5 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+			use5.setProf_photo(BlobProxy.generateProxy(input5, input5.available()));
 			userRepository.save(use5);
 			/*File img6 = new File(imagePath2.toUri());
 			FileInputStream input6 = new FileInputStream(img6);*/
-			use6.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
+			InputStream input6 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+			use6.setProf_photo(BlobProxy.generateProxy(input6, input6.available()));
 			userRepository.save(use6);
 			
-			InputStream input3 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			InputStream input7 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
 			/*Path imagePath3 = IMAGES_FOLDER.resolve("restaurante.jpg");
 			File img7 = new File(imagePath3.toUri());
 			FileInputStream input7 = new FileInputStream(img7);*/
-			pla1.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			pla1.setPlacePic(BlobProxy.generateProxy(input7, input7.available()));
 			placeRepository.save(pla1);
 			/*File img8 = new File(imagePath3.toUri());
 			FileInputStream input8 = new FileInputStream(img8);*/
-			pla2.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			InputStream input8 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			pla2.setPlacePic(BlobProxy.generateProxy(input8, input8.available()));
 			placeRepository.save(pla2);
 			/*File img9 = new File(imagePath3.toUri());
 			FileInputStream input9 = new FileInputStream(img9);*/
-			pla3.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			InputStream input9 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			pla3.setPlacePic(BlobProxy.generateProxy(input9, input9.available()));
 			placeRepository.save(pla3);
 			/*File img10 = new File(imagePath3.toUri());
 			FileInputStream input10 = new FileInputStream(img10);*/
-			pla4.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			InputStream input10 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			pla4.setPlacePic(BlobProxy.generateProxy(input10, input10.available()));
 			placeRepository.save(pla4);
 			/*File img11 = new File(imagePath3.toUri());
 			FileInputStream input11 = new FileInputStream(img11);*/
-			pla5.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			InputStream input11 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			pla5.setPlacePic(BlobProxy.generateProxy(input11, input11.available()));
 			placeRepository.save(pla5);
 			/*File img12 = new File(imagePath3.toUri());
 			FileInputStream input12 = new FileInputStream(img12);*/
-			pla6.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			InputStream input12 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			pla6.setPlacePic(BlobProxy.generateProxy(input12, input12.available()));
 			placeRepository.save(pla6);
 			/*File img13 = new File(imagePath3.toUri());
 			FileInputStream input13 = new FileInputStream(img13);*/
-			pla7.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
+			InputStream input13 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			pla7.setPlacePic(BlobProxy.generateProxy(input13, input13.available()));
 			placeRepository.save(pla7);
 			
-			InputStream input4 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
+			InputStream input14 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
 			/*Path imagePath4 = IMAGES_FOLDER.resolve("oferta2.jpg");
 			File img14 = new File(imagePath4.toUri());
 			FileInputStream input14 = new FileInputStream(img14);*/
-			deal1.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
+			deal1.setDealPic(BlobProxy.generateProxy(input14, input14.available()));
 			dealRepository.save(deal1);
 			/*File img15 = new File(imagePath4.toUri());
 			FileInputStream input15 = new FileInputStream(img15);*/
-			deal2.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
+			InputStream input15 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
+			deal2.setDealPic(BlobProxy.generateProxy(input15, input15.available()));
 			dealRepository.save(deal2);
 			/*File img16 = new File(imagePath4.toUri());
 			FileInputStream input16 = new FileInputStream(img16);*/
-			deal3.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
+			InputStream input16 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
+			deal3.setDealPic(BlobProxy.generateProxy(input16, input16.available()));
 			dealRepository.save(deal3);
 			/*File img17 = new File(imagePath4.toUri());
 			FileInputStream input17 = new FileInputStream(img17);*/
-			deal4.setDealPic(BlobProxy.generateProxy(input4,input4.available()));
+			InputStream input17 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
+			deal4.setDealPic(BlobProxy.generateProxy(input17,input17.available()));
 			dealRepository.save(deal4);
 			/*File img18 = new File(imagePath4.toUri());
 			FileInputStream input18 = new FileInputStream(img18);*/
-			deal5.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
+			InputStream input18 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
+			deal5.setDealPic(BlobProxy.generateProxy(input18, input18.available()));
 			dealRepository.save(deal5);
 		}
 	}

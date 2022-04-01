@@ -3,6 +3,7 @@ package com.example.demo.Controladores;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -77,11 +78,12 @@ public class EditUserController {
 	public ModelAndView uploadImage(@PathVariable String nickname, Model model) throws IOException {
 		UserDB user = userRepository.findByNickname(nickname).get(0);
 		
-		Path image_path = IMAGES_FOLDER.resolve("unknown.jpg");
+		/*Path image_path = IMAGES_FOLDER.resolve("unknown.jpg");
 		File imagen = new File(image_path.toUri());
-		FileInputStream input = new FileInputStream(imagen);
+		FileInputStream input = new FileInputStream(imagen);*/
+		InputStream input1 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
 		
-		user.setProf_photo(BlobProxy.generateProxy(input, Files.size(image_path)));
+		user.setProf_photo(BlobProxy.generateProxy(input1, input1.available()));
 		userRepository.save(user);
 		
 		return new ModelAndView(("redirect:/editUser/"+nickname));
