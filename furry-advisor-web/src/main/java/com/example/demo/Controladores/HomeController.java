@@ -3,6 +3,7 @@ package com.example.demo.Controladores;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -209,84 +210,87 @@ public class HomeController {
 			userRepository.save(use5);
 			userRepository.save(use6);
 			
-			
-			Path imagePath1 = IMAGES_FOLDER.resolve("perfil1.jpg");
+			InputStream input1 = getClass().getClassLoader().getResourceAsStream("images/perfil1.jpg");
+			InputStream input2 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+			/*Path imagePath1 = IMAGES_FOLDER.resolve("perfil1.jpg");
 			File img1 = new File(imagePath1.toUri());
-			FileInputStream input1 = new FileInputStream(img1);
-			use1.setProf_photo(BlobProxy.generateProxy(input1, Files.size(imagePath1)));
+			FileInputStream input1 = new FileInputStream(img1);*/
+			use1.setProf_photo(BlobProxy.generateProxy(input1,input1.available()));
 			userRepository.save(use1);
-			Path imagePath2 = IMAGES_FOLDER.resolve("unknown.jpg");
+			/*Path imagePath2 = IMAGES_FOLDER.resolve("unknown.jpg");
 			File img2 = new File(imagePath2.toUri());
-			FileInputStream input2 = new FileInputStream(img2);
-			use2.setProf_photo(BlobProxy.generateProxy(input2, Files.size(imagePath2)));
+			FileInputStream input2 = new FileInputStream(img2);*/
+			use2.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
 			userRepository.save(use2);
-			File img3 = new File(imagePath2.toUri());
-			FileInputStream input3 = new FileInputStream(img3);
-			use3.setProf_photo(BlobProxy.generateProxy(input3, Files.size(imagePath2)));
+			/*File img3 = new File(imagePath2.toUri());
+			FileInputStream input3 = new FileInputStream(img3);*/
+			use3.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
 			userRepository.save(use3);
-			File img4 = new File(imagePath2.toUri());
-			FileInputStream input4 = new FileInputStream(img4);
-			use4.setProf_photo(BlobProxy.generateProxy(input4, Files.size(imagePath2)));
+			/*File img4 = new File(imagePath2.toUri());
+			FileInputStream input4 = new FileInputStream(img4);*/
+			use4.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
 			userRepository.save(use4);
-			File img5 = new File(imagePath2.toUri());
-			FileInputStream input5 = new FileInputStream(img5);
-			use5.setProf_photo(BlobProxy.generateProxy(input5, Files.size(imagePath2)));
+			/*File img5 = new File(imagePath2.toUri());
+			FileInputStream input5 = new FileInputStream(img5);*/
+			use5.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
 			userRepository.save(use5);
-			File img6 = new File(imagePath2.toUri());
-			FileInputStream input6 = new FileInputStream(img6);
-			use6.setProf_photo(BlobProxy.generateProxy(input6, Files.size(imagePath2)));
+			/*File img6 = new File(imagePath2.toUri());
+			FileInputStream input6 = new FileInputStream(img6);*/
+			use6.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
 			userRepository.save(use6);
 			
-			Path imagePath3 = IMAGES_FOLDER.resolve("restaurante.jpg");
+			InputStream input3 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
+			/*Path imagePath3 = IMAGES_FOLDER.resolve("restaurante.jpg");
 			File img7 = new File(imagePath3.toUri());
-			FileInputStream input7 = new FileInputStream(img7);
-			pla1.setPlacePic(BlobProxy.generateProxy(input7, Files.size(imagePath3)));
+			FileInputStream input7 = new FileInputStream(img7);*/
+			pla1.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla1);
-			File img8 = new File(imagePath3.toUri());
-			FileInputStream input8 = new FileInputStream(img8);
-			pla2.setPlacePic(BlobProxy.generateProxy(input8, Files.size(imagePath3)));
+			/*File img8 = new File(imagePath3.toUri());
+			FileInputStream input8 = new FileInputStream(img8);*/
+			pla2.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla2);
-			File img9 = new File(imagePath3.toUri());
-			FileInputStream input9 = new FileInputStream(img9);
-			pla3.setPlacePic(BlobProxy.generateProxy(input9, Files.size(imagePath3)));
+			/*File img9 = new File(imagePath3.toUri());
+			FileInputStream input9 = new FileInputStream(img9);*/
+			pla3.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla3);
-			File img10 = new File(imagePath3.toUri());
-			FileInputStream input10 = new FileInputStream(img10);
-			pla4.setPlacePic(BlobProxy.generateProxy(input10, Files.size(imagePath3)));
+			/*File img10 = new File(imagePath3.toUri());
+			FileInputStream input10 = new FileInputStream(img10);*/
+			pla4.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla4);
-			File img11 = new File(imagePath3.toUri());
-			FileInputStream input11 = new FileInputStream(img11);
-			pla5.setPlacePic(BlobProxy.generateProxy(input11, Files.size(imagePath3)));
+			/*File img11 = new File(imagePath3.toUri());
+			FileInputStream input11 = new FileInputStream(img11);*/
+			pla5.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla5);
-			File img12 = new File(imagePath3.toUri());
-			FileInputStream input12 = new FileInputStream(img12);
-			pla6.setPlacePic(BlobProxy.generateProxy(input12, Files.size(imagePath3)));
+			/*File img12 = new File(imagePath3.toUri());
+			FileInputStream input12 = new FileInputStream(img12);*/
+			pla6.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla6);
-			File img13 = new File(imagePath3.toUri());
-			FileInputStream input13 = new FileInputStream(img13);
-			pla7.setPlacePic(BlobProxy.generateProxy(input13, Files.size(imagePath3)));
+			/*File img13 = new File(imagePath3.toUri());
+			FileInputStream input13 = new FileInputStream(img13);*/
+			pla7.setPlacePic(BlobProxy.generateProxy(input3, input3.available()));
 			placeRepository.save(pla7);
 			
-			Path imagePath4 = IMAGES_FOLDER.resolve("oferta2.jpg");
+			InputStream input4 = getClass().getClassLoader().getResourceAsStream("images/oferta2.jpg");
+			/*Path imagePath4 = IMAGES_FOLDER.resolve("oferta2.jpg");
 			File img14 = new File(imagePath4.toUri());
-			FileInputStream input14 = new FileInputStream(img14);
-			deal1.setDealPic(BlobProxy.generateProxy(input14, Files.size(imagePath4)));
+			FileInputStream input14 = new FileInputStream(img14);*/
+			deal1.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
 			dealRepository.save(deal1);
-			File img15 = new File(imagePath4.toUri());
-			FileInputStream input15 = new FileInputStream(img15);
-			deal2.setDealPic(BlobProxy.generateProxy(input15, Files.size(imagePath4)));
+			/*File img15 = new File(imagePath4.toUri());
+			FileInputStream input15 = new FileInputStream(img15);*/
+			deal2.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
 			dealRepository.save(deal2);
-			File img16 = new File(imagePath4.toUri());
-			FileInputStream input16 = new FileInputStream(img16);
-			deal3.setDealPic(BlobProxy.generateProxy(input16, Files.size(imagePath4)));
+			/*File img16 = new File(imagePath4.toUri());
+			FileInputStream input16 = new FileInputStream(img16);*/
+			deal3.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
 			dealRepository.save(deal3);
-			File img17 = new File(imagePath4.toUri());
-			FileInputStream input17 = new FileInputStream(img17);
-			deal4.setDealPic(BlobProxy.generateProxy(input17, Files.size(imagePath4)));
+			/*File img17 = new File(imagePath4.toUri());
+			FileInputStream input17 = new FileInputStream(img17);*/
+			deal4.setDealPic(BlobProxy.generateProxy(input4,input4.available()));
 			dealRepository.save(deal4);
-			File img18 = new File(imagePath4.toUri());
-			FileInputStream input18 = new FileInputStream(img18);
-			deal5.setDealPic(BlobProxy.generateProxy(input18, Files.size(imagePath4)));
+			/*File img18 = new File(imagePath4.toUri());
+			FileInputStream input18 = new FileInputStream(img18);*/
+			deal5.setDealPic(BlobProxy.generateProxy(input4, input4.available()));
 			dealRepository.save(deal5);
 		}
 	}

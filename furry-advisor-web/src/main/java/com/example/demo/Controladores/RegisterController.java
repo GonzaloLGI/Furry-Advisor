@@ -56,20 +56,14 @@ public class RegisterController {
 				String newPassword = encoder.encode(userPassword);
 				UserDB newUser = new UserDB(userName,newPassword,null,null,"ROLE_USER");
 				component.setLoggedUser(newUser);
-				//userRepository.save(newUser);
+				userRepository.save(newUser);
 				
 				model.addAttribute("name", userName);
 				model.addAttribute("password",userPassword);
 				model.addAttribute("newoffer",newOffer.getNewOffer());
 				
-				Resource dealPic = new ClassPathResource("images/unknown.jpg");
-				/*Path imagePathReg = IMAGES_FOLDER.resolve("unknown.jpg");
-				File imgReg = new File(imagePathReg.toUri());
-				FileInputStream input2 = new FileInputStream(imgReg);*/
-				//newUser.setProf_photo(BlobProxy.generateProxy(input2, Files.size(imagePathReg)));
 				InputStream is = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-				//FileInputStream picInput = (FileInputStream) dealPic.getInputStream();
-				//newUser.setProf_photo(BlobProxy.generateProxy(is, Files.size(is)));
+				newUser.setProf_photo(BlobProxy.generateProxy(is, is.available()));
 				component.setLoggedUser(newUser);
 				userRepository.save(newUser);
 		
