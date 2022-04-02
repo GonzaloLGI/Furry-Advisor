@@ -20,12 +20,6 @@ public class CreateDeals {
 
 	@Autowired
 	public NewOffer newOffer;
-
-	@Autowired
-	private DealService dealRepository;
-	
-	@Autowired
-	private PlaceService placeRepository;
 	
 	@GetMapping("/createDeal/{placeName}")
 	public String creatDeal(Model model, @PathVariable String placeName) {

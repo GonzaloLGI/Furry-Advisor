@@ -71,7 +71,6 @@ public class CreateReviewController {
 		rev.setUserOwn(actualUser);
 		List<ReviewDB> userReviews = actualUser.getReviews();
 		userReviews.add(rev);
-		//Hibernate.initialize(userReviews.add(rev));
 		actualUser.setReviews(userReviews);
 		
 		userRepository.save(actualUser);

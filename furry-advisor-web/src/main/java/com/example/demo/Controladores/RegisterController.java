@@ -29,8 +29,6 @@ import com.example.demo.Services.UserService;
 //Clase que se encarga de gestionar las periciones hacia Registe/Sign Up
 @Controller
 public class RegisterController {
-	
-	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
 
 	@Autowired
 	private UserComponent component;

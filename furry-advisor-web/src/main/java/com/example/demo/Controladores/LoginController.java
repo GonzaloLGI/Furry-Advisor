@@ -32,12 +32,6 @@ public class LoginController {
 
 	@Autowired
 	public NewOffer newOffer;
-
-	 @Autowired
-	 private ReviewService reviewRepository;
-	 
-	 @Autowired
-	 private UserService userRepository;
 	 
 	 @GetMapping("/login")
 	 public String page(Model model,HttpSession http) {
@@ -47,34 +41,4 @@ public class LoginController {
 		 return "login";
 		 
 	 }
-	 
-	 //ESTO ES INUTIL CON SPRING SECURITY. BORRAR
-	 /*@GetMapping("/accessProfile")
-		public String login(HttpSession http, Model model, @RequestParam String userName, @RequestParam String userPassword) {
-		 
-			List<UserDB> userAux = userRepository.findByNickname(userName);
-			
-			if(userAux.size()>0) {
-				if(userPassword.equals(userAux.get(0).getPassword())) {
-					http.setAttribute("actUser", userAux.get(0));
-					model.addAttribute("name", userName);
-					model.addAttribute("password",userPassword);
-					
-					List<ReviewDB> revs = reviewRepository.findByUserRef(userAux.get(0));
-					if(revs.size()>0) {
-						model.addAttribute("user_reviews",revs);
-					}
-					return "profile/"+userName;
-				}
-				
-				System.out.println("Contraseña incorrecta");
-				return "login";
-			}
-			else {
-				System.out.println("El usuario introducido no existe");
-				return "login";
-				
-			}
-			
-	 }*/
 }

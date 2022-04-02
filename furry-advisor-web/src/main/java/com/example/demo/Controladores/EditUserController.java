@@ -41,8 +41,6 @@ import com.example.demo.Services.UserService;
 
 @Controller
 public class EditUserController {
-	
-	private static final Path IMAGES_FOLDER = Paths.get(System.getProperty("user.dir"),"images");
 
 	@Autowired
 	public NewOffer newOffer;
@@ -77,10 +75,6 @@ public class EditUserController {
 	@PostMapping("/deleteUserImage/{nickname}")
 	public ModelAndView uploadImage(@PathVariable String nickname, Model model) throws IOException {
 		UserDB user = userRepository.findByNickname(nickname).get(0);
-		
-		/*Path image_path = IMAGES_FOLDER.resolve("unknown.jpg");
-		File imagen = new File(image_path.toUri());
-		FileInputStream input = new FileInputStream(imagen);*/
 		InputStream input1 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
 		
 		user.setProf_photo(BlobProxy.generateProxy(input1, input1.available()));

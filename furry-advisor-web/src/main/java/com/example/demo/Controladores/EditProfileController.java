@@ -45,9 +45,6 @@ public class EditProfileController implements CommandLineRunner {
 	private UserService userRepository;
 	
 	@Autowired 
-	private DealService dealRepository;
-	
-	@Autowired 
 	private ReviewService reviewRepository;
 	
 	@RequestMapping("/edit_profile")
@@ -92,12 +89,6 @@ public class EditProfileController implements CommandLineRunner {
 		UserDB user = component.getLoggedUser();
 		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
 		userRepository.save(user);
-		
-		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
-		int random1=(int)Math.random()*deals.size();
-		int random2=(int)Math.random()*deals.size();
-		
-		
 		//Para recargar
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(user);
 		model.addAttribute("name",user.getNickname());
