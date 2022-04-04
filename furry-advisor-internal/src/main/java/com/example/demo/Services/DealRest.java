@@ -33,10 +33,8 @@ public class DealRest {
 	private PlaceService placeRepository;
 	
 	@JsonView(DealDB.Basico.class)
-	@GetMapping("/existingDeal")
+	@GetMapping("/deals")
 	public ResponseEntity<List<DealDB>> findAllByPlaceOriginIsNotNull(){
-		DealDB newDeal = new DealDB("cabecera2","descripcion23",null,null);
-		dealRepository.save(newDeal);
 		List<DealDB> deals = dealRepository.findAllByPlaceOriginIsNotNull();
 		if(deals!=null) {
 			return ResponseEntity.ok(deals);
@@ -46,7 +44,7 @@ public class DealRest {
 	}
 	
 	//@JsonView(DealDB.Basico.class)
-	@PostMapping("/deal")
+	@PostMapping("/deals")
 	public ResponseEntity<DealDBJson> save(@RequestBody DealDBJson deal){
 		PlaceDB place = placeRepository.findByName(deal.getPlaceName()).get(0);
 		DealDB newDeal = new DealDB(deal.getHeader(),deal.getDescription(),place);

@@ -13,18 +13,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CSRFHandlerConfiguration implements WebMvcConfigurer {
 	@Override
-	 public void addInterceptors(InterceptorRegistry registry) {
+	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new CSRFHandlerInterceptor());
-	 }
+	}
 }
 
 class CSRFHandlerInterceptor implements HandlerInterceptor {
 	 @Override
 	 public void postHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler, final ModelAndView modelAndView) throws Exception {
 		 CsrfToken token = (CsrfToken) request.getAttribute("_csrf"); 
-		//Esto lo hago porque hay requests que no devuelven un modelo, pero aun asi se ejecuta esto y da error
+		 //Esto lo hago porque hay requests que no devuelven un modelo, pero aun asi se ejecuta esto y da error
 		 if (modelAndView != null){ 
 			 modelAndView.addObject("token", token.getToken()); 
 		 }
 	 }
-	}
+}

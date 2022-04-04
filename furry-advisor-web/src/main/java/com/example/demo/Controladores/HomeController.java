@@ -342,7 +342,7 @@ public class HomeController {
 	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
 		String base = "http://localhost:8080";
-		String url = base+"/existingDeal";
+		String url = base+"/deals";
 		//DEVUELVE ARRAYNODE, NO OBJECTNODE. ESOS ESTAN DENTRO
 		ArrayNode data = rest.getForObject(url, ArrayNode.class);
 
@@ -376,7 +376,7 @@ public class HomeController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<DealDBJson> entity = new HttpEntity<>(newDeal,headers);
 		String base = "http://localhost:8080";
-		String url = base+"/deal";
+		String url = base+"/deals";
 		URI uri = new URI(url);
 		rest.postForEntity(uri, entity,DealDBJson.class);
 		
