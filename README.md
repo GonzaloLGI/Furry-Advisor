@@ -27,7 +27,7 @@ Las entidades principales de Furry Advisor son:
 ## Servicios internos ##
 Los servicios que proporciona el servidor son:
 - Notificaciones de Ofertas recien añadidas.
-- Avisar de interacciones de otros Usuarios con tus Reseñas: valoración de utilidad, comentarios, etc. //BORRAR SI NO DA TIEMPO
+- Los usuarios con rol de Administrador podrán crear nuevas Ofertas para los establecimientos.
 
 
 ## Descripción y diagrama de relación y opciones disponibles en cada HTML ##
@@ -36,7 +36,9 @@ La aplicación web cuenta con 12 páginas: home, search, login, sign up, profile
 ![UML_HTMLs](https://user-images.githubusercontent.com/56488179/160238190-217801bd-4678-4643-9aec-1587ef614696.png)
 
 A continuación una breve explicación de cada página:
-- Navbar: no es una página en sí, pero se ha modificado con respecto a la anterior fase y aparece en el resto de páginas. Permite el acceso a la página principal, la búsqueda de lugares y el acceso a la cuenta de un usuario ya registrado o el registro de un nuevo usuario. //AÑADIR CUANDO ESTE PAPITO
+- Navbar: no es una página en sí, pero se ha modificado con respecto a la anterior fase y aparece en el resto de páginas. Permite el acceso a la página principal, la búsqueda de lugares y el acceso a la cuenta de un usuario ya registrado o el registro de un nuevo usuario. Además, notificará al usuario en caso de que haya nuevas ofertas.
+![navbar](https://user-images.githubusercontent.com/78224717/161607620-b905d0cc-1ea7-4f2c-bd9a-4923feb04ce0.png)
+
 
 - Home: página de inicio de la aplicación en la que se muestran algunas de las ofertas disponibles y un espacio dedicado a las novedades.
 ![home](https://user-images.githubusercontent.com/56488179/155429671-5bca192a-1437-481a-8304-e4a9aad9cc86.png)
