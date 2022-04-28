@@ -18,7 +18,7 @@ public class FurryAdvisorInternalApplication {
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        ds.setUrl("jdbc:mysql://localhost:3306/posts");
+        ds.setUrl("jdbc:mysql://172.18.0.2:80/posts");
         ds.setUsername("root");
         ds.setPassword("nuevacontraseñafurry");
         return ds;
