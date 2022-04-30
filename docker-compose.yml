@@ -10,17 +10,33 @@ services:
     image: mysql:8.0.17
     environment:
       MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: nuevacontraseñafurry
+      MYSQL_ROOT_PASSWORD: furrypassword
       MYSQL_DATABASE: posts
     volumes:
       - dbdata:/var/lib/mysql
-    restart: always
-
+    restart: on-failure
+ 
   furryadvisor-1:
     container_name: furryadvisor-1
-    image: carlosmariano05/repoprueba:latest
+    image: carlosmariano05/furry-advisor-web:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://furrydb:3306/posts
+      INTERNALSERVICE_BASEURI: http://furryadvisor-internal-1:8080
+    restart: always
+    ports: 
+      - 8443:8443
+    depends_on:
+      - furrydb
+      - furryadvisor-internal-1
+
+  furryadvisor-internal-1:
+    container_name: furryadvisor-internal-1
+    image: carlosmariano05/furry-advisor-internal:latest
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://furrydb:3306/posts
     restart: always
+    ports: 
+      - 8080:8080
     depends_on:
       - furrydb
+
