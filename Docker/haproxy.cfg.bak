@@ -14,26 +14,20 @@ defaults
 
 listen stats
     mode http
-	bind *:8404  
+	bind :8404  
 	stats enable
 	stats refresh 30s
 	stats show-legends
 	stats uri /haproxy?stats
-
+	
 frontend myfrontend
 	mode http
-	bind *:80
-	default_backend mybackend
-	
-frontend mysecondfrontend
-	mode tcp
-	bind *:443
+	bind :443 
 	default_backend mybackend
 		
 backend mybackend	
     mode http
 	balance roundrobin
-	server web1 web2:8080 check 
-	
+	server web1 web1:8080 check 
 	
 	
