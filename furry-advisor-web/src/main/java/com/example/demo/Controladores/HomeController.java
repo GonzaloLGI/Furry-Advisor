@@ -24,6 +24,7 @@ import javax.sql.rowset.serial.SerialException;
 import org.hibernate.engine.jdbc.BlobProxy;
 //import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
@@ -90,6 +91,9 @@ public class HomeController {
 	
 	@Autowired
 	private ReviewService reviewRepository;
+
+	@Value("${internalService.baseUri}")
+	private String intServiceURI;
 
 	@PostConstruct
 	public void init() throws ParseException, IOException, URISyntaxException {
@@ -341,7 +345,7 @@ public class HomeController {
 	@GetMapping("/checkRest")
 	public ModelAndView checkRest() {
 		RestTemplate rest = new RestTemplate();
-		String base = "http://localhost:8080";
+		String base = intServiceURI;
 		String url = base+"/deals";
 		//DEVUELVE ARRAYNODE, NO OBJECTNODE. ESOS ESTAN DENTRO
 		ArrayNode data = rest.getForObject(url, ArrayNode.class);
@@ -375,7 +379,7 @@ public class HomeController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<DealDBJson> entity = new HttpEntity<>(newDeal,headers);
-		String base = "http://localhost:8080";
+		String base = intServiceURI;
 		String url = base+"/deals";
 		URI uri = new URI(url);
 		rest.postForEntity(uri, entity,DealDBJson.class);
