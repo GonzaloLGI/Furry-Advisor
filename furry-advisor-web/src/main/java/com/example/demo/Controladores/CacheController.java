@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
@@ -17,7 +17,7 @@ public class CacheController{
     private CacheManager cacheManager;
 
     //@CacheConfig(cacheNames="whatever")
-    @RequestMappin(value="/cache", method=RequestMethod.GET)
+    @RequestMapping(value="/cache", method=RequestMethod.GET)
     public Map<Object, Object> getCacheContent(){
         ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
         ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("whatever");
