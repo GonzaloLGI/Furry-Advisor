@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -54,6 +55,7 @@ public class SearchController implements CommandLineRunner {
 		// TODO Auto-generated method stub
 	}
 	
+	@Cacheable
 	@GetMapping("/searchPlatform")
 	public String searchPlatform(Model model,HttpSession http) {
 		UserDB actualUser = component.getLoggedUser();
