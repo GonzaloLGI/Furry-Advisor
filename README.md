@@ -102,7 +102,8 @@ La presencia de la barra de navegación en una página viene marcado con un * al
 
 ## Diagrama de las clases del programa y relación entre controladores y templates ##
 
-![UML_Clases](https://user-images.githubusercontent.com/56488179/160241444-7ff7d7d8-b8ea-4800-9ad1-0643e2e8e94e.png)
+![UML_Clases drawio](https://user-images.githubusercontent.com/64601602/167452213-e4dec1d4-3789-4e24-8368-0775ecb3b229.png)
+
 
 Leyenda de colores:
 - Naranja: @Configuration
@@ -145,6 +146,26 @@ En máquina virtual:
 
 
 Una vez ejecutados ambos, podemos disfrutar de la mejor (y única) web de tursimo furry! :P
+
+## Despliegue de la aplicación en Docker ##
+Se ha añadido para la Fase 4 de la asignatura la creación de contenedores generados y arrancados por la herramienta docker-compose. En total se crean 7 contenedores:
+- Balanceador de Aplicaciones
+- Balanceador de Servicios Internos
+- Aplicación web 1
+- Aplicación web 2
+- Servicio Interno 1
+- Servicio Interno 2
+- Base de Datos Mysql
+
+![Captura de pantalla 2022-05-09 175333](https://user-images.githubusercontent.com/64601602/167448849-37514dd8-85d8-4f99-902e-55b1b4e259e4.png)
+
+
+## Diagrama de la Infraestructura ## 
+
+A continuación se muestra el diagrama de conexiones entre los distintos contenedores y el cliente final
+
+![UML_Compose drawio](https://user-images.githubusercontent.com/64601602/167451434-70187d87-442e-4974-9690-e87c481b4106.png)
+
 
 
 
