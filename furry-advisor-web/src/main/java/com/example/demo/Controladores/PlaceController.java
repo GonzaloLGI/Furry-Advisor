@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.demo.ImageUtils;
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.LocationDB;
@@ -120,7 +121,7 @@ public class PlaceController {
 		List<UserDB> profiles = userRepository.findByNickname(header);
 		UserDB user = profiles.get(0);
 		if (user.getProf_photo() != null) {
-			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			Resource image = ImageUtils.imageStringToResource(user.getProf_photo());
 			return ResponseEntity.ok()
 					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 					 .contentLength(user.getProf_photo().length())

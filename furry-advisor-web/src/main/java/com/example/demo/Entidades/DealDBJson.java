@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DealDBJson implements Serializable{
+public class DealDBJson{
 	
 	private String placeName;
 	private String header;

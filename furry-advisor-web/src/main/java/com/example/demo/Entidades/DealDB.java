@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 //Clase de la entidad Deal en la BD
 @Entity
-public class DealDB implements Serializable{
+public class DealDB{
 	
 	public interface Basico{}
 	public interface Completo{}

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,6 +44,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.ImageUtils;
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.DealDBJson;
@@ -58,6 +60,7 @@ import com.example.demo.Services.PlaceTypeService;
 import com.example.demo.Services.ReviewService;
 import com.example.demo.Services.UserService;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.hazelcast.com.google.common.base.Charsets;
 
 //Clase del controlador encargado de gestionar las peticiones surgidas en el HTML Home
 //y de inicializar las entidades ejemplo usadas en la aplicación web
@@ -213,23 +216,22 @@ public class HomeController {
 			userRepository.save(use5);
 			userRepository.save(use6);
 			
-			InputStream input1 = getClass().getClassLoader().getResourceAsStream("images/perfil1.jpg");
-			InputStream input2 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-			use1.setProf_photo(BlobProxy.generateProxy(input1,input1.available()));
+			
+			String input1 = ImageUtils.imageToString("images/perfil1.jpg");
+			String input2 = ImageUtils.imageToString("images/unknown.jpg");
+		
+		
+			use1.setProf_photo(input1);
 			userRepository.save(use1);
-			use2.setProf_photo(BlobProxy.generateProxy(input2, input2.available()));
+			use2.setProf_photo(input2);
 			userRepository.save(use2);
-			InputStream input3 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-			use3.setProf_photo(BlobProxy.generateProxy(input3, input3.available()));
+			use3.setProf_photo(input2);
 			userRepository.save(use3);
-			InputStream input4 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-			use4.setProf_photo(BlobProxy.generateProxy(input4, input4.available()));
+			use4.setProf_photo(input2);
 			userRepository.save(use4);
-			InputStream input5 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-			use5.setProf_photo(BlobProxy.generateProxy(input5, input5.available()));
+			use5.setProf_photo(input2);
 			userRepository.save(use5);
-			InputStream input6 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-			use6.setProf_photo(BlobProxy.generateProxy(input6, input6.available()));
+			use6.setProf_photo(input2);
 			userRepository.save(use6);
 			
 			InputStream input7 = getClass().getClassLoader().getResourceAsStream("images/restaurante.jpg");
@@ -393,5 +395,6 @@ public class HomeController {
 		System.out.println("Subido");
 		return new ModelAndView("redirect:/home");
 	}
+
 	
 }

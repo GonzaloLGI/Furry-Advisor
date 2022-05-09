@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.ImageUtils;
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.ReviewDB;
@@ -87,7 +88,7 @@ public class EditProfileController implements CommandLineRunner {
 	@PostMapping("/upload_image")
 	public ModelAndView uploadImage(HttpSession http,Model model, @RequestParam MultipartFile image) throws IOException {
 		UserDB user = component.getLoggedUser();
-		user.setProf_photo(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
+		user.setProf_photo(ImageUtils.imageToString(image));
 		userRepository.save(user);
 		//Para recargar
 		List<ReviewDB> reviews = reviewRepository.findByUserRef(user);
@@ -120,7 +121,7 @@ public class EditProfileController implements CommandLineRunner {
 	public ResponseEntity<Object> imageEditProfile(HttpSession http, Model model) throws MalformedURLException, SQLException {
 		UserDB user = component.getLoggedUser();
 		if (user.getProf_photo() != null) {
-			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			Resource image = ImageUtils.imageStringToResource(user.getProf_photo());
 			return ResponseEntity.ok()
 					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 					 .contentLength(user.getProf_photo().length())

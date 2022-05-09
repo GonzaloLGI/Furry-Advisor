@@ -37,19 +37,12 @@ public class CreateReviewController {
 	private PlaceService placeRepository;
 	@Autowired
 	private UserService userRepository;
-	
-	private PlaceDB pl;
 
 	@GetMapping("/create_review/{placeName}")
     public String createReview(Model model,HttpSession http, @PathVariable String placeName) {
         UserDB user=component.getLoggedUser();
-        List<PlaceDB> placeList =placeRepository.findByName(placeName);
-        PlaceDB place = null;
-        if(placeList.size()>0) {
-            place = placeList.get(0);
-            pl = place;
-        }
-        model.addAttribute("place_name", place.getName());
+        http.setAttribute("place", placeName);
+        model.addAttribute("place_name", placeName);
         model.addAttribute("place",http.getAttribute("place"));
 	    model.addAttribute("offer",http.getAttribute("offer"));
 		model.addAttribute("newoffer",newOffer.getNewOffer());
@@ -61,13 +54,16 @@ public class CreateReviewController {
 	
 	
 	@PostMapping("/confirmReview")
-	public ModelAndView confirmReview(Model model, @RequestParam int rating,
+	public ModelAndView confirmReview(Model model, HttpSession http, @RequestParam int rating,
 			@RequestParam String review) throws ParseException {
 		Date dt = new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-20");
 		ReviewDB rev = new ReviewDB(rating,review,dt,0,null,null);
 		UserDB actualUser = component.getLoggedUser();
 		
-		rev.setPlaceOwn(pl);
+		String placeName = http.getAttribute("place").toString();
+		PlaceDB place = placeRepository.findByName(placeName).stream().findFirst().orElse(null);
+		
+		rev.setPlaceOwn(place);
 		rev.setUserOwn(actualUser);
 		List<ReviewDB> userReviews = actualUser.getReviews();
 		userReviews.add(rev);

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.ImageUtils;
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.PlaceDB;
 import com.example.demo.Entidades.ReviewDB;
@@ -90,7 +91,7 @@ public class ProfileController implements CommandLineRunner {
 	public ResponseEntity<Object> downloadImage(HttpSession http, Model model) throws MalformedURLException, SQLException {
 		UserDB user = component.getLoggedUser();
 		if (user.getProf_photo() != null) {
-			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			Resource image = ImageUtils.imageStringToResource(user.getProf_photo());
 			return ResponseEntity.ok()
 					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 					 .contentLength(user.getProf_photo().length())

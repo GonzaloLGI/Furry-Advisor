@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.ImageUtils;
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.UserDB;
 import com.example.demo.Services.UserService;
@@ -60,8 +61,9 @@ public class RegisterController {
 				model.addAttribute("password",userPassword);
 				model.addAttribute("newoffer",newOffer.getNewOffer());
 				
-				InputStream is = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
-				newUser.setProf_photo(BlobProxy.generateProxy(is, is.available()));
+				String input2 = ImageUtils.imageToString("images/unknown.jpg");
+				//InputStream is = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+				newUser.setProf_photo(input2);
 				component.setLoggedUser(newUser);
 				userRepository.save(newUser);
 		

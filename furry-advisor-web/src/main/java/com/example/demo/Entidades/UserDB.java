@@ -45,12 +45,13 @@ public class UserDB implements Serializable{
 	private List<String> roles;
 
 	@Lob
+	//@Column(columnDefinition="TEXT")
 	@JsonIgnore
-	private Blob profPhoto;
+	private String profPhoto;
 	
 	public UserDB(){};
 	
-	public UserDB(String nk, String psw, String em, Blob photo, String rol) {
+	public UserDB(String nk, String psw, String em, String photo, String rol) {
 		setNickname(nk);
 		setPassword(psw);
 		email = em;
@@ -83,11 +84,11 @@ public class UserDB implements Serializable{
 		this.email = email;
 	}
 
-	public Blob getProf_photo() {
+	public String getProf_photo() {
 		return profPhoto;
 	}
 
-	public void setProf_photo(Blob prof_photo) {
+	public void setProf_photo(String prof_photo) {
 		this.profPhoto = prof_photo;
 	}
 	

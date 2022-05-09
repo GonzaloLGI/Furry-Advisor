@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.ImageUtils;
 import com.example.demo.NewOffer;
 import com.example.demo.Entidades.DealDB;
 import com.example.demo.Entidades.ReviewDB;
@@ -75,9 +76,10 @@ public class EditUserController {
 	@PostMapping("/deleteUserImage/{nickname}")
 	public ModelAndView uploadImage(@PathVariable String nickname, Model model) throws IOException {
 		UserDB user = userRepository.findByNickname(nickname).get(0);
-		InputStream input1 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
+		String input2 = ImageUtils.imageToString("images/unknown.jpg");
+		//InputStream input1 = getClass().getClassLoader().getResourceAsStream("images/unknown.jpg");
 		
-		user.setProf_photo(BlobProxy.generateProxy(input1, input1.available()));
+		user.setProf_photo(input2);
 		userRepository.save(user);
 		
 		return new ModelAndView(("redirect:/editUser/"+nickname));
@@ -87,7 +89,7 @@ public class EditUserController {
 	public ResponseEntity<Object> getUserProfileImage(@PathVariable String user_name) throws SQLException {
 		UserDB user = (UserDB)userRepository.findByNickname(user_name).get(0);
 		if (user.getProf_photo() != null) {
-			Resource image = new InputStreamResource(user.getProf_photo().getBinaryStream());
+			Resource image = ImageUtils.imageStringToResource(user.getProf_photo());
 			return ResponseEntity.ok()
 					 .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 					 .contentLength(user.getProf_photo().length())
