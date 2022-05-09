@@ -1,5 +1,6 @@
 package com.example.demo.Entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,7 @@ import javax.persistence.ManyToOne;
 
 //Clase de la entidad Review en la BD
 @Entity
-public class ReviewDB {
+public class ReviewDB implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

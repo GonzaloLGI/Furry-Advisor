@@ -1,5 +1,6 @@
 package com.example.demo.Entidades;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 //Clase de la entidad Place en la BD
 
 @Entity
-public class PlaceDB {
+public class PlaceDB implements Serializable{
 
 	public interface Basico{}
 	

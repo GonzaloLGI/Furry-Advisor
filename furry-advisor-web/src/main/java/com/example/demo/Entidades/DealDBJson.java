@@ -1,14 +1,16 @@
 package com.example.demo.Entidades;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DealDBJson {
+public class DealDBJson implements Serializable{
 	
 	private String placeName;
 	private String header;
 	private String description;
 	
-	public DealDBJson(@JsonProperty("header") String header, @JsonProperty("description") String description, @JsonProperty("place_name") String place_name) {
+	public DealDBJson (@JsonProperty("header") String header, @JsonProperty("description") String description, @JsonProperty("place_name") String place_name) {
 		this.header = header;
 		this.description = description;
 		placeName = place_name;

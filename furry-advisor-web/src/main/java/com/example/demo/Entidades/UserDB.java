@@ -1,5 +1,6 @@
 package com.example.demo.Entidades;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Clase de la entidad User en la BD
 @Entity
-public class UserDB {
+public class UserDB implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

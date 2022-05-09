@@ -1,6 +1,8 @@
 package com.example.demo.Entidades;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Id;
 
 //Clase de la entidad Location en la BD
 @Entity
-public class LocationDB {
+public class LocationDB implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

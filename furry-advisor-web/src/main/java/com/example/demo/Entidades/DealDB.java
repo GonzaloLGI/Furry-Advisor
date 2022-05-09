@@ -1,6 +1,8 @@
 package com.example.demo.Entidades;
 
+import java.io.Serializable;
 import java.sql.Blob;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 //Clase de la entidad Deal en la BD
 @Entity
-public class DealDB {
+public class DealDB implements Serializable{
 	
 	public interface Basico{}
 	public interface Completo{}
