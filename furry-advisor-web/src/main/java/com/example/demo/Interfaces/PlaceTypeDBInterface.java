@@ -2,6 +2,7 @@ package com.example.demo.Interfaces;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Entidades.LocationDB;
