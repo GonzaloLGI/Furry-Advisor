@@ -13,6 +13,7 @@ import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 //objetos de la clase Location
 public interface LocationDBInterface extends JpaRepository<LocationDB, Integer> {
 	List<LocationDB> findAll();
+	@Cacheable("location")
 	List<LocationDB> findAllByOrderByName();
 	List<LocationDB> findByName(String name);
 	

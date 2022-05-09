@@ -54,8 +54,7 @@ public class SearchController implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 	}
-	
-	@Cacheable
+
 	@GetMapping("/searchPlatform")
 	public String searchPlatform(Model model,HttpSession http) {
 		UserDB actualUser = component.getLoggedUser();

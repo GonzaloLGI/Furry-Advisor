@@ -35,7 +35,8 @@ public class PlaceService {
 	public void save(PlaceDB place){
 		placeRepository.save(place);
 	}
-	
+
+	@Cacheable("places")
 	public List<PlaceDB> findAll(){
 		return placeRepository.findAll();
 	}

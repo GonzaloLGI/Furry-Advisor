@@ -14,6 +14,7 @@ import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 //objetos de la clase Location
 public interface PlaceTypeDBInterface extends JpaRepository<PlaceTypeDB, Integer> {
 	List<PlaceTypeDB> findAll();
+	@Cacheable("placetype")
 	List<PlaceTypeDB> findAllByOrderByType();
 	List<PlaceTypeDB> findByType(String type);
 	

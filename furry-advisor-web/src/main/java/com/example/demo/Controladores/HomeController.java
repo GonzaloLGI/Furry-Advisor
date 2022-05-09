@@ -350,6 +350,10 @@ public class HomeController {
 		//DEVUELVE ARRAYNODE, NO OBJECTNODE. ESOS ESTAN DENTRO
 		ArrayNode data = rest.getForObject(url, ArrayNode.class);
 
+		if(data == null){
+			return new ModelAndView("redirect:/home");
+		}
+
 		int newDealCuantity = data.size();
 
 		for(int i = 0; i<data.size();i++) {
