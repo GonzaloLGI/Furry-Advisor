@@ -1,6 +1,12 @@
 # Furry Advisor
 *¿Cuál será el lugar en el que conozcas a tu próximo Woof Woof?*
 
+Demostración de Furry Advisor Parte 1:
+https://youtu.be/xJRNtCoe1z8
+
+Demostración de Furry Advisor Parte 2:
+https://youtu.be/tjXF2vPPQR0
+
 
 ## Descripción de Furry Advisor ##
 Furry Advisor consiste en una pagina web de guía turística en la que se pueden consultar convenciones, restaurantes, bares y clubs de temática furry, permitiendo así a quien quiera introducirse y empaparse de la cultura furry poder visitar esos lugares y conocer a gente furry.
@@ -102,7 +108,8 @@ La presencia de la barra de navegación en una página viene marcado con un * al
 
 ## Diagrama de las clases del programa y relación entre controladores y templates ##
 
-![UML_Clases drawio](https://user-images.githubusercontent.com/64601602/167452213-e4dec1d4-3789-4e24-8368-0775ecb3b229.png)
+![UML_Clases](https://user-images.githubusercontent.com/56488179/167574446-2c8bcd9b-4829-4ddf-bf4a-6fa0a013bc69.png)
+
 
 
 Leyenda de colores:
